@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal Ramadan</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#10B981">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-lg relative">
+        <div class="bg-emerald-500 text-white p-6 rounded-b-3xl shadow-md">
+            <h1 class="text-2xl font-bold text-center">Jurnal Ramadan</h1>
+            <p class="text-center text-emerald-100 text-sm mt-1">Checklist Ibadah Harian</p>
+        </div>
+
+        <div class="p-6">
+            <h2 class="text-lg font-semibold mb-4 text-gray-700">Ibadah Hari Ini</h2>
+            <div class="space-y-3" id="checklist-container">
+                <label class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm cursor-pointer hover:bg-emerald-50 transition">
+                    <input type="checkbox" id="puasa" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
+                    <span class="ml-4 font-medium">Puasa Wajib</span>
+                </label>
+                <label class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm cursor-pointer hover:bg-emerald-50 transition">
+                    <input type="checkbox" id="tarawih" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
+                    <span class="ml-4 font-medium">Salat Tarawih</span>
+                </label>
+                <label class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm cursor-pointer hover:bg-emerald-50 transition">
+                    <input type="checkbox" id="tadarus" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
+                    <span class="ml-4 font-medium">Tadarus Al-Quran</span>
+                </label>
+                <label class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm cursor-pointer hover:bg-emerald-50 transition">
+                    <input type="checkbox" id="sedekah" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
+                    <span class="ml-4 font-medium">Sedekah / Berbagi</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="p-6 mt-4">
+            <div class="bg-amber-100 p-4 rounded-xl border border-amber-200">
+                <h3 class="font-bold text-amber-800 text-sm">✨ Inspirasi Sedekah Hari Ini</h3>
+                <p class="text-xs text-amber-700 mt-1 mb-3">Lengkapi ibadah dengan berbagi takjil untuk Ojol & jalanan. Mini snack gift praktis mulai Rp3.000 aja!</p>
+                <a href="https://shopee.co.id/kadosouvenir/48306321581" target="_blank" class="block w-full text-center bg-orange-500 text-white font-semibold py-2 rounded-lg text-sm hover:bg-orange-600 transition">
+                    Cek Paket Takjil di Shopee
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mendaftarkan Service Worker untuk PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('Service Worker terdaftar!'))
+                .catch(err => console.error('Gagal mendaftar Service Worker', err));
+        }
+
+        // Logika Menyimpan Centang ke Local Storage
+        const checkboxes = document.querySelectorAll('.checklist-item');
+        
+        // Memuat data yang sudah tersimpan saat aplikasi dibuka
+        checkboxes.forEach(box => {
+            const savedState = localStorage.getItem(box.id);
+            if (savedState === 'true') box.checked = true;
+
+            // Menyimpan data setiap kali dicentang
+            box.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+            });
+        });
+    </script>
+</body>
+</html>

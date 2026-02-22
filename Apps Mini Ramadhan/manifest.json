@@ -1,0 +1,17 @@
+{
+  "name": "Jurnal Ramadan",
+  "short_name": "Ramadan",
+  "description": "Aplikasi Checklist Ibadah Harian Ramadan",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10B981",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3213/3213309.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
