@@ -11,16 +11,16 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Konfigurasi Dark Mode Tailwind
         tailwind.config = { darkMode: 'class' }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
-    <div id="app-container" class="max-w-md mx-auto bg-white dark:bg-gray-800 min-h-screen shadow-lg relative transition-colors duration-300">
+    <div id="app-container" class="max-w-md mx-auto bg-white dark:bg-gray-800 min-h-screen shadow-lg relative overflow-hidden transition-colors duration-300">
         
-        <div class="bg-emerald-500 dark:bg-emerald-700 text-white p-6 rounded-b-3xl shadow-md flex justify-between items-center">
+        <div class="bg-emerald-500 dark:bg-emerald-700 text-white p-6 rounded-b-3xl shadow-md flex justify-between items-center relative z-10">
             <div>
                 <h1 class="text-2xl font-bold">Amalin</h1>
                 <p class="text-emerald-100 dark:text-emerald-200 text-sm mt-1">Jurnal Ramadan</p>
@@ -32,6 +32,13 @@
                 <button id="dark-toggle" class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition text-xl">
                     🌙
                 </button>
+            </div>
+        </div>
+
+        <div class="px-6 pt-6">
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm">
+                <input type="text" id="user-name" placeholder="Nama Lengkap..." class="w-full bg-transparent border-b border-gray-300 dark:border-gray-500 focus:border-emerald-500 outline-none py-1 mb-2 font-semibold text-gray-700 dark:text-gray-200">
+                <input type="text" id="user-class" placeholder="Kelas / No. Absen..." class="w-full bg-transparent border-b border-gray-300 dark:border-gray-500 focus:border-emerald-500 outline-none py-1 text-sm text-gray-600 dark:text-gray-300">
             </div>
         </div>
 
@@ -60,94 +67,118 @@
         <div class="px-6 pb-4">
             <h2 class="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-300">Koleksi Badge</h2>
             <div class="flex gap-3 overflow-x-auto pb-2">
-                <div id="badge-tarawih" class="opacity-40 grayscale text-center min-w-[80px]">
-                    <div class="text-3xl bg-gray-100 dark:bg-gray-700 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-1">🕌</div>
+                <div id="badge-tarawih" class="opacity-40 grayscale text-center min-w-[80px] transition-all duration-500">
+                    <div class="text-3xl bg-gray-100 dark:bg-gray-700 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-1 shadow-sm">🕌</div>
                     <p class="text-[10px] font-bold">Si Paling Tarawih</p>
                 </div>
-                <div id="badge-sedekah" class="opacity-40 grayscale text-center min-w-[80px]">
-                    <div class="text-3xl bg-gray-100 dark:bg-gray-700 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-1">🎁</div>
+                <div id="badge-sedekah" class="opacity-40 grayscale text-center min-w-[80px] transition-all duration-500">
+                    <div class="text-3xl bg-gray-100 dark:bg-gray-700 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-1 shadow-sm">🎁</div>
                     <p class="text-[10px] font-bold">Sultan Sedekah</p>
                 </div>
-                <div id="badge-tadarus" class="opacity-40 grayscale text-center min-w-[80px]">
-                    <div class="text-3xl bg-gray-100 dark:bg-gray-700 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-1">📖</div>
+                <div id="badge-tadarus" class="opacity-40 grayscale text-center min-w-[80px] transition-all duration-500">
+                    <div class="text-3xl bg-gray-100 dark:bg-gray-700 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-1 shadow-sm">📖</div>
                     <p class="text-[10px] font-bold">KhatamSkuy</p>
                 </div>
             </div>
         </div>
 
+        <div id="voucher-banner" class="hidden px-6 pb-4">
+            <div class="bg-gradient-to-r from-orange-400 to-rose-500 p-4 rounded-xl shadow-lg text-white text-center transform hover:scale-105 transition">
+                <h3 class="font-bold text-sm">🎉 Reward Streak 7 Hari!</h3>
+                <p class="text-xs mt-1 mb-2">Screenshot ini & tukar dengan diskon Suvenir / Takjil di Shopee!</p>
+                <div class="bg-white/20 font-mono font-bold py-1 rounded tracking-widest">AMALIN-PRO</div>
+            </div>
+        </div>
+
         <div class="px-6 pb-4 flex gap-3">
-            <button id="btn-share" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
-                📸 Pamerin Pahala!
+            <button id="btn-share" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md text-sm">
+                📸 Pamerin!
             </button>
-            <button id="btn-export" class="flex-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 border border-emerald-300 dark:border-emerald-700">
-                📥 Unduh Rapor
+            <button id="btn-export" class="flex-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 border border-emerald-300 dark:border-emerald-700 text-sm">
+                📥 Unduh Tugas
             </button>
         </div>
 
-        <div class="px-6 pb-8 mt-2">
+        <div class="px-6 pb-8">
             <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-xl border border-amber-200 dark:border-amber-800">
-                <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm">✨ Inspirasi Sedekah Hari Ini</h3>
-                <p class="text-xs text-amber-700 dark:text-amber-500 mt-1 mb-3">Lengkapi ibadah dengan berbagi takjil untuk Ojol & jalanan. Mini snack gift praktis mulai Rp3.000 aja!</p>
+                <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm">✨ Skuy Sedekah Hari Ini</h3>
+                <p class="text-xs text-amber-700 dark:text-amber-500 mt-1 mb-3">Lengkapi ibadah dengan berbagi takjil jalanan. Mini snack gift estetik mulai Rp3.000 aja!</p>
                 <a href="LINK_TOKO_SHOPEE_ANDA_DI_SINI" target="_blank" class="block w-full text-center bg-orange-500 text-white font-semibold py-2 rounded-lg text-sm hover:bg-orange-600 transition">
-                    Cek Paket Takjil di Shopee
+                    Cek Etalase Shopee
                 </a>
             </div>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] bg-gradient-to-br from-emerald-400 to-teal-600 p-8 rounded-3xl text-white">
-            <h2 class="text-3xl font-bold text-center mb-2">Amalin</h2>
-            <p class="text-center text-emerald-100 mb-6 border-b border-emerald-300 pb-4">Rapor Ibadah Harian</p>
-            <div class="bg-white/20 p-4 rounded-xl backdrop-blur-sm mb-4">
-                <p class="font-bold text-lg mb-2">Pencapaianku:</p>
-                <ul id="export-list" class="space-y-2 font-medium"></ul>
+        <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] h-[711px] bg-gradient-to-br from-emerald-500 to-teal-800 p-8 flex flex-col justify-between text-white">
+            <div class="text-center mt-8">
+                <h2 class="text-4xl font-extrabold mb-1 tracking-tight">Amalin.</h2>
+                <div class="bg-white/20 inline-block px-4 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">Rapor Ibadah Harian</div>
             </div>
-            <div class="text-center mt-6">
-                <span class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold shadow-lg" id="export-streak">🔥 Streak: 0 Hari</span>
+
+            <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
+                <div class="border-b border-white/20 pb-4 mb-4">
+                    <h3 id="export-name" class="font-bold text-xl text-emerald-100 uppercase tracking-wide">NAMA SISWA</h3>
+                    <p id="export-class" class="text-sm text-emerald-200">Kelas / No</p>
+                </div>
+                <ul id="export-list" class="space-y-3 font-medium text-lg"></ul>
             </div>
-            <p class="text-center text-xs text-emerald-200 mt-8 italic">"Hari ini lebih baik dari kemarin."</p>
+
+            <div class="text-center mb-8">
+                <span class="bg-yellow-400 text-yellow-900 px-6 py-2 rounded-full font-extrabold shadow-lg text-lg inline-block mb-6" id="export-streak">🔥 Streak: 0 Hari</span>
+                <p id="export-quote" class="text-center text-sm text-emerald-100 italic px-4 font-medium leading-relaxed">"Capek boleh, nyerah jangan. Tarawih dulu bos!"</p>
+            </div>
         </div>
 
     </div>
 
     <script>
-        // --- 1. DARK MODE TOGGLE ---
+        // --- Dark Mode ---
         const darkToggle = document.getElementById('dark-toggle');
         const htmlElement = document.documentElement;
-        
-        // Cek preferensi awal
         if (localStorage.getItem('theme') === 'dark') {
             htmlElement.classList.add('dark');
             darkToggle.innerText = '☀️';
         }
-
         darkToggle.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-                darkToggle.innerText = '☀️';
-            } else {
-                localStorage.setItem('theme', 'light');
-                darkToggle.innerText = '🌙';
-            }
+            let isDark = htmlElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            darkToggle.innerText = isDark ? '☀️' : '🌙';
         });
 
-        // --- 2. SISTEM STREAK & RESET HARIAN ---
+        // --- Load & Save Profil ---
+        const nameInput = document.getElementById('user-name');
+        const classInput = document.getElementById('user-class');
+        nameInput.value = localStorage.getItem('userName') || '';
+        classInput.value = localStorage.getItem('userClass') || '';
+        
+        nameInput.addEventListener('input', () => localStorage.setItem('userName', nameInput.value));
+        classInput.addEventListener('input', () => localStorage.setItem('userClass', classInput.value));
+
+        // --- Quotes Dinamis ala Gen Z ---
+        const skenaQuotes = [
+            "Capek boleh, nyerah jangan. Tarawih dulu bos!",
+            "Skuy gaskeun tadarusnya, mumpung pahala lagi diskon 100%!",
+            "Jangan cuma push rank game, push rank pahala juga dong!",
+            "Rebahan elit, puasa bolong sulit. Yuk genapin puasanya!",
+            "Validasi jalur langit lebih penting dari validasi netizen.",
+            "Minimal hari ini ada satu kebaikan yang nyantol, bestie.",
+            "Tetap menyala abangku! Puasa full senyum hari ini."
+        ];
+        const quoteIndex = new Date().getDate() % skenaQuotes.length;
+        document.getElementById('export-quote').innerText = `"${skenaQuotes[quoteIndex]}"`;
+
+        // --- Sistem Streak & Reset ---
         const today = new Date().toDateString();
         let lastVisit = localStorage.getItem('lastVisit');
         let streak = parseInt(localStorage.getItem('streak') || 0);
 
-        // Jika hari berganti (bukan hari ini), reset centang tapi pertahankan/hitung streak
         if (lastVisit !== today) {
             if (lastVisit) {
-                // Cek apakah kemarin ada ibadah yang dicentang
                 const yesterdayCompleted = localStorage.getItem('completedYesterday') === 'true';
-                if (!yesterdayCompleted) streak = 0; // Reset jika bolong
+                if (!yesterdayCompleted) streak = 0;
             }
-            
-            // Reset checklist harian
-            ['puasa', 'tarawih', 'tadarus', 'sedekah'].forEach(id => {
-                localStorage.setItem(id, 'false');
-            });
+            ['puasa', 'tarawih', 'tadarus', 'sedekah'].forEach(id => localStorage.setItem(id, 'false'));
             localStorage.setItem('completedYesterday', 'false');
             localStorage.setItem('lastVisit', today);
             localStorage.setItem('streak', streak);
@@ -155,64 +186,86 @@
 
         document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
 
-        // --- 3. CHECKLIST & BADGE SYSTEM ---
-        const checkboxes = document.querySelectorAll('.checklist-item');
-        let dailyCount = 0;
+        if (streak >= 7) {
+            document.getElementById('voucher-banner').classList.remove('hidden');
+        }
 
+        // --- Sistem Badge, Checklist & Confetti ---
+        const checkboxes = document.querySelectorAll('.checklist-item');
+        
         function updateBadges() {
-            // Logika sederhana: Jika sudah sering mencentang, badge menyala (hilangkan grayscale)
             if (localStorage.getItem('tarawih_total') >= 3) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
             if (localStorage.getItem('sedekah_total') >= 2) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
             if (localStorage.getItem('tadarus_total') >= 5) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
         }
 
-        checkboxes.forEach(box => {
-            // Load state
-            if (localStorage.getItem(box.id) === 'true') {
-                box.checked = true;
-                dailyCount++;
+        function checkAllCompleted() {
+            const allChecked = Array.from(checkboxes).every(box => box.checked);
+            if (allChecked) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#10B981', '#F59E0B', '#3B82F6']
+                });
+                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
             }
+        }
 
-            // Save state & hitung total untuk Badge
+        checkboxes.forEach(box => {
+            // Load status centang
+            if (localStorage.getItem(box.id) === 'true') box.checked = true;
+
             box.addEventListener('change', function() {
+                // Simpan status centang
                 localStorage.setItem(this.id, this.checked);
                 
-                // Tambah/Kurang total ibadah untuk badge
+                // --- Logika Penambahan Total untuk Badge ---
                 let totalKey = this.id + '_total';
                 let currentTotal = parseInt(localStorage.getItem(totalKey) || 0);
                 localStorage.setItem(totalKey, this.checked ? currentTotal + 1 : currentTotal - 1);
                 
-                // Update status kegiatan hari ini untuk streak besok
+                // --- Logika Streak Harian ---
                 let newDailyCount = document.querySelectorAll('.checklist-item:checked').length;
                 if (newDailyCount > 0) {
                     localStorage.setItem('completedYesterday', 'true');
                     if (streak === 0 && lastVisit === today) {
-                        streak = 1; // Langsung dapat 1 api jika hari ini baru mulai
+                        streak = 1;
                         localStorage.setItem('streak', streak);
                         document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
                     }
                 }
-                updateBadges();
+                
+                updateBadges(); // Perbarui tampilan badge
+                if(this.checked) checkAllCompleted(); // Cek apakah butuh confetti
             });
         });
-        updateBadges(); // Panggil saat awal load
+        
+        updateBadges(); // Panggil saat aplikasi pertama kali dimuat
 
-        // --- 4. EXPORT & SHARE SYSTEM (html2canvas) ---
+        // --- Ekspor & Share ---
         function generateImage(filename) {
             const exportCard = document.getElementById('export-card');
             const exportList = document.getElementById('export-list');
-            exportList.innerHTML = ''; // Bersihkan list
             
-            // Masukkan data yang dicentang hari ini
+            // Set Profil di Gambar
+            document.getElementById('export-name').innerText = nameInput.value || 'Hamba Allah';
+            document.getElementById('export-class').innerText = classInput.value || 'Data belum diisi';
+
+            // Set Checklist di Gambar
+            exportList.innerHTML = ''; 
             checkboxes.forEach(box => {
                 let li = document.createElement('li');
-                li.innerText = box.checked ? `✅ ${box.nextElementSibling.innerText}` : `❌ ${box.nextElementSibling.innerText}`;
+                li.className = "flex items-center gap-3";
+                let icon = box.checked ? '✅' : '⏳';
+                let opacity = box.checked ? 'opacity-100' : 'opacity-50 line-through';
+                li.innerHTML = `<span class="text-2xl">${icon}</span> <span class="${opacity}">${box.nextElementSibling.innerText}</span>`;
                 exportList.appendChild(li);
             });
             document.getElementById('export-streak').innerText = `🔥 Streak: ${streak} Hari`;
 
-            // Proses menjadi gambar
-            html2canvas(exportCard, { scale: 2 }).then(canvas => {
+            // Eksekusi Pembuatan Gambar
+            html2canvas(exportCard, { scale: 2, useCORS: true }).then(canvas => {
                 let link = document.createElement('a');
                 link.download = filename;
                 link.href = canvas.toDataURL('image/png');
@@ -221,13 +274,10 @@
         }
 
         document.getElementById('btn-share').addEventListener('click', () => generateImage('Amalin-Story.png'));
-        document.getElementById('btn-export').addEventListener('click', () => generateImage('Rapor-Amalin.png'));
+        document.getElementById('btn-export').addEventListener('click', () => generateImage('Tugas-Amalin.png'));
 
-        // Pendaftaran PWA Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
+        // Pendaftaran PWA
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
     </script>
 </body>
 </html>
-
