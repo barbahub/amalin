@@ -155,9 +155,10 @@
                         Hubungkan Akun Google
                     </button>
                     <button id="btn-logout" class="hidden w-full bg-rose-100 text-rose-600 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
-                        Keluar (Logout)
+                        Keluar Akun
                     </button>
                 </div>
+
                 <div class="bg-gray-50 dark:bg-gray-700/50 p-6 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm text-center mb-6 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-emerald-400 to-teal-600 opacity-20"></div>
                     <div class="w-20 h-20 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-full mx-auto flex items-center justify-center shadow-lg mb-3 text-3xl text-white font-extrabold relative z-10 border-4 border-white dark:border-gray-800" id="avatar-initial">
@@ -218,7 +219,6 @@
                 <h2 class="text-4xl font-extrabold mb-1 tracking-tight">Amalin.</h2>
                 <div class="bg-white/20 inline-block px-4 py-1 rounded-full text-sm font-semibold backdrop-blur-sm shadow-inner">Rapor Jalur Langit</div>
             </div>
-
             <div class="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20 shadow-2xl">
                 <div class="border-b border-white/20 pb-4 mb-4 text-center">
                     <h3 id="export-name" class="font-bold text-2xl text-white tracking-wide uppercase">NAMA PENGGUNA</h3>
@@ -226,7 +226,6 @@
                 </div>
                 <ul id="export-list" class="space-y-4 font-medium text-lg px-2"></ul>
             </div>
-
             <div class="text-center mb-8">
                 <span class="bg-yellow-400 text-yellow-900 px-6 py-2.5 rounded-full font-extrabold shadow-lg text-lg inline-block mb-6" id="export-streak">🔥 Streak: 0 Hari</span>
                 <p id="export-quote" class="text-center text-sm text-emerald-100 italic px-4 font-medium leading-relaxed">"Quotes hari ini"</p>
@@ -236,63 +235,39 @@
     </div>
 
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Menyembunyikan scrollbar agar rapi di desktop */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 
     <script>
-        // --- 1. Logika Navigasi Tab (3 Tabs) ---
-        const views = {
-            home: document.getElementById('view-home'),
-            target: document.getElementById('view-target'),
-            profile: document.getElementById('view-profile')
-        };
-        const btns = {
-            home: document.getElementById('nav-btn-home'),
-            target: document.getElementById('nav-btn-target'),
-            profile: document.getElementById('nav-btn-profile')
-        };
+        const views = { home: document.getElementById('view-home'), target: document.getElementById('view-target'), profile: document.getElementById('view-profile') };
+        const btns = { home: document.getElementById('nav-btn-home'), target: document.getElementById('nav-btn-target'), profile: document.getElementById('nav-btn-profile') };
         const headerSubtitle = document.getElementById('header-subtitle');
 
         const activeClass = "flex-1 py-2 flex flex-col items-center text-emerald-600 dark:text-emerald-400 transition transform scale-105 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl";
         const inactiveClass = "flex-1 py-2 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-2xl";
 
         function switchTab(tab) {
-            Object.keys(views).forEach(key => {
-                views[key].classList.replace('block', 'hidden');
-                btns[key].className = inactiveClass;
-            });
-            views[tab].classList.replace('hidden', 'block');
-            btns[tab].className = activeClass;
+            Object.keys(views).forEach(key => { views[key].classList.replace('block', 'hidden'); btns[key].className = inactiveClass; });
+            views[tab].classList.replace('hidden', 'block'); btns[tab].className = activeClass;
 
             if(tab === 'home') headerSubtitle.innerText = "Circle Jalur Langit";
             if(tab === 'target') headerSubtitle.innerText = "Target & Misi Harian";
             if(tab === 'profile') headerSubtitle.innerText = "Player Card & Badge";
         }
-
         btns.home.addEventListener('click', () => switchTab('home'));
         btns.target.addEventListener('click', () => switchTab('target'));
         btns.profile.addEventListener('click', () => switchTab('profile'));
 
-        // --- 2. Dark Mode ---
         const darkToggle = document.getElementById('dark-toggle');
         const htmlElement = document.documentElement;
-        if (localStorage.getItem('theme') === 'dark') {
-            htmlElement.classList.add('dark');
-            darkToggle.innerText = '☀️';
-        }
+        if (localStorage.getItem('theme') === 'dark') { htmlElement.classList.add('dark'); darkToggle.innerText = '☀️'; }
         darkToggle.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
-            let isDark = htmlElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            darkToggle.innerText = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            darkToggle.innerText = htmlElement.classList.contains('dark') ? '☀️' : '🌙';
         });
 
-        // --- 3. Animasi Respect Feed (Dummy) ---
         document.querySelectorAll('.btn-respect').forEach(btn => {
             btn.addEventListener('click', function() {
                 let countSpan = this.querySelector('.respect-count');
@@ -303,7 +278,6 @@
             });
         });
 
-        // --- 4. Load & Save Profil Bawaan ---
         const nameInput = document.getElementById('user-name');
         const bioInput = document.getElementById('user-bio');
         const avatarInitial = document.getElementById('avatar-initial');
@@ -312,62 +286,33 @@
         bioInput.value = localStorage.getItem('userBio') || '';
         
         function updateAvatar() {
-            // Hanya update jika tidak ada gambar (belum login)
             if(!avatarInitial.querySelector('img')){
                 avatarInitial.innerText = nameInput.value ? nameInput.value.charAt(0).toUpperCase() : 'A';
             }
         }
         updateAvatar();
 
-        nameInput.addEventListener('input', () => {
-            localStorage.setItem('userName', nameInput.value);
-            updateAvatar();
-        });
+        nameInput.addEventListener('input', () => { localStorage.setItem('userName', nameInput.value); updateAvatar(); });
         bioInput.addEventListener('input', () => localStorage.setItem('userBio', bioInput.value));
 
-        // --- 5. Quotes Gen Z ---
-        const skenaQuotes = [
-            "Capek boleh, nyerah jangan. Tarawih dulu bos!",
-            "Skuy gaskeun tadarusnya, mumpung pahala lagi diskon 100%!",
-            "Jangan cuma push rank game, push rank pahala juga dong!",
-            "Rebahan elit, puasa bolong sulit. Yuk genapin puasanya!",
-            "Validasi jalur langit lebih penting dari validasi netizen.",
-            "Minimal hari ini ada satu kebaikan yang nyantol, bestie.",
-            "Tetap menyala abangku! Puasa full senyum hari ini."
-        ];
-        const quoteIndex = new Date().getDate() % skenaQuotes.length;
-        document.getElementById('export-quote').innerText = `"${skenaQuotes[quoteIndex]}"`;
+        const skenaQuotes = [ "Capek boleh, nyerah jangan. Tarawih dulu bos!", "Skuy gaskeun tadarusnya!", "Minimal hari ini ada satu kebaikan yang nyantol, bestie." ];
+        document.getElementById('export-quote').innerText = `"${skenaQuotes[new Date().getDate() % skenaQuotes.length]}"`;
 
-        // --- 6. Sistem Streak & Reset Harian ---
         const today = new Date().toDateString();
         let lastVisit = localStorage.getItem('lastVisit');
         let streak = parseInt(localStorage.getItem('streak') || 0);
 
         if (lastVisit !== today) {
             if (lastVisit && localStorage.getItem('completedYesterday') !== 'true') streak = 0;
-            
-            // Reset ceklis
             ['puasa', 'tarawih', 'tadarus', 'sedekah', 'misi_rahasia'].forEach(id => {
-                let element = document.getElementById(id);
-                if (element) {
-                    element.checked = false;
-                    localStorage.setItem(id, 'false');
-                }
+                let element = document.getElementById(id); if (element) { element.checked = false; localStorage.setItem(id, 'false'); }
             });
-            localStorage.setItem('completedYesterday', 'false');
-            localStorage.setItem('lastVisit', today);
-            localStorage.setItem('streak', streak);
+            localStorage.setItem('completedYesterday', 'false'); localStorage.setItem('lastVisit', today); localStorage.setItem('streak', streak);
         }
         document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
+        if (streak >= 7) document.getElementById('voucher-banner').classList.remove('hidden');
 
-        // Tampilkan Voucher Rahasia jika streak >= 7
-        if (streak >= 7) {
-            document.getElementById('voucher-banner').classList.remove('hidden');
-        }
-
-        // --- 7. Badges, Checklist & Confetti ---
         const checkboxes = document.querySelectorAll('.checklist-item');
-        
         function updateBadges() {
             if (localStorage.getItem('tarawih_total') >= 3) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
             if (localStorage.getItem('sedekah_total') >= 2) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
@@ -375,10 +320,8 @@
         }
 
         function checkAllCompleted() {
-            // Hitung semua kotak centang di dalam tab target
             const targetBoxes = document.querySelectorAll('#view-target .checklist-item');
-            const allChecked = Array.from(targetBoxes).every(box => box.checked);
-            if (allChecked) {
+            if (Array.from(targetBoxes).every(box => box.checked)) {
                 confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 }, colors: ['#10B981', '#F59E0B', '#3B82F6'] });
                 if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
             }
@@ -386,68 +329,43 @@
 
         checkboxes.forEach(box => {
             if (localStorage.getItem(box.id) === 'true') box.checked = true;
-
             box.addEventListener('change', function() {
                 localStorage.setItem(this.id, this.checked);
+                let tKey = this.id + '_total';
+                localStorage.setItem(tKey, parseInt(localStorage.getItem(tKey) || 0) + (this.checked ? 1 : -1));
                 
-                // Tambah Total Ibadah untuk Lencana
-                let totalKey = this.id + '_total';
-                let currentTotal = parseInt(localStorage.getItem(totalKey) || 0);
-                localStorage.setItem(totalKey, this.checked ? currentTotal + 1 : currentTotal - 1);
-                
-                // Hitung Streak
                 let targetBoxes = document.querySelectorAll('#view-target .checklist-item:checked');
                 if (targetBoxes.length > 0) {
                     localStorage.setItem('completedYesterday', 'true');
                     if (streak === 0 && lastVisit === today) {
-                        streak = 1;
-                        localStorage.setItem('streak', streak);
-                        document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
+                        streak = 1; localStorage.setItem('streak', streak); document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
                     }
                 }
-                
-                updateBadges();
-                if(this.checked) checkAllCompleted();
+                updateBadges(); if(this.checked) checkAllCompleted();
             });
         });
-        
         updateBadges();
 
-        // --- 8. Ekspor Rapor ---
         function generateImage(filename) {
             const exportCard = document.getElementById('export-card');
             const exportList = document.getElementById('export-list');
-            
-            // Set Profil di Gambar Rapor
             document.getElementById('export-name').innerText = nameInput.value || 'Anonymous Player';
             document.getElementById('export-bio').innerText = bioInput.value || 'Player Setia Amalin';
-
-            // Set Checklist di Gambar
             exportList.innerHTML = ''; 
-            // Hanya ambil checklist dari tab Target (jangan ambil dari Misi Rahasia)
             document.querySelectorAll('#checklist-container .checklist-item').forEach(box => {
                 let li = document.createElement('li');
                 li.className = "flex items-center gap-4 bg-white/10 p-3 rounded-2xl border border-white/10";
-                let icon = box.checked ? '✅' : '⏳';
-                let opacity = box.checked ? 'opacity-100' : 'opacity-50 text-emerald-200 line-through';
-                li.innerHTML = `<span class="text-3xl">${icon}</span> <span class="${opacity}">${box.nextElementSibling.innerText}</span>`;
+                li.innerHTML = `<span class="text-3xl">${box.checked ? '✅' : '⏳'}</span> <span class="${box.checked ? 'opacity-100' : 'opacity-50 text-emerald-200 line-through'}">${box.nextElementSibling.innerText}</span>`;
                 exportList.appendChild(li);
             });
-            document.getElementById('export-streak').innerText = `🔥 Streak: ${streak} Hari`;
-
-            // Proses menjadi gambar via html2canvas
+            document.getElementById('export-streak').innerText = `🔥 ${streak} Hari`;
             html2canvas(exportCard, { scale: 2, useCORS: true }).then(canvas => {
-                let link = document.createElement('a');
-                link.download = filename;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+                let link = document.createElement('a'); link.download = filename; link.href = canvas.toDataURL('image/png'); link.click();
             });
         }
-
         document.getElementById('btn-share').addEventListener('click', () => generateImage('Amalin-Story.png'));
         document.getElementById('btn-export').addEventListener('click', () => generateImage('Rapor-Amalin.png'));
 
-        // Pendaftaran PWA
         if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
     </script>
 
@@ -455,27 +373,15 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // 🔴🔴 TUGAS ANDA: GANTI TEKS DI BAWAH INI DENGAN KODE DARI FIREBASE ANDA 🔴🔴
-        <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDxabPizF0ShqaQSaJ142Rapxa9JcNq65o",
-    authDomain: "amalin-app.firebaseapp.com",
-    projectId: "amalin-app",
-    storageBucket: "amalin-app.firebasestorage.app",
-    messagingSenderId: "745183481034",
-    appId: "1:745183481034:web:23b7ba95bf02c355c8f833"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
-        // 🔴🔴 BATAS EDIT 🔴🔴
+        // KUNCI FIREBASE MILIK ANDA
+        const firebaseConfig = {
+            apiKey: "AIzaSyDxabPizF0ShqaQSaJ142Rapxa9JcNq65o",
+            authDomain: "amalin-app.firebaseapp.com",
+            projectId: "amalin-app",
+            storageBucket: "amalin-app.firebasestorage.app",
+            messagingSenderId: "745183481034",
+            appId: "1:745183481034:web:23b7ba95bf02c355c8f833"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -483,6 +389,8 @@
 
         const btnLogin = document.getElementById('btn-login');
         const btnLogout = document.getElementById('btn-logout');
+        const nameInputFire = document.getElementById('user-name');
+        const avatarInitialFire = document.getElementById('avatar-initial');
 
         btnLogin.addEventListener('click', async () => {
             try { await signInWithPopup(auth, provider); } 
@@ -496,34 +404,26 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // JIKA BERHASIL LOGIN:
                 btnLogin.classList.add('hidden');
                 btnLogout.classList.remove('hidden');
                 
-                // Ubah nama di kotak input sesuai nama Google, lalu kunci agar tak bisa diedit
-                nameInput.value = user.displayName;
-                nameInput.readOnly = true;
-                nameInput.classList.add('text-emerald-600', 'dark:text-emerald-400');
+                nameInputFire.value = user.displayName;
+                nameInputFire.readOnly = true;
+                nameInputFire.classList.add('text-emerald-600', 'dark:text-emerald-400');
                 localStorage.setItem('userName', user.displayName); 
                 
-                // Ubah huruf inisial menjadi Foto Profil Google
-                avatarInitial.innerHTML = `<img src="${user.photoURL}" class="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-800" referrerpolicy="no-referrer" alt="Foto Profil">`;
-                
+                avatarInitialFire.innerHTML = `<img src="${user.photoURL}" class="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-800" referrerpolicy="no-referrer" alt="Foto Profil">`;
             } else {
-                // JIKA BELUM LOGIN / LOGOUT:
                 btnLogin.classList.remove('hidden');
                 btnLogout.classList.add('hidden');
                 
-                // Buka kembali kunci nama
-                nameInput.readOnly = false;
-                nameInput.classList.remove('text-emerald-600', 'dark:text-emerald-400');
+                nameInputFire.readOnly = false;
+                nameInputFire.classList.remove('text-emerald-600', 'dark:text-emerald-400');
                 
-                // Kembalikan ke inisial huruf
-                let initial = nameInput.value ? nameInput.value.charAt(0).toUpperCase() : 'A';
-                avatarInitial.innerHTML = initial;
+                let initial = nameInputFire.value ? nameInputFire.value.charAt(0).toUpperCase() : 'A';
+                avatarInitialFire.innerHTML = initial;
             }
         });
     </script>
 </body>
 </html>
-
