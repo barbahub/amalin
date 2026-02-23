@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amalin - Flexing Jalur Langit</title>
+    <title>Amalin - Gamifikasi Jalur Langit</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
@@ -16,123 +16,177 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-100 transition-colors duration-300 antialiased selection:bg-emerald-200">
+<body class="bg-gray-50 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-100 transition-colors duration-300 antialiased selection:bg-emerald-200">
 
-    <div id="app-container" class="max-w-md mx-auto bg-white dark:bg-gray-800 min-h-screen shadow-2xl relative overflow-x-hidden pb-24 transition-colors duration-300">
+    <div id="app-container" class="max-w-md mx-auto bg-white dark:bg-gray-800 min-h-screen shadow-2xl relative overflow-x-hidden pb-28 transition-colors duration-300 flex flex-col">
         
-        <div class="bg-emerald-500 dark:bg-emerald-700 text-white p-5 rounded-b-3xl shadow-lg flex justify-between items-center sticky top-0 z-40 backdrop-blur-md bg-opacity-95 dark:bg-opacity-95">
+        <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-5 rounded-b-[2.5rem] shadow-lg flex justify-between items-center sticky top-0 z-40 backdrop-blur-md bg-opacity-95 dark:bg-opacity-95">
             <div>
-                <h1 class="text-2xl font-extrabold tracking-tight">Amalin.</h1>
-                <p class="text-emerald-100 dark:text-emerald-200 text-xs mt-0.5 font-medium tracking-wide" id="header-subtitle">Circle Jalur Langit</p>
+                <h1 class="text-2xl font-extrabold tracking-tight drop-shadow-md">Amalin.</h1>
+                <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-xs font-bold bg-white/20 px-2 py-0.5 rounded-md backdrop-blur-sm" id="header-level">Lv. 1</span>
+                    <p class="text-emerald-100 text-[10px] font-medium tracking-wide uppercase" id="header-title">Newbie Tobat</p>
+                </div>
             </div>
             <div class="flex items-center gap-3">
-                <div class="bg-white/20 px-3 py-1.5 rounded-full text-sm font-bold shadow-sm backdrop-blur-sm flex items-center gap-1">
-                    <span id="streak-display">🔥 0 Hari</span>
+                <div class="bg-white/20 px-3 py-1.5 rounded-full text-sm font-bold shadow-sm backdrop-blur-sm flex items-center gap-1 border border-white/30">
+                    <span id="streak-display">🔥 0</span>
                 </div>
-                <button id="dark-toggle" class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition text-lg shadow-sm">
+                <button id="dark-toggle" class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition text-lg shadow-sm border border-white/30">
                     🌙
                 </button>
             </div>
         </div>
 
-        <div id="view-home" class="block animate-[fadeIn_0.4s_ease-out]">
+        <div id="view-home" class="block animate-[fadeIn_0.4s_ease-out] flex-1">
             <div class="p-5">
+                
+                <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-5 shadow-lg text-white mb-6 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-8xl opacity-10">👑</div>
+                    <div class="flex justify-between items-end mb-4 relative z-10">
+                        <h2 class="text-lg font-extrabold tracking-wide flex items-center gap-2">
+                            <span>🏆</span> Top Global Rank
+                        </h2>
+                        <span class="text-[10px] font-bold bg-white/20 px-2 py-1 rounded-full">Minggu Ini</span>
+                    </div>
+                    
+                    <div class="space-y-3 relative z-10">
+                        <div class="flex items-center justify-between bg-white/10 p-2.5 rounded-2xl border border-yellow-400/50 backdrop-blur-sm">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-yellow-400 text-lg w-5 text-center">1</span>
+                                <div class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-yellow-900 font-bold text-xs shadow-inner">D</div>
+                                <span class="font-bold text-sm">Dimas (8A)</span>
+                            </div>
+                            <span class="text-xs font-black text-yellow-300 bg-yellow-900/40 px-2 py-1 rounded-lg">1,450 EXP</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white/10 p-2 rounded-2xl border border-gray-300/30 backdrop-blur-sm">
+                            <div class="flex items-center gap-3">
+                                <span class="font-bold text-gray-300 text-base w-5 text-center">2</span>
+                                <div class="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center text-gray-800 font-bold text-xs">N</div>
+                                <span class="font-semibold text-sm">Nadia Bestie</span>
+                            </div>
+                            <span class="text-xs font-bold text-gray-200">1,200 EXP</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white/10 p-2 rounded-2xl border border-orange-400/30 backdrop-blur-sm">
+                            <div class="flex items-center gap-3">
+                                <span class="font-bold text-orange-300 text-base w-5 text-center">3</span>
+                                <div class="w-7 h-7 rounded-full bg-orange-400 flex items-center justify-center text-orange-900 font-bold text-xs">Y</div>
+                                <span class="font-semibold text-sm">Yanto Skenda</span>
+                            </div>
+                            <span class="text-xs font-bold text-orange-200">950 EXP</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex justify-between items-end mb-4">
                     <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">Live Feed 🌍</h2>
                     <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-100 dark:bg-emerald-900/50 px-2 py-1 rounded-md">Real-time</span>
                 </div>
                 
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm mb-4">
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm mb-4">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-400 to-indigo-500 flex items-center justify-center text-white font-bold shadow-inner">D</div>
                             <div>
-                                <h3 class="font-bold text-sm">Dimas (Kelas 8A)</h3>
-                                <p class="text-[10px] text-gray-500 dark:text-gray-400">Baru saja menyelesaikan quest</p>
+                                <h3 class="font-bold text-sm flex items-center gap-1">Dimas <span class="bg-blue-100 text-blue-700 text-[8px] px-1.5 py-0.5 rounded font-black">Lv.12</span></h3>
+                                <p class="text-[10px] text-gray-500 dark:text-gray-400">Menyelesaikan Epic Quest!</p>
                             </div>
                         </div>
                         <span class="text-[10px] text-gray-400">2 mnt lalu</span>
                     </div>
-                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-xl mb-3 border border-indigo-100 dark:border-indigo-800/50">
-                        <p class="text-sm font-medium text-indigo-800 dark:text-indigo-300">"Selesai cuci piring emak setelah sahur! ✨"</p>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-2xl mb-3 border border-indigo-100 dark:border-indigo-800/50">
+                        <p class="text-sm font-bold text-indigo-800 dark:text-indigo-300 flex items-center gap-2">
+                            <span class="text-xl">🔥</span> Selesai cuci piring emak (+50 EXP)
+                        </p>
                     </div>
                     <button class="text-xs font-bold text-gray-500 dark:text-gray-400 flex items-center gap-1 hover:text-emerald-500 transition btn-respect">
                         <span>🙏</span> <span class="respect-count">12</span> Respect
                     </button>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm mb-4">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-400 to-orange-400 flex items-center justify-center text-white font-bold shadow-inner">N</div>
-                            <div>
-                                <h3 class="font-bold text-sm">Nadia Bestie</h3>
-                                <p class="text-[10px] text-gray-500 dark:text-gray-400">Baru saja klaim Badge</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] text-gray-400">15 mnt lalu</span>
-                    </div>
-                    <div class="flex items-center gap-3 bg-rose-50 dark:bg-rose-900/30 p-3 rounded-xl mb-3 border border-rose-100 dark:border-rose-800/50">
-                        <div class="text-3xl">📖</div>
-                        <div>
-                            <p class="text-sm font-bold text-rose-800 dark:text-rose-300">KhatamSkuy</p>
-                            <p class="text-[10px] text-rose-600 dark:text-rose-400">Tadarus tembus target harian!</p>
-                        </div>
-                    </div>
-                    <button class="text-xs font-bold text-gray-500 dark:text-gray-400 flex items-center gap-1 hover:text-emerald-500 transition btn-respect">
-                        <span>🙏</span> <span class="respect-count">45</span> Respect
-                    </button>
-                </div>
-                
-                <div class="text-center py-4">
-                    <p class="text-xs text-gray-400 dark:text-gray-500">Ayo selesaikan targetmu agar masuk ke Feed!</p>
+                <div class="text-center py-6 bg-gray-50 dark:bg-gray-800 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-700 mt-6">
+                    <p class="text-sm font-bold text-gray-400 dark:text-gray-500 mb-1">Selesaikan quest untuk pamer!</p>
                 </div>
             </div>
         </div>
 
-        <div id="view-target" class="hidden animate-[fadeIn_0.4s_ease-out]">
+        <div id="view-target" class="hidden animate-[fadeIn_0.4s_ease-out] flex-1">
             <div class="p-5">
-                <div class="bg-gradient-to-r from-amber-400 to-orange-500 p-5 rounded-2xl shadow-lg text-white mb-6 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-2 opacity-20 text-5xl">🎲</div>
-                    <h3 class="font-bold text-sm mb-1 uppercase tracking-wider text-amber-100">Misi Skena Hari Ini</h3>
-                    <p class="font-extrabold text-lg leading-tight mb-3">Tahan julid 24 jam penuh di grup WA!</p>
-                    <label class="flex items-center bg-white/20 hover:bg-white/30 p-3 rounded-xl cursor-pointer transition backdrop-blur-sm border border-white/30">
-                        <input type="checkbox" id="misi_rahasia" class="w-5 h-5 text-amber-500 rounded focus:ring-amber-400 checklist-item">
-                        <span class="ml-3 font-bold text-sm">Gaskeun Beres!</span>
+                
+                <div id="gacha-container" class="bg-gradient-to-r from-rose-500 to-pink-600 p-6 rounded-3xl shadow-lg text-white mb-6 relative overflow-hidden text-center cursor-pointer transform hover:scale-[1.02] transition shadow-rose-500/30">
+                    <div class="absolute -left-4 -bottom-4 text-7xl opacity-20 transform -rotate-12">🎁</div>
+                    <h3 class="font-black text-lg mb-1 drop-shadow-md relative z-10">Gacha Kebaikan Hari Ini</h3>
+                    <p class="text-xs text-rose-100 font-medium mb-3 relative z-10">Tap kotak ini untuk undi misi rahasia! (+50 EXP)</p>
+                    <div id="gacha-result" class="hidden bg-white/20 backdrop-blur-md p-3 rounded-2xl border border-white/30 text-sm font-bold mt-2 relative z-10"></div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm mb-6 flex items-center justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md animate-pulse">FLASH QUEST</span>
+                            <span class="text-xs font-bold text-gray-500" id="flash-time-status">04:00 - 06:00</span>
+                        </div>
+                        <p class="font-bold text-sm dark:text-gray-200">Pejuang Subuh Berjamaah</p>
+                        <p class="text-xs text-emerald-500 font-bold">+50 EXP</p>
+                    </div>
+                    <label class="relative flex items-center justify-center cursor-pointer group" id="flash-quest-label">
+                        <input type="checkbox" id="quest-subuh" class="w-8 h-8 text-emerald-500 rounded-xl focus:ring-emerald-400 checklist-item peer" disabled data-exp="50">
+                        <div class="absolute text-gray-400 peer-disabled:block hidden pointer-events-none text-xl">🔒</div>
                     </label>
                 </div>
 
-                <h2 class="text-lg font-bold mb-3 text-gray-800 dark:text-gray-100">Main Quest 🎯</h2>
+                <div class="flex justify-between items-end mb-3">
+                    <h2 class="text-lg font-extrabold text-gray-800 dark:text-gray-100">Daily Quests 🎯</h2>
+                </div>
+                
                 <div class="space-y-3 mb-6" id="checklist-container">
-                    <label class="flex items-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-600 transition group">
-                        <input type="checkbox" id="puasa" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
-                        <span class="ml-4 font-semibold text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 transition">Puasa Wajib</span>
+                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="quest-puasa" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20">
+                            <div>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Puasa Wajib Full</span>
+                                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-100 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">+20 EXP</span>
+                            </div>
+                        </div>
                     </label>
-                    <label class="flex items-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-600 transition group">
-                        <input type="checkbox" id="tarawih" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
-                        <span class="ml-4 font-semibold text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 transition">Salat Tarawih</span>
+                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="quest-tarawih" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20">
+                            <div>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Salat Tarawih</span>
+                                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-100 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">+20 EXP</span>
+                            </div>
+                        </div>
                     </label>
-                    <label class="flex items-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-600 transition group">
-                        <input type="checkbox" id="tadarus" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
-                        <span class="ml-4 font-semibold text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 transition">Tadarus Al-Quran</span>
+                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="quest-tadarus" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20">
+                            <div>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Tadarus Al-Quran</span>
+                                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-100 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">+20 EXP</span>
+                            </div>
+                        </div>
                     </label>
-                    <label class="flex items-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-600 transition group">
-                        <input type="checkbox" id="sedekah" class="w-6 h-6 text-emerald-500 rounded focus:ring-emerald-400 checklist-item">
-                        <span class="ml-4 font-semibold text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 transition">Sedekah / Berbagi</span>
+                    <label class="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border border-amber-200 dark:border-amber-700 shadow-sm cursor-pointer hover:border-amber-400 transition group relative overflow-hidden">
+                        <div class="absolute right-0 top-0 w-1 h-full bg-amber-400"></div>
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="quest-sedekah" class="w-6 h-6 text-amber-500 rounded-lg focus:ring-amber-400 checklist-item" data-exp="50">
+                            <div>
+                                <span class="text-[9px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-wider block mb-0.5">Epic Quest</span>
+                                <span class="block font-bold text-sm text-amber-900 dark:text-amber-100">Bagi Takjil / Sedekah</span>
+                                <span class="text-[10px] font-bold text-amber-600 bg-amber-100 dark:bg-amber-900/50 px-1.5 py-0.5 rounded mt-1 inline-block">+50 EXP</span>
+                            </div>
+                        </div>
                     </label>
                 </div>
 
                 <div class="flex gap-3 mb-6">
-                    <button id="btn-share" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3.5 rounded-2xl transition flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 text-sm">
-                        📸 Pamerin!
-                    </button>
-                    <button id="btn-export" class="flex-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-bold py-3.5 rounded-2xl transition flex items-center justify-center gap-2 border border-emerald-300 dark:border-emerald-700 text-sm">
-                        📥 Unduh Rapor
-                    </button>
+                    <button id="btn-share" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md shadow-indigo-500/30 text-sm">📸 Story Rapor</button>
+                    <button id="btn-export" class="flex-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-bold py-3.5 rounded-2xl transition border border-emerald-300 text-sm">📥 Unduh Rapor</button>
                 </div>
 
                 <div class="bg-amber-100 dark:bg-amber-900/40 p-5 rounded-2xl border border-amber-200 dark:border-amber-800">
-                    <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-1 flex items-center gap-1">✨ Inspirasi Sedekah Hari Ini</h3>
+                    <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-1 flex items-center gap-1">✨ Inspirasi Sedekah</h3>
                     <p class="text-xs text-amber-700 dark:text-amber-500 mb-4 leading-relaxed">Lengkapi ibadah dengan berbagi takjil untuk Ojol & jalanan. Mini snack gift praktis mulai Rp3.000 aja!</p>
                     <a href="https://shopee.co.id/kadosouvenir/50106297771" target="_blank" class="block w-full text-center bg-orange-500 text-white font-bold py-2.5 rounded-xl text-sm hover:bg-orange-600 transition shadow-md shadow-orange-500/20">
                         Cek Paket Takjil di Shopee
@@ -141,17 +195,12 @@
             </div>
         </div>
 
-        <div id="view-profile" class="hidden animate-[fadeIn_0.4s_ease-out]">
+        <div id="view-profile" class="hidden animate-[fadeIn_0.4s_ease-out] flex-1">
             <div class="p-6">
 
                 <div class="mb-6">
                     <button id="btn-login" class="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-100 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-3 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                        </svg>
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Hubungkan Akun Google
                     </button>
                     <button id="btn-logout" class="hidden w-full bg-rose-100 text-rose-600 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
@@ -159,17 +208,22 @@
                     </button>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-6 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm text-center mb-6 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-emerald-400 to-teal-600 opacity-20"></div>
-                    <div class="w-20 h-20 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-full mx-auto flex items-center justify-center shadow-lg mb-3 text-3xl text-white font-extrabold relative z-10 border-4 border-white dark:border-gray-800" id="avatar-initial">
-                        A
-                    </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-[2rem] border border-gray-200 dark:border-gray-700 shadow-lg text-center mb-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-emerald-400 to-transparent opacity-20"></div>
+                    <div class="w-24 h-24 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-full mx-auto flex items-center justify-center shadow-xl mb-4 text-4xl text-white font-extrabold relative z-10 border-4 border-white dark:border-gray-700" id="avatar-initial">A</div>
                     
-                    <input type="text" id="user-name" placeholder="Ketik nama kamu..." class="w-full bg-transparent border-b-2 border-dashed border-gray-300 dark:border-gray-600 focus:border-emerald-500 outline-none py-1 mb-2 font-bold text-lg text-gray-800 dark:text-gray-100 text-center transition relative z-10">
-                    <input type="text" id="user-bio" placeholder="Bio: Pejuang Subuh / Skenda '25" class="w-full bg-transparent border-b-2 border-dashed border-gray-300 dark:border-gray-600 focus:border-emerald-500 outline-none py-1 text-xs font-medium text-gray-500 dark:text-gray-400 text-center transition relative z-10">
+                    <input type="text" id="user-name" placeholder="Siapa namamu bro?" class="w-full bg-transparent outline-none py-1 mb-1 font-black text-2xl text-gray-800 dark:text-gray-100 text-center transition relative z-10 placeholder-gray-300">
+                    <input type="text" id="user-bio" placeholder="Bio: Skenda '25" class="w-full bg-transparent outline-none pb-4 text-sm font-semibold text-emerald-600 dark:text-emerald-400 text-center transition relative z-10 border-b-2 border-dashed border-gray-200 dark:border-gray-700">
                     
-                    <div class="mt-4 inline-block bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-400 px-3 py-1.5 rounded-full text-xs font-bold border border-amber-200 dark:border-amber-700/50">
-                        🏆 Gelar: Newbie Tobat
+                    <div class="mt-5 relative z-10">
+                        <div class="flex justify-between text-xs font-bold text-gray-500 dark:text-gray-400 mb-2">
+                            <span id="display-level">Level 1</span>
+                            <span id="display-exp">0 / 100 EXP</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3.5 shadow-inner">
+                            <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3.5 rounded-full transition-all duration-1000 ease-out shadow-md" id="exp-bar" style="width: 0%"></div>
+                        </div>
+                        <p class="mt-3 text-xs font-bold text-gray-400 dark:text-gray-500" id="display-title-bot">Gelar: Newbie Tobat</p>
                     </div>
                 </div>
 
@@ -199,36 +253,38 @@
             </div>
         </div>
 
-        <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-white/85 dark:bg-gray-800/85 backdrop-blur-xl border border-gray-200 dark:border-gray-700 flex justify-around p-1.5 rounded-3xl shadow-2xl z-50">
-            <button id="nav-btn-home" class="flex-1 py-2 flex flex-col items-center text-emerald-600 dark:text-emerald-400 transition transform scale-105 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl">
-                <span class="text-xl mb-0.5">🌍</span>
-                <span class="text-[10px] font-bold">Feed</span>
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200 dark:border-gray-700 flex justify-around p-2 rounded-[2rem] shadow-2xl z-50">
+            <button id="nav-btn-home" class="flex-1 py-2.5 flex flex-col items-center text-emerald-600 dark:text-emerald-400 transition transform scale-105 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl">
+                <span class="text-2xl mb-1 drop-shadow-sm">🌍</span><span class="text-[10px] font-extrabold tracking-wide">FEED</span>
             </button>
-            <button id="nav-btn-target" class="flex-1 py-2 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-2xl">
-                <span class="text-xl mb-0.5">🎯</span>
-                <span class="text-[10px] font-bold">Target</span>
+            <button id="nav-btn-target" class="flex-1 py-2.5 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-3xl relative">
+                <span class="absolute top-1 right-3 flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span></span>
+                <span class="text-2xl mb-1 hover:scale-110 transition">🎯</span><span class="text-[10px] font-bold tracking-wide">QUEST</span>
             </button>
-            <button id="nav-btn-profile" class="flex-1 py-2 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-2xl">
-                <span class="text-xl mb-0.5">👤</span>
-                <span class="text-[10px] font-bold">Stats</span>
+            <button id="nav-btn-profile" class="flex-1 py-2.5 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-3xl">
+                <span class="text-2xl mb-1 hover:scale-110 transition">👤</span><span class="text-[10px] font-bold tracking-wide">STATS</span>
             </button>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] h-[711px] bg-gradient-to-br from-emerald-500 to-teal-800 p-8 flex flex-col justify-between text-white">
+        <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] h-[711px] bg-gradient-to-br from-emerald-600 to-teal-900 p-8 flex flex-col justify-between text-white">
             <div class="text-center mt-8">
-                <h2 class="text-4xl font-extrabold mb-1 tracking-tight">Amalin.</h2>
-                <div class="bg-white/20 inline-block px-4 py-1 rounded-full text-sm font-semibold backdrop-blur-sm shadow-inner">Rapor Jalur Langit</div>
+                <h2 class="text-5xl font-black mb-2 tracking-tight">Amalin.</h2>
+                <div class="bg-white/20 inline-block px-5 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm shadow-inner uppercase tracking-wider" id="export-gelar">Newbie Tobat</div>
             </div>
-            <div class="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20 shadow-2xl">
+            <div class="bg-white/10 p-6 rounded-[2rem] backdrop-blur-md border border-white/20 shadow-2xl">
                 <div class="border-b border-white/20 pb-4 mb-4 text-center">
-                    <h3 id="export-name" class="font-bold text-2xl text-white tracking-wide uppercase">NAMA PENGGUNA</h3>
-                    <p id="export-bio" class="text-sm text-emerald-200 font-medium mt-1">Bio Singkat</p>
+                    <h3 id="export-name" class="font-black text-3xl text-white tracking-wide uppercase">PLAYER</h3>
+                    <p id="export-bio" class="text-sm text-emerald-200 font-bold mt-1">Skena</p>
                 </div>
-                <ul id="export-list" class="space-y-4 font-medium text-lg px-2"></ul>
+                <div class="bg-black/20 rounded-2xl p-3 mb-4 text-center flex justify-between px-6">
+                    <div><p class="text-[10px] text-emerald-300 font-bold">LEVEL</p><p class="font-black text-2xl" id="export-level">1</p></div>
+                    <div><p class="text-[10px] text-yellow-400 font-bold">TOTAL EXP</p><p class="font-black text-2xl text-yellow-400" id="export-exp">0</p></div>
+                </div>
+                <ul id="export-list" class="space-y-3 font-semibold text-base px-1"></ul>
             </div>
             <div class="text-center mb-8">
-                <span class="bg-yellow-400 text-yellow-900 px-6 py-2.5 rounded-full font-extrabold shadow-lg text-lg inline-block mb-6" id="export-streak">🔥 Streak: 0 Hari</span>
-                <p id="export-quote" class="text-center text-sm text-emerald-100 italic px-4 font-medium leading-relaxed">"Quotes hari ini"</p>
+                <span class="bg-yellow-400 text-yellow-900 px-6 py-2.5 rounded-full font-black shadow-lg text-lg inline-block mb-6 border-2 border-yellow-200" id="export-streak">🔥 Streak: 0</span>
+                <p class="text-center text-xs text-emerald-100 italic px-4 font-medium">"Level up imanmu hari ini!"</p>
             </div>
         </div>
 
@@ -240,25 +296,22 @@
     </style>
 
     <script>
+        // --- Tab Logic ---
         const views = { home: document.getElementById('view-home'), target: document.getElementById('view-target'), profile: document.getElementById('view-profile') };
         const btns = { home: document.getElementById('nav-btn-home'), target: document.getElementById('nav-btn-target'), profile: document.getElementById('nav-btn-profile') };
-        const headerSubtitle = document.getElementById('header-subtitle');
-
-        const activeClass = "flex-1 py-2 flex flex-col items-center text-emerald-600 dark:text-emerald-400 transition transform scale-105 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl";
-        const inactiveClass = "flex-1 py-2 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-2xl";
+        const activeClass = "flex-1 py-2.5 flex flex-col items-center text-emerald-600 dark:text-emerald-400 transition transform scale-105 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl";
+        const inactiveClass = "flex-1 py-2.5 flex flex-col items-center text-gray-400 hover:text-emerald-500 transition rounded-3xl relative";
 
         function switchTab(tab) {
             Object.keys(views).forEach(key => { views[key].classList.replace('block', 'hidden'); btns[key].className = inactiveClass; });
             views[tab].classList.replace('hidden', 'block'); btns[tab].className = activeClass;
-
-            if(tab === 'home') headerSubtitle.innerText = "Circle Jalur Langit";
-            if(tab === 'target') headerSubtitle.innerText = "Target & Misi Harian";
-            if(tab === 'profile') headerSubtitle.innerText = "Player Card & Badge";
+            window.scrollTo(0,0);
         }
         btns.home.addEventListener('click', () => switchTab('home'));
         btns.target.addEventListener('click', () => switchTab('target'));
         btns.profile.addEventListener('click', () => switchTab('profile'));
 
+        // --- Dark Mode ---
         const darkToggle = document.getElementById('dark-toggle');
         const htmlElement = document.documentElement;
         if (localStorage.getItem('theme') === 'dark') { htmlElement.classList.add('dark'); darkToggle.innerText = '☀️'; }
@@ -268,97 +321,155 @@
             darkToggle.innerText = htmlElement.classList.contains('dark') ? '☀️' : '🌙';
         });
 
-        document.querySelectorAll('.btn-respect').forEach(btn => {
-            btn.addEventListener('click', function() {
-                let countSpan = this.querySelector('.respect-count');
-                countSpan.innerText = parseInt(countSpan.innerText) + 1;
-                this.classList.add('text-emerald-500', 'scale-110');
-                setTimeout(() => this.classList.remove('scale-110'), 200);
-                if (navigator.vibrate) navigator.vibrate(50);
-            });
-        });
-
-        const nameInput = document.getElementById('user-name');
-        const bioInput = document.getElementById('user-bio');
-        const avatarInitial = document.getElementById('avatar-initial');
-        
-        nameInput.value = localStorage.getItem('userName') || '';
-        bioInput.value = localStorage.getItem('userBio') || '';
-        
-        function updateAvatar() {
-            if(!avatarInitial.querySelector('img')){
-                avatarInitial.innerText = nameInput.value ? nameInput.value.charAt(0).toUpperCase() : 'A';
-            }
-        }
-        updateAvatar();
-
-        nameInput.addEventListener('input', () => { localStorage.setItem('userName', nameInput.value); updateAvatar(); });
+        // --- Basic Profile Logic ---
+        const nameInput = document.getElementById('user-name'); const bioInput = document.getElementById('user-bio');
+        nameInput.value = localStorage.getItem('userName') || ''; bioInput.value = localStorage.getItem('userBio') || '';
+        nameInput.addEventListener('input', () => { localStorage.setItem('userName', nameInput.value); });
         bioInput.addEventListener('input', () => localStorage.setItem('userBio', bioInput.value));
 
-        const skenaQuotes = [ "Capek boleh, nyerah jangan. Tarawih dulu bos!", "Skuy gaskeun tadarusnya!", "Minimal hari ini ada satu kebaikan yang nyantol, bestie." ];
-        document.getElementById('export-quote').innerText = `"${skenaQuotes[new Date().getDate() % skenaQuotes.length]}"`;
-
-        const today = new Date().toDateString();
-        let lastVisit = localStorage.getItem('lastVisit');
-        let streak = parseInt(localStorage.getItem('streak') || 0);
-
-        if (lastVisit !== today) {
-            if (lastVisit && localStorage.getItem('completedYesterday') !== 'true') streak = 0;
-            ['puasa', 'tarawih', 'tadarus', 'sedekah', 'misi_rahasia'].forEach(id => {
-                let element = document.getElementById(id); if (element) { element.checked = false; localStorage.setItem(id, 'false'); }
-            });
-            localStorage.setItem('completedYesterday', 'false'); localStorage.setItem('lastVisit', today); localStorage.setItem('streak', streak);
-        }
-        document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
-        if (streak >= 7) document.getElementById('voucher-banner').classList.remove('hidden');
-
-        const checkboxes = document.querySelectorAll('.checklist-item');
-        function updateBadges() {
-            if (localStorage.getItem('tarawih_total') >= 3) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
-            if (localStorage.getItem('sedekah_total') >= 2) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
-            if (localStorage.getItem('tadarus_total') >= 5) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
+        // --- RPG ENGINE: EXP, LEVEL & TITLE ---
+        let totalExp = parseInt(localStorage.getItem('totalExp') || 0);
+        
+        function calculateLevel(exp) {
+            let lvl = Math.floor(exp / 100) + 1;
+            return lvl > 50 ? 50 : lvl;
         }
 
-        function checkAllCompleted() {
-            const targetBoxes = document.querySelectorAll('#view-target .checklist-item');
-            if (Array.from(targetBoxes).every(box => box.checked)) {
-                confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 }, colors: ['#10B981', '#F59E0B', '#3B82F6'] });
-                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        function getTitle(lvl) {
+            if(lvl < 5) return "Newbie Tobat";
+            if(lvl < 10) return "Skena Masjid";
+            if(lvl < 20) return "Suhu Tajwid";
+            if(lvl < 35) return "Elite Pejuang Subuh";
+            return "Sepuh Jalur Langit";
+        }
+
+        function updateStatsUI() {
+            let currentLevel = calculateLevel(totalExp);
+            let currentTitle = getTitle(currentLevel);
+            let expNextLevel = currentLevel * 100;
+            let expCurrentLevel = totalExp % 100;
+            let percent = (expCurrentLevel / 100) * 100;
+
+            document.getElementById('header-level').innerText = `Lv.${currentLevel}`;
+            document.getElementById('header-title').innerText = currentTitle;
+            document.getElementById('display-level').innerText = `Level ${currentLevel}`;
+            document.getElementById('display-exp').innerText = `${totalExp} / ${expNextLevel} EXP`;
+            document.getElementById('exp-bar').style.width = `${percent}%`;
+            document.getElementById('display-title-bot').innerText = `🏆 Gelar: ${currentTitle}`;
+        }
+        updateStatsUI();
+
+        // --- Gacha Kebaikan Logic ---
+        const gachaBtn = document.getElementById('gacha-container');
+        const gachaRes = document.getElementById('gacha-result');
+        const gachaMissions = ["Traktir temen minuman", "Senyum ke 3 orang asing", "Bantu ortu tanpa diminta", "Sedekah subuh Rp2.000", "Baca Al-Kahfi 10 ayat"];
+        
+        let hasGachaToday = localStorage.getItem('gachaDate') === new Date().toDateString();
+        if(hasGachaToday) {
+            gachaRes.innerHTML = `<label class="flex items-center justify-between cursor-pointer group mt-2 p-2 bg-white/30 rounded-xl"><div class="flex items-center gap-2"><input type="checkbox" id="quest-gacha" class="w-5 h-5 text-rose-500 rounded checklist-item" data-exp="50"><span class="font-bold text-sm text-white">${localStorage.getItem('gachaMission')}</span></div></label>`;
+            gachaRes.classList.remove('hidden');
+        }
+
+        gachaBtn.addEventListener('click', () => {
+            if(!hasGachaToday) {
+                let randomQuest = gachaMissions[Math.floor(Math.random() * gachaMissions.length)];
+                localStorage.setItem('gachaDate', new Date().toDateString());
+                localStorage.setItem('gachaMission', randomQuest);
+                gachaRes.innerHTML = `<label class="flex items-center justify-between cursor-pointer group mt-2 p-2 bg-white/30 rounded-xl"><div class="flex items-center gap-2"><input type="checkbox" id="quest-gacha" class="w-5 h-5 text-rose-500 rounded checklist-item" data-exp="50"><span class="font-bold text-sm text-white">${randomQuest}</span></div></label>`;
+                gachaRes.classList.remove('hidden');
+                confetti({particleCount: 50, spread: 40, colors: ['#fb7185', '#f43f5e']});
+                hasGachaToday = true;
+                attachChecklistListeners(); // Re-attach
             }
+        });
+
+        // --- Flash Quest Logic (Time Gated) ---
+        const hour = new Date().getHours();
+        const flashQuestBox = document.getElementById('quest-subuh');
+        const flashTimeStatus = document.getElementById('flash-time-status');
+        if (hour >= 4 && hour <= 6) {
+            flashQuestBox.disabled = false;
+            flashTimeStatus.innerText = "🟢 BUKA SEKARANG";
+            flashTimeStatus.classList.replace('text-gray-500', 'text-emerald-500');
         }
 
-        checkboxes.forEach(box => {
-            if (localStorage.getItem(box.id) === 'true') box.checked = true;
-            box.addEventListener('change', function() {
-                localStorage.setItem(this.id, this.checked);
-                let tKey = this.id + '_total';
-                localStorage.setItem(tKey, parseInt(localStorage.getItem(tKey) || 0) + (this.checked ? 1 : -1));
+        // --- Daily Streak & Checkbox Logic ---
+        const todayStr = new Date().toDateString();
+        let lastVisitStr = localStorage.getItem('lastVisit');
+        let streakNum = parseInt(localStorage.getItem('streak') || 0);
+
+        if (lastVisitStr !== todayStr) {
+            if (lastVisitStr && localStorage.getItem('completedYesterday') !== 'true') streakNum = 0;
+            ['quest-puasa', 'quest-tarawih', 'quest-tadarus', 'quest-sedekah', 'quest-subuh', 'quest-gacha'].forEach(id => { localStorage.setItem(id, 'false'); });
+            localStorage.setItem('completedYesterday', 'false'); localStorage.setItem('lastVisit', todayStr); localStorage.setItem('streak', streakNum);
+        }
+        document.getElementById('streak-display').innerText = `🔥 ${streakNum}`;
+        if (streakNum >= 7) document.getElementById('voucher-banner').classList.remove('hidden');
+
+        // Logic Badge (Dipertahankan dari kode lama Anda)
+        function updateBadges() {
+            if (localStorage.getItem('quest-tarawih_total') >= 3) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
+            if (localStorage.getItem('quest-sedekah_total') >= 2) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
+            if (localStorage.getItem('quest-tadarus_total') >= 5) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
+        }
+
+        function attachChecklistListeners() {
+            document.querySelectorAll('.checklist-item').forEach(box => {
+                if (localStorage.getItem(box.id) === 'true') box.checked = true;
                 
-                let targetBoxes = document.querySelectorAll('#view-target .checklist-item:checked');
-                if (targetBoxes.length > 0) {
-                    localStorage.setItem('completedYesterday', 'true');
-                    if (streak === 0 && lastVisit === today) {
-                        streak = 1; localStorage.setItem('streak', streak); document.getElementById('streak-display').innerText = `🔥 ${streak} Hari`;
+                let newBox = box.cloneNode(true); box.parentNode.replaceChild(newBox, box);
+                
+                newBox.addEventListener('change', function() {
+                    localStorage.setItem(this.id, this.checked);
+                    
+                    let expVal = parseInt(this.getAttribute('data-exp') || 0);
+                    if(this.checked) {
+                        totalExp += expVal;
+                        confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
+                        if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+                    } else { totalExp -= expVal; }
+                    
+                    localStorage.setItem('totalExp', totalExp);
+                    updateStatsUI();
+
+                    // Penambahan Total untuk Badge
+                    let tKey = this.id + '_total'; localStorage.setItem(tKey, parseInt(localStorage.getItem(tKey) || 0) + (this.checked ? 1 : -1));
+                    updateBadges();
+
+                    // Cek Streak
+                    let anyChecked = document.querySelectorAll('.checklist-item:checked').length > 0;
+                    if (anyChecked) {
+                        localStorage.setItem('completedYesterday', 'true');
+                        if (streakNum === 0 && lastVisitStr === todayStr) {
+                            streakNum = 1; localStorage.setItem('streak', streakNum); document.getElementById('streak-display').innerText = `🔥 ${streakNum}`;
+                        }
                     }
-                }
-                updateBadges(); if(this.checked) checkAllCompleted();
+                });
             });
-        });
+        }
+        attachChecklistListeners();
         updateBadges();
 
+        // --- Export Rapor html2canvas ---
         function generateImage(filename) {
             const exportCard = document.getElementById('export-card');
+            document.getElementById('export-name').innerText = nameInput.value || 'Anonymous';
+            document.getElementById('export-bio').innerText = bioInput.value || 'Player Amalin';
+            document.getElementById('export-level').innerText = calculateLevel(totalExp);
+            document.getElementById('export-exp').innerText = totalExp;
+            document.getElementById('export-gelar').innerText = getTitle(calculateLevel(totalExp));
+            document.getElementById('export-streak').innerText = `🔥 Streak: ${streakNum}`;
+
             const exportList = document.getElementById('export-list');
-            document.getElementById('export-name').innerText = nameInput.value || 'Anonymous Player';
-            document.getElementById('export-bio').innerText = bioInput.value || 'Player Setia Amalin';
             exportList.innerHTML = ''; 
-            document.querySelectorAll('#checklist-container .checklist-item').forEach(box => {
-                let li = document.createElement('li');
-                li.className = "flex items-center gap-4 bg-white/10 p-3 rounded-2xl border border-white/10";
-                li.innerHTML = `<span class="text-3xl">${box.checked ? '✅' : '⏳'}</span> <span class="${box.checked ? 'opacity-100' : 'opacity-50 text-emerald-200 line-through'}">${box.nextElementSibling.innerText}</span>`;
+            document.querySelectorAll('#view-target .checklist-item').forEach(box => {
+                let li = document.createElement('li'); li.className = "flex items-center gap-3 bg-white/5 p-3 rounded-2xl";
+                let textNode = box.nextElementSibling || box.parentElement.querySelector('span'); // Fix untuk struktur label gacha vs list biasa
+                let text = textNode.innerText.split('+')[0]; 
+                li.innerHTML = `<span class="text-2xl">${box.checked ? '✅' : '⏳'}</span> <span class="${box.checked ? 'text-white' : 'opacity-50 text-emerald-200 line-through'}">${text}</span>`;
                 exportList.appendChild(li);
             });
-            document.getElementById('export-streak').innerText = `🔥 ${streak} Hari`;
+
             html2canvas(exportCard, { scale: 2, useCORS: true }).then(canvas => {
                 let link = document.createElement('a'); link.download = filename; link.href = canvas.toDataURL('image/png'); link.click();
             });
@@ -366,6 +477,7 @@
         document.getElementById('btn-share').addEventListener('click', () => generateImage('Amalin-Story.png'));
         document.getElementById('btn-export').addEventListener('click', () => generateImage('Rapor-Amalin.png'));
 
+        // Pendaftaran PWA
         if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
     </script>
 
@@ -373,7 +485,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // KUNCI FIREBASE MILIK ANDA
+        // KUNCI FIREBASE ANDA
         const firebaseConfig = {
             apiKey: "AIzaSyDxabPizF0ShqaQSaJ142Rapxa9JcNq65o",
             authDomain: "amalin-app.firebaseapp.com",
@@ -394,34 +506,25 @@
 
         btnLogin.addEventListener('click', async () => {
             try { await signInWithPopup(auth, provider); } 
-            catch (error) { console.error("Gagal Login:", error); alert("Ups, gagal masuk: " + error.message); }
+            catch (error) { console.error(error); alert("Gagal masuk: " + error.message); }
         });
 
         btnLogout.addEventListener('click', async () => {
-            try { await signOut(auth); } 
-            catch (error) { console.error("Gagal Logout:", error); }
+            try { await signOut(auth); } catch (error) { console.error(error); }
         });
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                btnLogin.classList.add('hidden');
-                btnLogout.classList.remove('hidden');
-                
-                nameInputFire.value = user.displayName;
-                nameInputFire.readOnly = true;
-                nameInputFire.classList.add('text-emerald-600', 'dark:text-emerald-400');
+                btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
+                nameInputFire.value = user.displayName; nameInputFire.readOnly = true;
                 localStorage.setItem('userName', user.displayName); 
-                
-                avatarInitialFire.innerHTML = `<img src="${user.photoURL}" class="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-800" referrerpolicy="no-referrer" alt="Foto Profil">`;
+                avatarInitialFire.innerHTML = `<img src="${user.photoURL}" class="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-700" referrerpolicy="no-referrer">`;
+                // Panggil ulang Avatar agar inisial hilang
+                document.getElementById('user-name').dispatchEvent(new Event('input'));
             } else {
-                btnLogin.classList.remove('hidden');
-                btnLogout.classList.add('hidden');
-                
+                btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
                 nameInputFire.readOnly = false;
-                nameInputFire.classList.remove('text-emerald-600', 'dark:text-emerald-400');
-                
-                let initial = nameInputFire.value ? nameInputFire.value.charAt(0).toUpperCase() : 'A';
-                avatarInitialFire.innerHTML = initial;
+                avatarInitialFire.innerHTML = nameInputFire.value ? nameInputFire.value.charAt(0).toUpperCase() : 'A';
             }
         });
     </script>
