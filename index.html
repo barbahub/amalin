@@ -443,7 +443,7 @@
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
                     // Masukkan VAPID KEY dari Firebase Console Project kamu di sini
-                    const token = await getToken(messaging, { vapidKey: 'GANTI_DENGAN_VAPID_KEY_FIREBASE_KAMU' });
+                    const token = await getToken(messaging, { vapidKey: 'BM7njp-Zw-HeqIVGyPBz59K3-8PYqS69DKDPFLZGGqHicLZMcM1TXn0wN3n-DZUx1bUDnUImxy74VnAFPMGNOBI' });
                     if (token) {
                         console.log('Token FCM didapat:', token);
                         // Simpan token ke database agar server bisa mengirim pesan ke HP ini
@@ -509,3 +509,4 @@
     </script>
 </body>
 </html>
+
