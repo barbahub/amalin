@@ -108,10 +108,18 @@
                     <div id="gacha-result" class="hidden bg-white/20 backdrop-blur-md p-3 rounded-2xl border border-white/30 text-sm font-bold mt-2 relative z-10"></div>
                 </div>
 
+                <div id="epic-quest-container"></div>
+
+                <div class="flex justify-between items-end mt-2 mb-3">
+                    <h2 class="text-lg font-extrabold text-gray-800 dark:text-gray-100">Panggilan Langit (Wajib) 🕋</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-3 mb-6" id="sholat-wajib-container">
+                    </div>
+
                 <div id="flash-quest-container"></div>
 
                 <div class="flex justify-between items-end mb-3">
-                    <h2 class="text-lg font-extrabold text-gray-800 dark:text-gray-100">Daily Quests 🎯</h2>
+                    <h2 class="text-lg font-extrabold text-gray-800 dark:text-gray-100">Sunnah & Daily Habits 🎯</h2>
                 </div>
                 
                 <div class="space-y-3 mb-6" id="checklist-container">
@@ -119,7 +127,7 @@
                         <div class="flex items-center gap-4">
                             <input type="checkbox" id="quest-puasa" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20" data-type="disiplin">
                             <div>
-                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Puasa Wajib Full</span>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Puasa Wajib / Sunnah</span>
                                 <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
                             </div>
                         </div>
@@ -128,7 +136,7 @@
                         <div class="flex items-center gap-4">
                             <input type="checkbox" id="quest-tarawih" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20" data-type="ketuhanan">
                             <div>
-                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Salat Tarawih</span>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Salat Tarawih / Witir Malam</span>
                                 <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
                             </div>
                         </div>
@@ -137,7 +145,7 @@
                         <div class="flex items-center gap-4">
                             <input type="checkbox" id="quest-tadarus" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20" data-type="ketuhanan">
                             <div>
-                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Tadarus Al-Quran</span>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Tadarus Al-Quran 1 Lembar</span>
                                 <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
                             </div>
                         </div>
@@ -147,7 +155,7 @@
                         <div class="flex items-center gap-4">
                             <input type="checkbox" id="quest-sedekah" class="w-6 h-6 text-amber-500 rounded-lg focus:ring-amber-400 checklist-item" data-exp="50" data-type="gotong_royong">
                             <div>
-                                <span class="text-[9px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-wider block mb-0.5">Epic Quest</span>
+                                <span class="text-[9px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-wider block mb-0.5">Epic Combo</span>
                                 <span class="block font-bold text-sm text-amber-900 dark:text-amber-100">Bagi Takjil / Sedekah</span>
                                 <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded mt-1 inline-block">+50 Koin & EXP</span>
                             </div>
@@ -178,7 +186,7 @@
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Hubungkan Akun Google
                     </button>
-                    <div class="flex gap-2 w-full">
+                    <div class="flex gap-2 w-full mt-2">
                         <button id="btn-logout" class="hidden flex-1 bg-rose-100 text-rose-600 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
                             Keluar Akun
                         </button>
@@ -198,7 +206,6 @@
                     
                     <input type="text" id="user-name" placeholder="Siapa namamu bro?" class="w-full bg-transparent outline-none py-1 mb-1 font-black text-2xl text-gray-800 dark:text-gray-100 text-center transition relative z-10 placeholder-gray-300">
                     <input type="text" id="user-bio" placeholder="Bio: Skenda '25" class="w-full bg-transparent outline-none pb-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 text-center transition relative z-10">
-                    
                     <input type="text" id="user-quote" placeholder='"Ketik kutipan penyemangatmu di sini..."' class="w-full bg-transparent outline-none pb-4 text-[11px] font-medium text-gray-500 dark:text-gray-400 text-center italic border-b-2 border-dashed border-gray-200 dark:border-gray-700 transition relative z-10">
                     
                     <div class="mt-5 relative z-10">
@@ -218,8 +225,7 @@
                         <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Jejak 7 Hari Terakhir</h2>
                         <span class="text-[10px] text-emerald-500 font-bold" id="heatmap-status">Aktif!</span>
                     </div>
-                    <div id="heatmap-container" class="flex justify-between gap-1 bg-white dark:bg-gray-800 p-3 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                        </div>
+                    <div id="heatmap-container" class="flex justify-between gap-1 bg-white dark:bg-gray-800 p-3 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"></div>
                 </div>
 
                 <div class="mb-6">
@@ -296,7 +302,15 @@
     </style>
 
     <script>
-        // --- 1. DARK MODE GRATIS ---
+        // --- 1. GLOBAL VARS & WAKTU ---
+        const today = new Date();
+        const startOfYear = new Date(today.getFullYear(), 0, 0);
+        const dayOfYear = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24));
+        const tglRilis = new Date("2026-02-01T00:00:00"); 
+        const selisihMinggu = Math.floor(Math.max(0, today - tglRilis) / (1000 * 60 * 60 * 24 * 7));
+        const currentHour = today.getHours();
+
+        // --- 2. DARK MODE GRATIS ---
         const darkToggle = document.getElementById('dark-toggle');
         const htmlElement = document.documentElement;
         if (localStorage.getItem('theme') === 'dark') { 
@@ -307,10 +321,10 @@
             htmlElement.classList.toggle('dark');
             localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
             darkToggle.innerText = htmlElement.classList.contains('dark') ? '☀️' : '🌙';
-            if(window.radarChartInstance) updateChartTheme(); // Update warna grafik
+            if(window.radarChartInstance) updateChartTheme();
         });
 
-        // --- 2. TAB NAVIGASI ---
+        // --- 3. TAB NAVIGASI ---
         const views = { home: document.getElementById('view-home'), target: document.getElementById('view-target'), profile: document.getElementById('view-profile') };
         const btns = { home: document.getElementById('nav-btn-home'), target: document.getElementById('nav-btn-target'), profile: document.getElementById('nav-btn-profile') };
         const activeClass = "flex-1 py-2.5 flex flex-col items-center text-emerald-600 dark:text-emerald-400 transition transform scale-105 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl";
@@ -325,7 +339,7 @@
         btns.target.addEventListener('click', () => switchTab('target'));
         btns.profile.addEventListener('click', () => switchTab('profile'));
 
-        // --- 3. PROFIL, KUTIPAN & LEVELING LOKAL ---
+        // --- 4. PROFIL, KUTIPAN & LEVELING LOKAL ---
         const nameInput = document.getElementById('user-name'); 
         const bioInput = document.getElementById('user-bio');
         const quoteInput = document.getElementById('user-quote');
@@ -351,18 +365,12 @@
             return "Sepuh Jalur Langit";
         }
 
-        // FUNGSI UPDATE BINGKAI AVATAR
         function updateAvatarBorder(level) {
             const avatar = document.getElementById('avatar-initial');
             avatar.classList.remove('ring-4', 'ring-gray-200', 'dark:ring-gray-600', 'ring-blue-400', 'ring-yellow-400', 'shadow-lg', 'shadow-yellow-400/50');
-            
-            if (level >= 30) {
-                avatar.classList.add('ring-4', 'ring-yellow-400', 'shadow-lg', 'shadow-yellow-400/50');
-            } else if (level >= 10) {
-                avatar.classList.add('ring-4', 'ring-blue-400');
-            } else {
-                avatar.classList.add('ring-4', 'ring-gray-200', 'dark:ring-gray-600');
-            }
+            if (level >= 30) { avatar.classList.add('ring-4', 'ring-yellow-400', 'shadow-lg', 'shadow-yellow-400/50'); } 
+            else if (level >= 10) { avatar.classList.add('ring-4', 'ring-blue-400'); } 
+            else { avatar.classList.add('ring-4', 'ring-gray-200', 'dark:ring-gray-600'); }
         }
 
         function updateStatsUI() {
@@ -375,51 +383,119 @@
             document.getElementById('display-exp').innerText = `${totalExp} / ${expNextLevel} EXP`;
             document.getElementById('exp-bar').style.width = `${percent}%`;
             document.getElementById('display-title-bot').innerText = `🏆 Gelar: ${currentTitle}`;
-            
             updateAvatarBorder(currentLevel);
         }
         updateStatsUI();
 
-        // --- 4. GACHA KEBAIKAN (25 MISI) ---
+        // --- 5. RENDER SHOLAT WAJIB ---
+        const sholatWajib = [
+            { id: "sw-subuh", title: "Sholat Subuh", start: 4, end: 6, exp: 50, type: "ketuhanan" },
+            { id: "sw-dhuhur", title: "Sholat Dhuhur", start: 11, end: 15, exp: 50, type: "ketuhanan" },
+            { id: "sw-ashar", title: "Sholat Ashar", start: 15, end: 18, exp: 50, type: "ketuhanan" },
+            { id: "sw-maghrib", title: "Sholat Maghrib", start: 18, end: 19, exp: 50, type: "ketuhanan" },
+            { id: "sw-isya", title: "Sholat Isya", start: 19, end: 23, exp: 50, type: "ketuhanan" }
+        ];
+
+        function renderSholatWajib() {
+            const container = document.getElementById('sholat-wajib-container');
+            if(!container) return;
+            let html = '';
+            sholatWajib.forEach(q => {
+                const isActive = currentHour >= q.start && currentHour <= q.end;
+                const statusClass = isActive ? "text-emerald-500 animate-pulse font-black" : "text-gray-400 font-bold";
+                const statusText = isActive ? "🟢 Masuk Waktu!" : `${q.start.toString().padStart(2, '0')}:00 - ${q.end.toString().padStart(2, '0')}:00`;
+                const disabledAttr = isActive ? "" : "disabled";
+                const borderClass = isActive ? "border-emerald-400 shadow-emerald-500/20 shadow-md bg-emerald-50 dark:bg-emerald-900/20" : "border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50";
+
+                html += `
+                <label class="flex items-center justify-between p-4 rounded-2xl border ${borderClass} cursor-pointer group relative overflow-hidden transition-all">
+                    <div class="flex items-center gap-4">
+                        <input type="checkbox" id="${q.id}" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item peer" ${disabledAttr} data-exp="${q.exp}" data-type="${q.type}">
+                        <div>
+                            <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">${q.title}</span>
+                            <span class="text-[10px] ${statusClass}">${statusText}</span>
+                        </div>
+                    </div>
+                    <div class="absolute right-4 text-gray-400 peer-disabled:block hidden pointer-events-none text-xl">🔒</div>
+                </label>`;
+            });
+            container.innerHTML = html;
+        }
+        renderSholatWajib();
+
+        // --- 6. RENDER EPIC QUEST MINGGUAN ---
+        const epicQuests25 = [
+            { id: "eq-1", title: "Khatam 1 Juz Al-Quran Sekali Duduk", type: "ketuhanan", exp: 100 },
+            { id: "eq-2", title: "Puasa Sunnah Ayyamul Bidh", type: "ketuhanan", exp: 150 },
+            { id: "eq-3", title: "Sholat Tahajud 3 Hari Beruntun", type: "ketuhanan", exp: 120 },
+            { id: "eq-4", title: "Ikut Kerja Bakti / Bersih Masjid", type: "gotong_royong", exp: 150 },
+            { id: "eq-5", title: "Bagi 5 Snack ke Pekerja Jalanan", type: "peduli", exp: 150 },
+            { id: "eq-6", title: "Bantu Kerjaan Ortu Seharian Penuh", type: "tanggung_jawab", exp: 120 },
+            { id: "eq-7", title: "Hafal 1 Surah Pendek Baru", type: "ketuhanan", exp: 100 },
+            { id: "eq-8", title: "Screen-time HP di Bawah 4 Jam", type: "disiplin", exp: 100 },
+            { id: "eq-9", title: "Datang ke Kajian/Majelis Ilmu", type: "ketuhanan", exp: 80 },
+            { id: "eq-10", title: "Minta Maaf Duluan Kalau Salah", type: "tanggung_jawab", exp: 90 },
+            { id: "eq-11", title: "Olahraga/Jalan Pagi 30 Menit", type: "disiplin", exp: 60 },
+            { id: "eq-12", title: "Donasi Uang Saku ke Panti/Masjid", type: "peduli", exp: 120 },
+            { id: "eq-13", title: "Beresin Kamar Sampai Kinclong", type: "tanggung_jawab", exp: 80 },
+            { id: "eq-14", title: "Jadi Tutor: Ajarin Teman yang Gak Paham", type: "gotong_royong", exp: 100 },
+            { id: "eq-15", title: "Tidak Begadang & Bangun Subuh", type: "disiplin", exp: 70 },
+            { id: "eq-16", title: "Selesaikan Tugas Jauh Sebelum Deadline", type: "disiplin", exp: 80 },
+            { id: "eq-17", title: "Baca Buku Edukasi 1 Bab", type: "disiplin", exp: 70 },
+            { id: "eq-18", title: "Cuci Piring & Baju Sendiri", type: "tanggung_jawab", exp: 70 },
+            { id: "eq-19", title: "Membantu Mengatur Keuangan Rumah", type: "tanggung_jawab", exp: 80 },
+            { id: "eq-20", title: "Rapikan Shaf Sandal di Masjid", type: "gotong_royong", exp: 60 },
+            { id: "eq-21", title: "Patungan Jenguk Teman Sakit", type: "gotong_royong", exp: 90 },
+            { id: "eq-22", title: "Bantu Guru Bawa Barang", type: "gotong_royong", exp: 70 },
+            { id: "eq-23", title: "Borong Dagangan Teman Sendiri", type: "peduli", exp: 100 },
+            { id: "eq-24", title: "Beri Makan Kucing Jalanan", type: "peduli", exp: 60 },
+            { id: "eq-25", title: "Dengerin Teman Curhat Sampai Plong", type: "peduli", exp: 80 }
+        ];
+
+        const currentEpic = epicQuests25[selisihMinggu % epicQuests25.length];
+        const epicContainer = document.getElementById('epic-quest-container');
+        if(epicContainer) {
+            epicContainer.innerHTML = `
+                <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-1 rounded-3xl shadow-lg mb-6 transform hover:scale-[1.01] transition">
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-[1.3rem] h-full flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-purple-600 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase">EPIC MINGGU INI</span>
+                            </div>
+                            <p class="font-black text-sm text-gray-800 dark:text-gray-100 mt-1">${currentEpic.title}</p>
+                            <p class="text-xs text-purple-600 dark:text-purple-400 font-bold">+${currentEpic.exp} Koin & EXP Tinggi!</p>
+                        </div>
+                        <label class="relative flex items-center justify-center cursor-pointer group">
+                            <input type="checkbox" id="epic-quest-${selisihMinggu}" class="w-8 h-8 text-purple-600 rounded-xl focus:ring-purple-500 checklist-item peer" data-exp="${currentEpic.exp}" data-type="${currentEpic.type}">
+                        </label>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- 7. GACHA KEBAIKAN ---
         const gachaBtn = document.getElementById('gacha-container');
         const gachaRes = document.getElementById('gacha-result');
         const gachaSubtitle = document.getElementById('gacha-subtitle');
-        const gachaQuests25 = [
-            "Traktir teman minuman hari ini", "Senyum tulus ke 3 orang asing", "Bantu ortu membereskan rumah", 
-            "Sedekah subuh Rp2.000", "Baca Al-Kahfi 10 ayat pertama", "Berbagi makanan ke tetangga", 
-            "Pungut 3 sampah di jalanan", "Beri rating bintang 5 ke kurir", "Maafkan kesalahan orang hari ini", 
-            "Baca istighfar 100x hari ini", "Telepon/chat keluarga yang jauh", "Tahan amarah saat sedang kesal", 
-            "Beri komentar positif di medsos", "Berdoa untuk kebaikan sahabat", "Rapikan sandal/sepatu di masjid", 
-            "Isi kotak amal terdekat", "Ucapkan terima kasih ke satpam", "Baca sholawat nabi 100x", 
-            "Niatkan puasa sunnah untuk besok", "Bagikan ilmu bermanfaat di WA", "Matikan air/lampu yang tak terpakai", 
-            "Beri makan hewan jalanan", "Selesaikan tugas/kerjaan lebih awal", "Tabung sebagian uang jajan hari ini", 
-            "Dengarkan curhat teman dengan baik"
-        ];
-        
+        const gachaMissions25 = ["Traktir teman minuman hari ini", "Senyum tulus ke 3 orang asing", "Bantu ortu membereskan rumah", "Sedekah subuh Rp2.000", "Baca Al-Kahfi 10 ayat pertama", "Berbagi makanan ke tetangga", "Pungut 3 sampah di jalanan", "Beri rating bintang 5 ke kurir", "Maafkan kesalahan orang hari ini", "Baca istighfar 100x hari ini", "Telepon/chat keluarga yang jauh", "Tahan amarah saat sedang kesal", "Beri komentar positif di medsos", "Berdoa untuk kebaikan sahabat", "Rapikan sandal/sepatu di masjid", "Isi kotak amal terdekat", "Ucapkan terima kasih ke satpam", "Baca sholawat nabi 100x", "Niatkan puasa sunnah untuk besok", "Bagikan ilmu bermanfaat di WA", "Matikan air/lampu yang tak terpakai", "Beri makan hewan jalanan", "Selesaikan tugas/kerjaan lebih awal", "Tabung sebagian uang jajan hari ini", "Dengarkan curhat teman dengan baik"];
         let hasGachaToday = localStorage.getItem('gachaDate') === new Date().toDateString();
+        
         function renderGachaResult(questText) {
-            // Tambahkan data-type="peduli" untuk Gacha
             gachaRes.innerHTML = `<label class="flex items-center justify-between cursor-pointer group mt-2 p-3 bg-white/30 rounded-xl border border-white/40 shadow-sm"><div class="flex items-center gap-3"><input type="checkbox" id="quest-gacha" class="w-6 h-6 text-rose-500 rounded checklist-item" data-exp="50" data-type="peduli"><span class="font-bold text-sm text-white drop-shadow-md text-left leading-tight">${questText}</span></div></label>`;
-            gachaRes.classList.remove('hidden');
-            gachaSubtitle.classList.add('hidden');
+            gachaRes.classList.remove('hidden'); gachaSubtitle.classList.add('hidden');
         }
-
         if(hasGachaToday) renderGachaResult(localStorage.getItem('gachaMission'));
-
+        
         gachaBtn.addEventListener('click', () => {
             if(!hasGachaToday) {
-                let randomQuest = gachaQuests25[Math.floor(Math.random() * gachaQuests25.length)];
-                localStorage.setItem('gachaDate', new Date().toDateString());
-                localStorage.setItem('gachaMission', randomQuest);
-                
-                renderGachaResult(randomQuest);
-                confetti({particleCount: 80, spread: 60, colors: ['#fb7185', '#f43f5e', '#ffffff']});
-                hasGachaToday = true;
-                attachChecklistListeners(); 
+                let randomQuest = gachaMissions25[Math.floor(Math.random() * gachaMissions25.length)];
+                localStorage.setItem('gachaDate', new Date().toDateString()); localStorage.setItem('gachaMission', randomQuest);
+                renderGachaResult(randomQuest); confetti({particleCount: 80, spread: 60, colors: ['#fb7185', '#f43f5e', '#ffffff']});
+                hasGachaToday = true; attachChecklistListeners(); 
             }
         });
 
-        // --- 5. FLASH QUEST DINAMIS (25 MISI) ---
+        // --- 8. RENDER FLASH QUEST ---
         const flashQuests25 = [
             { id: "fq-1", title: "Pejuang Subuh Berjamaah", exp: 50, start: 4, end: 6, type: "ketuhanan" },
             { id: "fq-2", title: "Sholat Dhuha 2 Rakaat", exp: 40, start: 7, end: 11, type: "ketuhanan" },
@@ -448,38 +524,33 @@
             { id: "fq-25", title: "Membaca Surah Al-Mulk", exp: 40, start: 19, end: 22, type: "ketuhanan" }
         ];
 
-        const today = new Date();
-        const startOfYear = new Date(today.getFullYear(), 0, 0);
-        const dayOfYear = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24));
         const todayFlash = flashQuests25[dayOfYear % flashQuests25.length];
-        const currentHour = today.getHours();
-        
         const isFlashActive = currentHour >= todayFlash.start && currentHour <= todayFlash.end;
         const flashStatusText = isFlashActive ? "🟢 BUKA SEKARANG" : `${todayFlash.start.toString().padStart(2, '0')}:00 - ${todayFlash.end.toString().padStart(2, '0')}:00`;
         const flashStatusClass = isFlashActive ? "text-emerald-500" : "text-gray-500";
 
-        document.getElementById('flash-quest-container').innerHTML = `
-            <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm mb-6 flex items-center justify-between">
-                <div>
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md animate-pulse">FLASH QUEST</span>
-                        <span class="text-xs font-bold ${flashStatusClass}" id="flash-time-status">${flashStatusText}</span>
+        const flashContainer = document.getElementById('flash-quest-container');
+        if(flashContainer) {
+            flashContainer.innerHTML = `
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm mb-6 flex items-center justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md animate-pulse">FLASH QUEST</span>
+                            <span class="text-xs font-bold ${flashStatusClass}" id="flash-time-status">${flashStatusText}</span>
+                        </div>
+                        <p class="font-bold text-sm dark:text-gray-200">${todayFlash.title}</p>
+                        <p class="text-xs text-yellow-500 font-bold">+${todayFlash.exp} Koin & EXP</p>
                     </div>
-                    <p class="font-bold text-sm dark:text-gray-200">${todayFlash.title}</p>
-                    <p class="text-xs text-yellow-500 font-bold">+${todayFlash.exp} Koin & EXP</p>
+                    <label class="relative flex items-center justify-center cursor-pointer group" id="flash-quest-label">
+                        <input type="checkbox" id="${todayFlash.id}" class="w-8 h-8 text-emerald-500 rounded-xl focus:ring-emerald-400 checklist-item peer" ${isFlashActive ? '' : 'disabled'} data-exp="${todayFlash.exp}" data-type="${todayFlash.type}">
+                        <div class="absolute text-gray-400 peer-disabled:block hidden pointer-events-none text-xl">🔒</div>
+                    </label>
                 </div>
-                <label class="relative flex items-center justify-center cursor-pointer group" id="flash-quest-label">
-                    <input type="checkbox" id="${todayFlash.id}" class="w-8 h-8 text-emerald-500 rounded-xl focus:ring-emerald-400 checklist-item peer" ${isFlashActive ? '' : 'disabled'} data-exp="${todayFlash.exp}" data-type="${todayFlash.type}">
-                    <div class="absolute text-gray-400 peer-disabled:block hidden pointer-events-none text-xl">🔒</div>
-                </label>
-            </div>
-        `;
+            `;
+        }
 
-        // --- SISTEM RADAR CHART & STATISTIK KARAKTER ---
-        let statsRadar = JSON.parse(localStorage.getItem('statsRadar')) || {
-            ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10
-        };
-
+        // --- 9. SISTEM RADAR CHART (GEN-Z) & HEATMAP ---
+        let statsRadar = JSON.parse(localStorage.getItem('statsRadar')) || { ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10 };
         window.radarChartInstance = null;
         function renderRadarChart() {
             const ctx = document.getElementById('radarChart').getContext('2d');
@@ -492,86 +563,51 @@
             window.radarChartInstance = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Spiritual', 'Gotong Royong', 'Disiplin', 'Tgj. Jawab', 'Kepedulian'],
+                    labels: ['Skena Jalur Langit', 'Team Player', 'Hustle Habit', 'Main Character', 'Social Vibes'],
                     datasets: [{
                         label: 'Poin Karakter',
                         data: [statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli],
-                        backgroundColor: 'rgba(16, 185, 129, 0.2)', 
-                        borderColor: 'rgba(16, 185, 129, 1)',
-                        pointBackgroundColor: 'rgba(251, 191, 36, 1)', 
-                        borderWidth: 2,
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)', borderColor: 'rgba(16, 185, 129, 1)', pointBackgroundColor: 'rgba(251, 191, 36, 1)', borderWidth: 2,
                     }]
                 },
-                options: {
-                    scales: {
-                        r: {
-                            angleLines: { color: gridColor },
-                            grid: { color: gridColor },
-                            pointLabels: { color: fontColor, font: { size: 10, family: "'Inter', sans-serif", weight: 'bold' } },
-                            ticks: { display: false, beginAtZero: true } 
-                        }
-                    },
-                    plugins: { legend: { display: false } }
-                }
+                options: { scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: fontColor, font: { size: 10, family: "'Inter', sans-serif", weight: 'bold' } }, ticks: { display: false, beginAtZero: true } } }, plugins: { legend: { display: false } } }
             });
         }
         function updateChartTheme() { renderRadarChart(); }
         btns.profile.addEventListener('click', () => setTimeout(renderRadarChart, 100));
 
-
-        // --- HEATMAP 7 HARI ---
         let activityHistory = JSON.parse(localStorage.getItem('activityHistory')) || [];
         function updateHeatmap() {
-            const container = document.getElementById('heatmap-container');
-            container.innerHTML = '';
-            
+            const container = document.getElementById('heatmap-container'); container.innerHTML = '';
             const last7Days = [];
-            for(let i = 6; i >= 0; i--) {
-                const d = new Date();
-                d.setDate(d.getDate() - i);
-                last7Days.push(d.toDateString());
-            }
-
+            for(let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); last7Days.push(d.toDateString()); }
             last7Days.forEach(dateStr => {
-                const record = activityHistory.find(r => r.date === dateStr);
-                const count = record ? record.count : 0;
-                
-                let colorClass = 'bg-gray-200 dark:bg-gray-700';
-                if(count > 0 && count <= 2) colorClass = 'bg-emerald-300 dark:bg-emerald-600';
-                else if(count > 2) colorClass = 'bg-emerald-500 dark:bg-emerald-400 shadow-sm shadow-emerald-500/50';
-
+                const count = activityHistory.find(r => r.date === dateStr)?.count || 0;
+                let colorClass = count > 2 ? 'bg-emerald-500 dark:bg-emerald-400 shadow-sm shadow-emerald-500/50' : count > 0 ? 'bg-emerald-300 dark:bg-emerald-600' : 'bg-gray-200 dark:bg-gray-700';
                 const dayName = new Date(dateStr).toLocaleDateString('id-ID', {weekday: 'short'}).charAt(0);
-                container.innerHTML += `
-                    <div class="flex flex-col items-center gap-1">
-                        <div class="w-8 h-8 rounded-lg ${colorClass} transition-colors duration-500"></div>
-                        <span class="text-[9px] font-bold text-gray-400">${dayName}</span>
-                    </div>
-                `;
+                container.innerHTML += `<div class="flex flex-col items-center gap-1"><div class="w-8 h-8 rounded-lg ${colorClass} transition-colors duration-500"></div><span class="text-[9px] font-bold text-gray-400">${dayName}</span></div>`;
             });
         }
         updateHeatmap();
-
         function logActivityForHeatmap() {
-            const dateStr = new Date().toDateString();
-            let recordIndex = activityHistory.findIndex(r => r.date === dateStr);
-            if(recordIndex >= 0) {
-                activityHistory[recordIndex].count += 1;
-            } else {
-                activityHistory.push({ date: dateStr, count: 1 });
-            }
-            if(activityHistory.length > 14) activityHistory.shift();
-            localStorage.setItem('activityHistory', JSON.stringify(activityHistory));
+            const dateStr = new Date().toDateString(); let recordIndex = activityHistory.findIndex(r => r.date === dateStr);
+            if(recordIndex >= 0) activityHistory[recordIndex].count += 1; else activityHistory.push({ date: dateStr, count: 1 });
+            if(activityHistory.length > 14) activityHistory.shift(); localStorage.setItem('activityHistory', JSON.stringify(activityHistory));
             updateHeatmap();
         }
 
-        // --- 6. CHECKLIST LOGIC & STREAK (DENGAN RADAR & HEATMAP UPDATE) ---
+        // --- 10. ATTACH LISTENERS (RESET & SYNC) ---
         const todayStr = new Date().toDateString();
         let lastVisitStr = localStorage.getItem('lastVisit');
         let streakNum = parseInt(localStorage.getItem('streak') || 0);
 
         if (lastVisitStr !== todayStr) {
             if (lastVisitStr && localStorage.getItem('completedYesterday') !== 'true') streakNum = 0;
-            ['quest-puasa', 'quest-tarawih', 'quest-tadarus', 'quest-sedekah', 'quest-gacha', todayFlash.id].forEach(id => { localStorage.setItem(id, 'false'); });
+            // Kumpulkan ID harian yang harus direset
+            let resets = ['quest-puasa', 'quest-tarawih', 'quest-tadarus', 'quest-sedekah', 'quest-gacha', todayFlash.id];
+            sholatWajib.forEach(q => resets.push(q.id));
+            resets.forEach(id => localStorage.setItem(id, 'false'));
+            
             localStorage.setItem('completedYesterday', 'false'); localStorage.setItem('lastVisit', todayStr); localStorage.setItem('streak', streakNum);
         }
         document.getElementById('streak-display').innerText = `🔥 ${streakNum}`;
@@ -588,34 +624,24 @@
                     
                     if(this.checked) {
                         totalExp += expVal; totalKoin += expVal; 
-                        
-                        // Update Radar & Heatmap
-                        statsRadar[questType] += 5; 
-                        localStorage.setItem('statsRadar', JSON.stringify(statsRadar));
+                        statsRadar[questType] += 5; localStorage.setItem('statsRadar', JSON.stringify(statsRadar));
                         if(window.radarChartInstance) renderRadarChart();
                         logActivityForHeatmap();
 
                         confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
                         if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
                         
-                        // BATCH FIREBASE
                         if(window.addPendingGlobalMission) window.addPendingGlobalMission(1);
                         if(window.syncExpToFirebase) window.syncExpToFirebase(expVal);
                     } else { 
                         totalExp -= expVal; totalKoin -= expVal;
-                        
-                        // Kurangi Radar stat
-                        statsRadar[questType] = Math.max(10, statsRadar[questType] - 5);
-                        localStorage.setItem('statsRadar', JSON.stringify(statsRadar));
+                        statsRadar[questType] = Math.max(10, statsRadar[questType] - 5); localStorage.setItem('statsRadar', JSON.stringify(statsRadar));
                         if(window.radarChartInstance) renderRadarChart();
-
                         if(window.syncExpToFirebase) window.syncExpToFirebase(-expVal);
                     }
                     
-                    localStorage.setItem('totalExp', totalExp);
-                    localStorage.setItem('totalKoin', totalKoin);
-                    document.getElementById('koin-display').innerText = totalKoin;
-                    updateStatsUI();
+                    localStorage.setItem('totalExp', totalExp); localStorage.setItem('totalKoin', totalKoin);
+                    document.getElementById('koin-display').innerText = totalKoin; updateStatsUI();
 
                     let anyChecked = document.querySelectorAll('.checklist-item:checked').length > 0;
                     if (anyChecked) {
@@ -627,19 +653,18 @@
                 });
             });
         }
+        // Panggil attach setelah SEMUA elemen dynamic (Sholat, Flash, Epic) selesai dirender
         attachChecklistListeners(); 
 
-        // --- 7. SISTEM MARKETPLACE TOKO ---
+        // --- 11. TOKO ---
         const shopCatalog = [
             { id: "badge_sultan", name: "Badge Sultan 👑", price: 300, icon: "👑" }, 
             { id: "confetti_gold", name: "Confetti Emas", price: 500, icon: "✨" },
             { id: "voucher_snack", name: "Voucher Snack", price: 5000, icon: "🎁" }
         ];
         let unlockedItems = JSON.parse(localStorage.getItem('unlockedItems') || '[]');
-
         window.renderShop = function() {
-            const container = document.getElementById('shop-container');
-            if(!container) return; container.innerHTML = ''; 
+            const container = document.getElementById('shop-container'); if(!container) return; container.innerHTML = ''; 
             shopCatalog.forEach(item => {
                 const isOwned = unlockedItems.includes(item.id);
                 const card = document.createElement('div');
@@ -649,14 +674,12 @@
             });
         }
         renderShop();
-
         window.buyItem = async function(id, price) {
             if (totalKoin < price) { alert("Koin kamu kurang!"); return; }
             if (!confirm(`Yakin tukar ${price} koin?`)) return;
             totalKoin -= price; unlockedItems.push(id);
             localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(unlockedItems));
-            document.getElementById('koin-display').innerText = totalKoin;
-            renderShop();
+            document.getElementById('koin-display').innerText = totalKoin; renderShop();
             if(window.syncPurchaseToFirebase) window.syncPurchaseToFirebase(id, price);
         };
     </script>
@@ -748,9 +771,10 @@
             { title: "25.000 Halaman Al-Quran Dibaca", target: 25000 },
             { title: "15.000 Misi Sedekah Selesai", target: 15000 }
         ];
-        const tglRilis = new Date("2026-02-01T00:00:00"); 
-        const tglHariIni = new Date();
-        const selisihMingguGlobal = Math.floor(Math.max(0, tglHariIni - tglRilis) / (1000 * 60 * 60 * 24 * 7));
+        // Definisi ulang tgl rilis khusus untuk fungsi Global Misi Firebase
+        const tglRilisFB = new Date("2026-02-01T00:00:00"); 
+        const todayFB = new Date();
+        const selisihMingguGlobal = Math.floor(Math.max(0, todayFB - tglRilisFB) / (1000 * 60 * 60 * 24 * 7));
         const misiSaatIni = daftarMisiGlobal[selisihMingguGlobal % daftarMisiGlobal.length];
         const nomorMinggu = selisihMingguGlobal + 1; 
 
