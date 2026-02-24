@@ -1,5 +1,5 @@
 // GANTI ANGKA VERSI INI SETIAP KALI ANDA MENGUBAH INDEX.HTML
-const CACHE_NAME = 'amalin-skena-v1.9'; 
+const CACHE_NAME = 'amalin-skena-v1.10'; 
 
 const urlsToCache = [
     './',
@@ -48,6 +48,7 @@ self.addEventListener('fetch', event => {
         })
     );
 });
+
 
 
 
