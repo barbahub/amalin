@@ -574,7 +574,7 @@
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
                     // GANTI DENGAN VAPID KEY KAMU DARI FIREBASE CONSOLE
-                    const token = await getToken(messaging, { vapidKey: 'GANTI_DENGAN_VAPID_KEY_FIREBASE_KAMU' });
+                    const token = await getToken(messaging, { vapidKey: 'BM7njp-Zw-HeqIVGyPBz59K3-8PYqS69DKDPFLZGGqHicLZMcM1TXn0wN3n-DZUx1bUDnUImxy74VnAFPMGNOBI' });
                     if (token) {
                         if(auth.currentUser) await updateDoc(doc(db, "users", auth.currentUser.uid), { fcmToken: token });
                         btnEnableNotif.classList.add('hidden');
@@ -602,7 +602,7 @@
                 nameInputFire.value = user.displayName; nameInputFire.readOnly = true;
                 
                 // Jika UID adalah Admin, tampilkan tombol Reset
-                if(user.uid === "UID_ADMIN_KAMU_DISINI") {
+                if(user.uid === "BuhxemHnifSfdrgtr9cvHbDGh643") {
                     btnAdminReset.classList.remove('hidden');
                     btnAdminReset.classList.add('block');
                 }
@@ -637,3 +637,4 @@
     </script>
 </body>
 </html>
+
