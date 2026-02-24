@@ -61,12 +61,12 @@
                             <span id="global-progress-text">Memuat data...</span>
                             <span id="global-progress-percent">0%</span>
                         </div>
-                        <div class="w-full bg-black/30 rounded-full h-4 shadow-inner overflow-hidden border border-white/10">
+                        <div class="w-full bg-black/30 rounded-full h-4 shadow-inner overflow-hidden border border-white/10 relative">
                             <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-full transition-all duration-1000 ease-out relative" id="global-progress-bar" style="width: 0%">
                                 <div class="absolute inset-0 bg-white/20 w-full animate-[pulse_2s_ease-in-out_infinite]"></div>
                             </div>
                         </div>
-                        <p class="text-[10px] text-emerald-200 mt-2 font-medium text-center">Setiap centang ibadahmu memajukan bar ini secara live!</p>
+                        <p class="text-[10px] text-emerald-200 mt-2 font-medium text-center">Data sinkronisasi: <span id="sync-status">Menunggu interaksi...</span></p>
                     </div>
                 </div>
 
@@ -76,11 +76,13 @@
                         <h2 class="text-lg font-extrabold tracking-wide flex items-center gap-2">
                             <span>🏆</span> Top Rank Global
                         </h2>
-                        <span class="text-[10px] font-bold bg-white/20 px-2 py-1 rounded-full cursor-pointer" id="btn-reset-leaderboard">Minggu Ini ↻</span>
+                        <button class="text-[10px] font-bold bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full cursor-pointer transition shadow-sm active:scale-95 flex items-center gap-1" id="btn-refresh-leaderboard">
+                            Minggu Ini <span class="text-xs">↻</span>
+                        </button>
                     </div>
                     
                     <div class="space-y-3 relative z-10" id="leaderboard-container">
-                        <div class="text-center text-xs py-4 text-indigo-200 font-bold animate-pulse">Memuat jawara minggu ini...</div>
+                        <div class="text-center text-xs py-4 text-indigo-200 font-bold animate-pulse">Menyiapkan daftar jawara...</div>
                     </div>
                 </div>
 
@@ -127,6 +129,15 @@
                             </div>
                         </div>
                     </label>
+                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="quest-tadarus" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20">
+                            <div>
+                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Tadarus Al-Quran</span>
+                                <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
+                            </div>
+                        </div>
+                    </label>
                     <label class="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border border-amber-200 dark:border-amber-700 shadow-sm cursor-pointer hover:border-amber-400 transition group relative overflow-hidden">
                         <div class="absolute right-0 top-0 w-1 h-full bg-amber-400"></div>
                         <div class="flex items-center gap-4">
@@ -155,9 +166,14 @@
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Hubungkan Akun Google
                     </button>
-                    <button id="btn-logout" class="hidden w-full bg-rose-100 text-rose-600 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
-                        Keluar Akun
-                    </button>
+                    <div class="flex gap-2 w-full">
+                        <button id="btn-logout" class="hidden flex-1 bg-rose-100 text-rose-600 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
+                            Keluar Akun
+                        </button>
+                        <button id="btn-admin-reset" class="hidden bg-gray-800 text-white font-bold py-3.5 px-4 rounded-2xl shadow-sm hover:bg-gray-700 transition" title="Reset Peringkat Mingguan (Admin)">
+                            ⚠️ Reset
+                        </button>
+                    </div>
                     <button id="btn-enable-notif" class="hidden w-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-indigo-100 transition mt-3 border border-indigo-200 dark:border-indigo-800">
                         🔔 Aktifkan Pengingat Ibadah
                     </button>
@@ -165,7 +181,7 @@
 
                 <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-[2rem] border border-gray-200 dark:border-gray-700 shadow-lg text-center mb-6 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-emerald-400 to-transparent opacity-20"></div>
-                    <div class="w-24 h-24 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-full mx-auto flex items-center justify-center shadow-xl mb-4 text-4xl text-white font-extrabold relative z-10 border-4 border-white dark:border-gray-700" id="avatar-initial">A</div>
+                    <div class="w-24 h-24 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-full mx-auto flex items-center justify-center shadow-xl mb-4 text-4xl text-white font-extrabold relative z-10 border-4 border-white dark:border-gray-700 overflow-hidden" id="avatar-initial">A</div>
                     
                     <input type="text" id="user-name" placeholder="Siapa namamu bro?" class="w-full bg-transparent outline-none py-1 mb-1 font-black text-2xl text-gray-800 dark:text-gray-100 text-center transition relative z-10 placeholder-gray-300">
                     <input type="text" id="user-bio" placeholder="Bio: Skenda '25" class="w-full bg-transparent outline-none pb-4 text-sm font-semibold text-emerald-600 dark:text-emerald-400 text-center transition relative z-10 border-b-2 border-dashed border-gray-200 dark:border-gray-700">
@@ -179,6 +195,22 @@
                             <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3.5 rounded-full transition-all duration-1000 ease-out shadow-md" id="exp-bar" style="width: 0%"></div>
                         </div>
                         <p class="mt-3 text-xs font-bold text-gray-400 dark:text-gray-500" id="display-title-bot">Gelar: Newbie Tobat</p>
+                    </div>
+                </div>
+
+                <h2 class="text-sm font-bold mb-3 text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rak Trofi Badge</h2>
+                <div class="flex gap-3 overflow-x-auto pb-4 mb-4">
+                    <div id="badge-tarawih" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
+                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">🕌</div>
+                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Si Paling Tarawih</p>
+                    </div>
+                    <div id="badge-sedekah" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
+                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">🎁</div>
+                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Sultan Sedekah</p>
+                    </div>
+                    <div id="badge-tadarus" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
+                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">📖</div>
+                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">KhatamSkuy</p>
                     </div>
                 </div>
 
@@ -291,9 +323,8 @@
                         confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
                         if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
                         
-                        if(window.incrementGlobalMission) window.incrementGlobalMission();
-                        
-                        // SYNC EXP KE LEADERBOARD FIREBASE
+                        // SYNC BATCH KE FIREBASE
+                        if(window.addPendingGlobalMission) window.addPendingGlobalMission(1);
                         if(window.syncExpToFirebase) window.syncExpToFirebase(expVal);
                     } else { 
                         totalExp -= expVal; totalKoin -= expVal;
@@ -344,9 +375,8 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        // TAMBAHAN: query, orderBy, limit, collection untuk Leaderboard
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, onSnapshot, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-        // TAMBAHAN: Cloud Messaging untuk Push Notif
+        // Ganti onSnapshot dengan getDoc/getDocs untuk Efisiensi
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-messaging.js";
 
         const firebaseConfig = {
@@ -368,44 +398,61 @@
         const btnLogout = document.getElementById('btn-logout');
         const nameInputFire = document.getElementById('user-name');
         
-        // --- 1. FITUR LEADERBOARD MINGGUAN (DINAMIS) ---
+        // --- 1. FITUR LEADERBOARD MINGGUAN (ON-DEMAND / HEMAT KUOTA) ---
         const leaderboardContainer = document.getElementById('leaderboard-container');
-        const qLeaderboard = query(collection(db, "users"), orderBy("weekly_exp", "desc"), limit(10));
+        const btnRefreshLeaderboard = document.getElementById('btn-refresh-leaderboard');
         
-        // Dengarkan perubahan Peringkat secara Real-time
-        onSnapshot(qLeaderboard, (snapshot) => {
-            leaderboardContainer.innerHTML = ''; // Kosongkan saat memuat baru
-            let rank = 1;
+        async function fetchLeaderboard() {
+            if(!auth.currentUser) {
+                leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Login untuk melihat peringkat.</div>';
+                return;
+            }
             
-            snapshot.forEach((docSnap) => {
-                const userL = docSnap.data();
-                if(userL.weekly_exp > 0) { // Hanya tampilkan yang punya poin minggu ini
-                    let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' 
-                                     : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300'
-                                     : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300'
-                                     : 'border-white/10 bg-white/5 text-gray-400';
-                                     
-                    const el = document.createElement('div');
-                    el.className = `flex items-center justify-between p-2.5 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
-                    el.innerHTML = `
-                        <div class="flex items-center gap-3">
-                            <span class="font-black text-lg w-5 text-center">${rank}</span>
-                            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">
-                                ${userL.photo ? `<img src="${userL.photo}" class="w-full h-full object-cover">` : userL.name.charAt(0)}
+            leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Menarik data dari langit... 📡</div>';
+            
+            try {
+                const qLeaderboard = query(collection(db, "users"), orderBy("weekly_exp", "desc"), limit(10));
+                const snapshot = await getDocs(qLeaderboard);
+                
+                leaderboardContainer.innerHTML = ''; 
+                let rank = 1;
+                
+                snapshot.forEach((docSnap) => {
+                    const userL = docSnap.data();
+                    if(userL.weekly_exp > 0) {
+                        let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' 
+                                         : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300'
+                                         : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300'
+                                         : 'border-white/10 bg-white/5 text-gray-400';
+                                         
+                        const el = document.createElement('div');
+                        el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
+                        el.innerHTML = `
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-lg w-5 text-center">${rank}</span>
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">
+                                    ${userL.photo ? `<img src="${userL.photo}" class="w-full h-full object-cover">` : userL.name.charAt(0)}
+                                </div>
+                                <span class="font-bold text-sm text-white truncate max-w-[120px]">${userL.name}</span>
                             </div>
-                            <span class="font-bold text-sm text-white">${userL.name}</span>
-                        </div>
-                        <span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.weekly_exp} EXP</span>
-                    `;
-                    leaderboardContainer.appendChild(el);
-                    rank++;
-                }
-            });
-            
-            if(rank === 1) leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang mengumpulkan EXP minggu ini. Jadilah yang pertama!</div>';
-        });
+                            <span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.weekly_exp} EXP</span>
+                        `;
+                        leaderboardContainer.appendChild(el);
+                        rank++;
+                    }
+                });
+                
+                if(rank === 1) leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif minggu ini. Curi start sekarang!</div>';
+            } catch (e) {
+                leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat. Cek koneksi internetmu.</div>';
+                console.error(e);
+            }
+        }
+        
+        // Panggil hanya saat tombol refresh ditekan
+        btnRefreshLeaderboard.addEventListener('click', fetchLeaderboard);
 
-        // Sinkronisasi EXP saat Checklist Ditekan
+        // Sinkronisasi EXP ke Firebase
         window.syncExpToFirebase = async (expVal) => {
             const user = auth.currentUser;
             if(!user) return;
@@ -413,63 +460,137 @@
                 const userRef = doc(db, "users", user.uid);
                 await updateDoc(userRef, {
                     total_exp: increment(expVal),
-                    weekly_exp: increment(expVal) // Tambah juga ke poin mingguan
+                    weekly_exp: increment(expVal) 
                 });
             } catch (e) { console.error("Gagal sync EXP:", e); }
         };
 
-        // Tombol Rahasia Admin (Reset Peringkat Tiap Senin)
-        document.getElementById('btn-reset-leaderboard').addEventListener('click', async () => {
-            const user = auth.currentUser;
-            // Ganti UID di bawah ini dengan UID Firebase kamu sendiri agar hanya kamu yang bisa reset
-            if(user && user.uid === "UID_ADMIN_KAMU_DISINI") { 
-                if(confirm("Yakin ingin mereset peringkat mingguan semua user menjadi 0?")) {
+        // Tombol Reset Peringkat (Khusus Admin)
+        const btnAdminReset = document.getElementById('btn-admin-reset');
+        btnAdminReset.addEventListener('click', async () => {
+            if(confirm("Yakin mereset poin mingguan SEMUA user?")) {
+                btnAdminReset.innerText = "⏳ Memproses...";
+                try {
                     const usersSnap = await getDocs(collection(db, "users"));
-                    usersSnap.forEach(async (userDoc) => {
-                        await updateDoc(doc(db, "users", userDoc.id), { weekly_exp: 0 });
+                    const promises = [];
+                    usersSnap.forEach((userDoc) => {
+                        promises.push(updateDoc(doc(db, "users", userDoc.id), { weekly_exp: 0 }));
                     });
+                    await Promise.all(promises);
                     alert("Leaderboard berhasil di-reset!");
-                }
-            } else {
-                alert("Hanya Admin yang dapat mereset leaderboard.");
+                    fetchLeaderboard(); // Refresh UI
+                } catch(e) { alert("Error: " + e.message); }
+                btnAdminReset.innerText = "⚠️ Reset";
             }
         });
 
-        // --- 2. FITUR PUSH NOTIFICATION (FCM) ---
-        const btnEnableNotif = document.getElementById('btn-enable-notif');
+
+        // --- 2. FITUR MISI GLOBAL (BATCHING & DINAMIS 100 MISI) ---
+        const daftarMisiGlobal = [
+            { title: "10.000 Centang Ibadah Bersama", target: 10000 },
+            { title: "5.000 Sholat Subuh Berjamaah", target: 5000 },
+            { title: "25.000 Halaman Al-Quran Dibaca", target: 25000 },
+            { title: "15.000 Misi Sedekah Selesai", target: 15000 }
+            // Tambah sampai 100 misi di sini...
+        ];
+
+        const tglRilis = new Date("2026-02-01T00:00:00"); // Ganti ke Tgl Rilis Asli
+        const tglHariIni = new Date();
+        const selisihMinggu = Math.floor(Math.max(0, tglHariIni - tglRilis) / (1000 * 60 * 60 * 24 * 7));
+        const misiSaatIni = daftarMisiGlobal[selisihMinggu % daftarMisiGlobal.length];
+        const nomorMinggu = selisihMinggu + 1; 
+
+        document.getElementById('global-mission-title').innerText = misiSaatIni.title;
+        const globalMisiRef = doc(db, "global_stats", `misi_minggu_ke_${nomorMinggu}`);
         
+        let pendingGlobalPoints = 0; // Tumpukan poin lokal (Batch)
+        let isSyncingGlobal = false;
+
+        // Fungsi Tarik Data Progress (On-Demand)
+        async function fetchGlobalProgress() {
+            try {
+                const docSnap = await getDoc(globalMisiRef);
+                let current = 0;
+                if (docSnap.exists()) current = docSnap.data().current_count || 0;
+                
+                const target = misiSaatIni.target; 
+                let percent = (current / target) * 100;
+                if (percent > 100) percent = 100;
+
+                document.getElementById('global-progress-text').innerText = `${current.toLocaleString('id-ID')} / ${target.toLocaleString('id-ID')}`;
+                document.getElementById('global-progress-percent').innerText = `${Math.floor(percent)}%`;
+                document.getElementById('global-progress-bar').style.width = `${percent}%`;
+                
+                if (current >= target) {
+                    document.getElementById('global-progress-text').innerText = "🎉 TARGET TERCAPAI!";
+                    document.getElementById('global-progress-bar').classList.add('from-emerald-400', 'to-emerald-300');
+                    document.getElementById('global-progress-bar').classList.remove('from-yellow-400', 'to-yellow-300');
+                }
+            } catch (e) { console.error("Gagal tarik progress:", e); }
+        }
+
+        // Kumpulkan poin di lokal dulu
+        window.addPendingGlobalMission = (poin) => {
+            if(!auth.currentUser) return;
+            pendingGlobalPoints += poin;
+            document.getElementById('sync-status').innerText = `Tertunda: ${pendingGlobalPoints} centang. Menunggu sinkronisasi...`;
+        };
+
+        // Fungsi tembak borongan ke Firebase
+        async function syncGlobalMissionBatch() {
+            if (pendingGlobalPoints === 0 || isSyncingGlobal || !auth.currentUser) return;
+            
+            isSyncingGlobal = true;
+            const poinToSync = pendingGlobalPoints;
+            pendingGlobalPoints = 0; // Reset lokal
+            document.getElementById('sync-status').innerText = "Sinkronisasi ke pusat... 📡";
+            
+            try {
+                await setDoc(globalMisiRef, {
+                    current_count: increment(poinToSync),
+                    target_count: misiSaatIni.target,
+                    nama_misi: misiSaatIni.title
+                }, { merge: true });
+                
+                document.getElementById('sync-status').innerText = "✅ Tersinkronisasi!";
+                fetchGlobalProgress(); // Update UI Progress bar
+            } catch (error) {
+                // Kembalikan poin jika gagal
+                pendingGlobalPoints += poinToSync; 
+                document.getElementById('sync-status').innerText = "❌ Gagal jaringan. Akan dicoba lagi.";
+            } finally {
+                isSyncingGlobal = false;
+            }
+        }
+
+        // Sinkronisasi otomatis setiap 10 detik JIKA ada poin tertunda
+        setInterval(syncGlobalMissionBatch, 10000);
+
+
+        // --- 3. FITUR PUSH NOTIFICATION (FCM) ---
+        const btnEnableNotif = document.getElementById('btn-enable-notif');
         async function requestNotificationPermission() {
             try {
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
-                    // Masukkan VAPID KEY dari Firebase Console Project kamu di sini
-                    const token = await getToken(messaging, { vapidKey: 'BM7njp-Zw-HeqIVGyPBz59K3-8PYqS69DKDPFLZGGqHicLZMcM1TXn0wN3n-DZUx1bUDnUImxy74VnAFPMGNOBI' });
+                    // GANTI DENGAN VAPID KEY KAMU DARI FIREBASE CONSOLE
+                    const token = await getToken(messaging, { vapidKey: 'GANTI_DENGAN_VAPID_KEY_FIREBASE_KAMU' });
                     if (token) {
-                        console.log('Token FCM didapat:', token);
-                        // Simpan token ke database agar server bisa mengirim pesan ke HP ini
-                        if(auth.currentUser) {
-                            await updateDoc(doc(db, "users", auth.currentUser.uid), { fcmToken: token });
-                        }
+                        if(auth.currentUser) await updateDoc(doc(db, "users", auth.currentUser.uid), { fcmToken: token });
                         btnEnableNotif.classList.add('hidden');
-                        alert("Alhamdulillah, Pengingat Ibadah berhasil diaktifkan!");
+                        alert("Alhamdulillah, Pengingat Ibadah diaktifkan!");
                     }
-                } else {
-                    alert("Akses notifikasi ditolak.");
-                }
-            } catch (error) {
-                console.error("Gagal mendapatkan token FCM:", error);
-            }
+                } else alert("Akses notifikasi ditolak.");
+            } catch (error) { console.error("FCM Error:", error); }
         }
-
         btnEnableNotif.addEventListener('click', requestNotificationPermission);
         
-        // Dengarkan notifikasi saat aplikasi sedang dibuka
         onMessage(messaging, (payload) => {
-            console.log('Pesan diterima saat app terbuka:', payload);
             alert(`Pesan Baru: ${payload.notification.title}\n${payload.notification.body}`);
         });
 
-        // --- 3. AUTH & INIT DATA ---
+
+        // --- 4. AUTH & INIT DATA ---
         btnLogin.addEventListener('click', async () => {
             try { await signInWithPopup(auth, provider); } catch (e) { alert(e.message); }
         });
@@ -480,12 +601,14 @@
                 btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
                 nameInputFire.value = user.displayName; nameInputFire.readOnly = true;
                 
-                // Cek status Notifikasi
-                if(Notification.permission !== 'granted') {
-                    btnEnableNotif.classList.remove('hidden');
+                // Jika UID adalah Admin, tampilkan tombol Reset
+                if(user.uid === "UID_ADMIN_KAMU_DISINI") {
+                    btnAdminReset.classList.remove('hidden');
+                    btnAdminReset.classList.add('block');
                 }
+                
+                if(Notification.permission !== 'granted') btnEnableNotif.classList.remove('hidden');
 
-                // Inisialisasi User Document di Firestore (termasuk EXP Mingguan)
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
                 
@@ -495,13 +618,18 @@
                         photo: user.photoURL,
                         koin: parseInt(localStorage.getItem('totalKoin') || 0),
                         total_exp: parseInt(localStorage.getItem('totalExp') || 0),
-                        weekly_exp: 0, // Set poin mingguan pertama kali ke 0
+                        weekly_exp: 0, 
                         unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]')
                     }, { merge: true });
                 }
 
+                // Tarik data saat baru login
+                fetchLeaderboard();
+                fetchGlobalProgress();
+
             } else {
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
+                btnAdminReset.classList.add('hidden');
                 btnEnableNotif.classList.add('hidden');
                 nameInputFire.readOnly = false;
             }
@@ -509,4 +637,3 @@
     </script>
 </body>
 </html>
-
