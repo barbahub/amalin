@@ -122,16 +122,18 @@
                     <h3 class="font-black text-lg mb-1 flex justify-center items-center gap-2">
                         <span>📿</span> Smart Tasbih
                     </h3>
-                    <p class="text-[10px] text-teal-100 mb-3 font-medium">Dapat +10 Koin tiap 33x, dan +500 EXP tiap 1000x!</p>
+                    <p class="text-[10px] text-teal-100 mb-3 font-medium">Dapat +10 Koin di klik ke-33, dan +500 EXP di klik ke-1000!</p>
                     
-                    <select id="tasbih-type" class="bg-white/20 text-white font-bold text-sm rounded-xl px-4 py-2 mb-5 outline-none border border-white/30 backdrop-blur-sm cursor-pointer appearance-none text-center">
+                    <select id="tasbih-type" class="bg-white/20 text-white font-bold text-sm rounded-xl px-4 py-2 mb-2 outline-none border border-white/30 backdrop-blur-sm cursor-pointer appearance-none text-center w-full max-w-[200px] mx-auto block">
                         <option value="subhanallah" class="text-gray-800">Subhanallah</option>
                         <option value="alhamdulillah" class="text-gray-800">Alhamdulillah</option>
                         <option value="allahuakbar" class="text-gray-800">Allahu Akbar</option>
                         <option value="custom" class="text-gray-800">Custom (Bebas)</option>
                     </select>
 
-                    <div class="flex justify-center mb-4">
+                    <input type="text" id="tasbih-custom-input" placeholder="Ketik dzikirmu di sini..." class="hidden bg-white/10 text-white placeholder-teal-200 text-sm font-semibold rounded-xl px-4 py-2 mb-3 outline-none border border-white/30 text-center w-full max-w-[200px] mx-auto transition-all">
+
+                    <div class="flex justify-center mb-4 mt-3">
                         <button id="btn-tasbih" class="w-32 h-32 rounded-full bg-white/10 border-[6px] border-white/30 flex items-center justify-center text-5xl font-black shadow-inner active:scale-90 active:bg-white/20 transition-all backdrop-blur-md">
                             <span id="tasbih-counter">0</span>
                         </button>
@@ -741,12 +743,43 @@
         const tasbihBar = document.getElementById('tasbih-bar');
         const tasbihTypeSelector = document.getElementById('tasbih-type');
         const tasbihResetBtn = document.getElementById('tasbih-reset');
+        const tasbihTargetText = document.getElementById('tasbih-target-text');
+        const tasbihCustomInput = document.getElementById('tasbih-custom-input'); 
+
+        // Load teks custom dari memori jika ada
+        if(tasbihCustomInput) {
+            tasbihCustomInput.value = localStorage.getItem('tasbih_custom_text') || '';
+            tasbihCustomInput.addEventListener('input', (e) => {
+                localStorage.setItem('tasbih_custom_text', e.target.value);
+            });
+        }
         
         function updateTasbihUI() {
             if(!tasbihCounterDisplay) return;
             tasbihCounterDisplay.innerText = tasbihCount;
-            let progress = (tasbihCount % 33) / 33 * 100;
-            if(tasbihCount > 0 && tasbihCount % 33 === 0) progress = 100;
+
+            // Logic memunculkan input teks jika "Custom" dipilih
+            if(currentTasbihType === 'custom') {
+                tasbihCustomInput.classList.remove('hidden');
+                tasbihCustomInput.classList.add('block');
+            } else {
+                tasbihCustomInput.classList.remove('block');
+                tasbihCustomInput.classList.add('hidden');
+            }
+
+            // Logic Progress Bar Dinamis & Teks Target
+            let progress = 0;
+            if (tasbihCount < 33) {
+                tasbihTargetText.innerText = "33";
+                progress = (tasbihCount / 33) * 100;
+            } else if (tasbihCount < 1000) {
+                tasbihTargetText.innerText = "1000";
+                progress = (tasbihCount / 1000) * 100;
+            } else {
+                tasbihTargetText.innerText = "MAX";
+                progress = 100;
+            }
+            
             tasbihBar.style.width = `${progress}%`;
         }
         
@@ -764,18 +797,22 @@
                 localStorage.setItem(`tasbih_${currentTasbihType}`, tasbihCount);
                 if (navigator.vibrate) navigator.vibrate(30); 
                 
-                if (tasbihCount % 33 === 0) {
+                // EVALUASI MILESTONE (Hanya terjadi TEPAT di angka 33 dan 1000)
+                if (tasbihCount === 33) {
                     totalKoin += 10; totalExp += 5;
                     localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('totalExp', totalExp);
                     document.getElementById('koin-display').innerText = totalKoin; updateStatsUI();
-                    confetti({ particleCount: 40, spread: 50, origin: { y: 0.8 } });
+                    
+                    confetti({ particleCount: 60, spread: 50, origin: { y: 0.8 } });
                     if (navigator.vibrate) navigator.vibrate([100, 50, 100]); 
+                    setTimeout(() => alert("Alhamdulillah! Target 33x tercapai. Koin bertambah!\nLanjut ke 1000x untuk dapat Mega EXP!"), 200);
                 }
                 
                 if (tasbihCount === 1000) {
                     totalExp += 500; localStorage.setItem('totalExp', totalExp); updateStatsUI();
-                    alert("MashaAllah! Kamu mencapai 1000x Dzikir. +500 EXP Bonus dberikan!");
                     confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
+                    if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
+                    setTimeout(() => alert("MashaAllah! Kamu mencapai 1000x Dzikir.\n+500 EXP Bonus dberikan!"), 200);
                 }
                 updateTasbihUI();
             });
