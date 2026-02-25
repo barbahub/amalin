@@ -71,6 +71,46 @@
                     </div>
                 </div>
 
+                <div class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-3xl p-5 shadow-lg text-white mb-6 relative overflow-hidden transform transition hover:scale-[1.01]">
+                    <div class="absolute -right-4 -top-4 text-8xl opacity-10">🛡️</div>
+                    <div class="flex justify-between items-end mb-4 relative z-10">
+                        <h2 class="text-lg font-extrabold tracking-wide flex items-center gap-2">
+                            <span>🛡️</span> Circle Kebaikan
+                        </h2>
+                    </div>
+                    
+                    <div id="circle-unjoined" class="relative z-10 block">
+                        <p class="text-xs text-blue-100 mb-3">Bentuk geng (Maks 10 orang) dan gabungkan EXP kalian untuk capai level tertinggi!</p>
+                        <div class="flex gap-2">
+                            <button id="btn-create-circle" class="flex-1 bg-white/20 hover:bg-white/30 text-white font-bold py-2.5 rounded-xl text-xs transition border border-white/30 backdrop-blur-sm active:scale-95">Buat Baru</button>
+                            <button id="btn-join-circle" class="flex-1 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm shadow-blue-500/50 active:scale-95">Gabung Kode</button>
+                        </div>
+                    </div>
+
+                    <div id="circle-joined" class="relative z-10 hidden animate-[fadeIn_0.4s_ease-out]">
+                        <div class="flex justify-between items-center mb-2">
+                            <div>
+                                <span class="bg-blue-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">GUILD KITA</span>
+                                <h3 id="circle-name-display" class="font-black text-lg mt-1 truncate max-w-[150px]">Memuat...</h3>
+                            </div>
+                            <div class="text-right bg-white/10 p-2 rounded-xl backdrop-blur-sm border border-white/20">
+                                <span class="block text-[8px] text-blue-200 font-bold uppercase tracking-wider">Kode Invite</span>
+                                <span id="circle-code-display" class="block font-mono font-black text-yellow-300 text-sm tracking-widest">------</span>
+                            </div>
+                        </div>
+                        <div class="bg-black/20 rounded-xl p-3 mt-3 border border-white/10 shadow-inner">
+                            <div class="flex justify-between text-xs font-bold text-blue-100 mb-1.5">
+                                <span id="circle-level-display">Lv. 1</span>
+                                <span id="circle-members-display">0/10 Anggota</span>
+                            </div>
+                            <div class="w-full bg-black/40 rounded-full h-2.5 shadow-inner overflow-hidden">
+                                <div class="bg-gradient-to-r from-yellow-400 to-orange-400 h-full transition-all duration-1000 ease-out" id="circle-exp-bar" style="width: 0%"></div>
+                            </div>
+                            <p class="text-[10px] text-blue-200 mt-2 text-center font-medium"><span id="circle-exp-text" class="font-bold text-white">0</span> EXP Guild Terkumpul</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-5 shadow-lg text-white mb-6 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-8xl opacity-10">👑</div>
                     <div class="flex justify-between items-end mb-4 relative z-10">
@@ -490,6 +530,53 @@
         }
         renderSholatWajib();
 
+        // --- 5.5 (BARU) API JADWAL SHOLAT DINAMIS (GEOLOCATION + ALADHAN) ---
+        async function fetchJadwalDinamis() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const date = new Date();
+                    
+                    // Endpoint AlAdhan API (Method 11 = Kemenag RI)
+                    const url = `https://api.aladhan.com/v1/timings/${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}?latitude=${lat}&longitude=${lng}&method=11`;
+                    
+                    try {
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        const timings = data.data.timings;
+                        
+                        // Timpa data hardcode dengan jam presisi dari API
+                        sholatWajib[0].start = parseInt(timings.Fajr.substring(0, 2));
+                        sholatWajib[1].start = parseInt(timings.Dhuhr.substring(0, 2));
+                        sholatWajib[2].start = parseInt(timings.Asr.substring(0, 2));
+                        sholatWajib[3].start = parseInt(timings.Maghrib.substring(0, 2));
+                        sholatWajib[4].start = parseInt(timings.Isha.substring(0, 2));
+                        
+                        // Set batas akhir ke waktu sholat berikutnya
+                        sholatWajib[0].end = sholatWajib[1].start;
+                        sholatWajib[1].end = sholatWajib[2].start;
+                        sholatWajib[2].end = sholatWajib[3].start;
+                        sholatWajib[3].end = sholatWajib[4].start;
+                        // Isha tetap 23 sebagai batas harian
+                        
+                        console.log("Jadwal sholat berhasil disinkronisasi dari API! 📡", sholatWajib);
+                        
+                        // Render ulang gembok dengan jadwal baru
+                        renderSholatWajib();
+                        
+                    } catch (error) {
+                        console.warn("Gagal mengambil API AlAdhan. Menggunakan jadwal lokal.", error);
+                    }
+                }, (error) => {
+                    console.warn("Akses GPS ditolak pengguna. Menggunakan jadwal lokal.", error);
+                });
+            } else {
+                console.warn("Browser tidak mendukung Geolocation. Menggunakan jadwal lokal.");
+            }
+        }
+        fetchJadwalDinamis(); // Panggil fungsi ini agar berjalan otomatis
+
         // --- 6. RENDER EPIC QUEST MINGGUAN ---
         const epicQuests25 = [
             { id: "eq-1", title: "Khatam 1 Juz Al-Quran Sekali Duduk", type: "ketuhanan", exp: 100 },
@@ -868,7 +955,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, collection, query, orderBy, limit, getDocs, where } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-messaging.js";
 
         const firebaseConfig = {
@@ -1005,6 +1092,87 @@
         }
         setInterval(syncGlobalMissionBatch, 10000);
 
+        // --- 12. SISTEM CIRCLE (GUILD) ---
+        const unjoinedUI = document.getElementById('circle-unjoined');
+        const joinedUI = document.getElementById('circle-joined');
+        let userCircleId = null;
+
+        window.fetchCircleData = async (circleId) => {
+            if(!circleId) { unjoinedUI.classList.remove('hidden'); joinedUI.classList.add('hidden'); return; }
+            try {
+                const snap = await getDoc(doc(db, "circles", circleId));
+                if(snap.exists()) {
+                    const data = snap.data();
+                    unjoinedUI.classList.add('hidden'); joinedUI.classList.remove('hidden');
+                    document.getElementById('circle-name-display').innerText = data.name;
+                    document.getElementById('circle-code-display').innerText = data.invite_code;
+                    document.getElementById('circle-members-display').innerText = `${data.members.length}/10 Anggota`;
+                    
+                    let guildLvl = Math.floor(data.total_exp / 1000) + 1; // Naik level tiap 1000 EXP kolektif
+                    document.getElementById('circle-level-display').innerText = `Lv. ${guildLvl}`;
+                    document.getElementById('circle-exp-text').innerText = data.total_exp;
+                    document.getElementById('circle-exp-bar').style.width = `${(data.total_exp % 1000) / 1000 * 100}%`;
+                }
+            } catch(e) { console.error("Error Circle:", e); }
+        }
+
+        // Modifikasi syncExpToFirebase agar EXP juga masuk ke Circle
+        const originalSyncExp = window.syncExpToFirebase;
+        window.syncExpToFirebase = async (expVal) => {
+            if(originalSyncExp) await originalSyncExp(expVal);
+            if(userCircleId && auth.currentUser) {
+                try {
+                    await updateDoc(doc(db, "circles", userCircleId), { total_exp: increment(expVal) });
+                    fetchCircleData(userCircleId); // Update bar UI secara real-time
+                } catch(e){}
+            }
+        };
+
+        document.getElementById('btn-create-circle').addEventListener('click', async () => {
+            if(!auth.currentUser) return alert("Login akun Google dulu ya untuk buat Circle!");
+            const circleName = prompt("Masukkan Nama Circle (Misal: Skenda Pejuang Subuh):");
+            if(!circleName) return;
+            
+            const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            const newCircleId = `circle_${Date.now()}`;
+            
+            try {
+                await setDoc(doc(db, "circles", newCircleId), {
+                    name: circleName, invite_code: inviteCode, members: [auth.currentUser.uid], total_exp: 0, created_by: auth.currentUser.uid
+                });
+                await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: newCircleId });
+                userCircleId = newCircleId;
+                alert(`Berhasil! Circle "${circleName}" aktif. Kode Invite: ${inviteCode}\nBagikan kode ini ke temanmu!`);
+                fetchCircleData(newCircleId);
+            } catch(e) { alert("Gagal: " + e.message); }
+        });
+
+        document.getElementById('btn-join-circle').addEventListener('click', async () => {
+            if(!auth.currentUser) return alert("Login dulu ya!");
+            const code = prompt("Masukkan Kode Invite (6 Huruf/Angka):");
+            if(!code) return;
+
+            try {
+                const q = query(collection(db, "circles"), where("invite_code", "==", code.toUpperCase()));
+                const querySnapshot = await getDocs(q);
+                
+                if(querySnapshot.empty) return alert("Waduh, Circle tidak ditemukan! Cek lagi kodenya.");
+                
+                let foundCircleId = null, circleData = null;
+                querySnapshot.forEach((doc) => { foundCircleId = doc.id; circleData = doc.data(); });
+                
+                if(circleData.members.length >= 10) return alert("Circle ini sudah penuh (Max 10)!");
+                if(circleData.members.includes(auth.currentUser.uid)) return alert("Kamu sudah gabung di sini!");
+                
+                await updateDoc(doc(db, "circles", foundCircleId), { members: arrayUnion(auth.currentUser.uid) });
+                await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: foundCircleId });
+                
+                userCircleId = foundCircleId;
+                alert(`Mantap! Berhasil gabung ke Circle "${circleData.name}"!`);
+                fetchCircleData(foundCircleId);
+            } catch(e) { alert("Gagal gabung: " + e.message); }
+        });
+
         // --- NOTIFIKASI PUSH ---
         const btnEnableNotif = document.getElementById('btn-enable-notif');
         async function requestNotificationPermission() {
@@ -1044,8 +1212,15 @@
                     await setDoc(userRef, {
                         name: user.displayName, photo: user.photoURL,
                         koin: parseInt(localStorage.getItem('totalKoin') || 0), total_exp: parseInt(localStorage.getItem('totalExp') || 0),
-                        weekly_exp: 0, unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]')
+                        weekly_exp: 0, unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
+                        circle_id: null
                     }, { merge: true });
+                } else {
+                    const data = docSnap.data();
+                    if(data.circle_id) {
+                        userCircleId = data.circle_id;
+                        fetchCircleData(userCircleId);
+                    }
                 }
 
                 fetchLeaderboard(); fetchGlobalProgress();
@@ -1053,6 +1228,8 @@
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
                 btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
                 nameInputFire.readOnly = false;
+                userCircleId = null;
+                fetchCircleData(null);
             }
         });
     </script>
