@@ -26,7 +26,7 @@
                 <h1 class="text-2xl font-extrabold tracking-tight drop-shadow-md">Amalin.</h1>
                 <div class="flex items-center gap-1 mt-0.5">
                     <span class="text-xs font-bold bg-white/20 px-2 py-0.5 rounded-md backdrop-blur-sm" id="header-level">Lv. 1</span>
-                    <p class="text-emerald-100 text-[10px] font-medium tracking-wide uppercase" id="header-title">Newbie Tobat</p>
+                    <p class="text-emerald-100 text-[10px] font-medium tracking-wide uppercase" id="header-title">Fase Nyasar</p>
                 </div>
             </div>
             <div class="flex items-center gap-2">
@@ -49,7 +49,7 @@
                     <div class="absolute -right-2 -bottom-4 text-7xl opacity-20">🤝</div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
                         <div>
-                            <span class="bg-rose-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm animate-pulse">Misi Global Mingguan</span>
+                            <span class="bg-rose-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm animate-pulse">Misi Global Komunitas</span>
                             <h2 id="global-mission-title" class="text-lg font-extrabold mt-1.5 leading-tight">Memuat Misi...</h2>
                         </div>
                         <div class="bg-white/20 p-2 rounded-xl backdrop-blur-sm text-center border border-white/30 shadow-inner">
@@ -67,7 +67,7 @@
                                 <div class="absolute inset-0 bg-white/20 w-full animate-[pulse_2s_ease-in-out_infinite]"></div>
                             </div>
                         </div>
-                        <p class="text-[10px] text-emerald-200 mt-2 font-medium text-center">Data sinkronisasi: <span id="sync-status">Menunggu interaksi...</span></p>
+                        <p class="text-[10px] text-emerald-200 mt-2 font-medium text-center">Data Tersinkronisasi ✅</p>
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@
                     </div>
                     
                     <div id="circle-unjoined" class="relative z-10 block">
-                        <p class="text-xs text-blue-100 mb-3">Bentuk geng (Maks 10 orang) dan gabungkan EXP kalian untuk capai level tertinggi!</p>
+                        <p class="text-xs text-blue-100 mb-3">Bentuk Circle (Maks 10 orang) dan gabungkan EXP kalian untuk capai level tertinggi!</p>
                         <div class="flex gap-2">
                             <button id="btn-create-circle" class="flex-1 bg-white/20 hover:bg-white/30 text-white font-bold py-2.5 rounded-xl text-xs transition border border-white/30 backdrop-blur-sm active:scale-95">Buat Baru</button>
                             <button id="btn-join-circle" class="flex-1 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm shadow-blue-500/50 active:scale-95">Gabung Kode</button>
@@ -90,7 +90,7 @@
                     <div id="circle-joined" class="relative z-10 hidden animate-[fadeIn_0.4s_ease-out]">
                         <div class="flex justify-between items-center mb-2">
                             <div>
-                                <span class="bg-blue-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">GUILD KITA</span>
+                                <span class="bg-blue-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">CIRCLE KITA</span>
                                 <h3 id="circle-name-display" class="font-black text-lg mt-1 truncate max-w-[150px]">Memuat...</h3>
                             </div>
                             <div class="text-right bg-white/10 p-2 rounded-xl backdrop-blur-sm border border-white/20">
@@ -106,7 +106,7 @@
                             <div class="w-full bg-black/40 rounded-full h-2.5 shadow-inner overflow-hidden">
                                 <div class="bg-gradient-to-r from-yellow-400 to-orange-400 h-full transition-all duration-1000 ease-out" id="circle-exp-bar" style="width: 0%"></div>
                             </div>
-                            <p class="text-[10px] text-blue-200 mt-2 text-center font-medium"><span id="circle-exp-text" class="font-bold text-white">0</span> EXP Guild Terkumpul</p>
+                            <p class="text-[10px] text-blue-200 mt-2 text-center font-medium"><span id="circle-exp-text" class="font-bold text-white">0</span> EXP Terkumpul Bulan Ini</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                             <span>🏆</span> Top Rank Global
                         </h2>
                         <button class="text-[10px] font-bold bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full cursor-pointer transition shadow-sm active:scale-95 flex items-center gap-1" id="btn-refresh-leaderboard">
-                            Minggu Ini <span class="text-xs">↻</span>
+                            Bulan Ini <span class="text-xs">↻</span>
                         </button>
                     </div>
                     
@@ -193,51 +193,13 @@
                 </div>
                 
                 <div class="space-y-3 mb-6" id="checklist-container">
-                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="quest-puasa" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20" data-type="disiplin">
-                            <div>
-                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Puasa Wajib / Sunnah</span>
-                                <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
-                            </div>
-                        </div>
-                    </label>
-                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="quest-tarawih" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20" data-type="ketuhanan">
-                            <div>
-                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Salat Tarawih / Witir Malam</span>
-                                <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
-                            </div>
-                        </div>
-                    </label>
-                    <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="quest-tadarus" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="20" data-type="ketuhanan">
-                            <div>
-                                <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">Tadarus Al-Quran 1 Lembar</span>
-                                <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded">+20 Koin & EXP</span>
-                            </div>
-                        </div>
-                    </label>
-                    <label class="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border border-amber-200 dark:border-amber-700 shadow-sm cursor-pointer hover:border-amber-400 transition group relative overflow-hidden">
-                        <div class="absolute right-0 top-0 w-1 h-full bg-amber-400"></div>
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="quest-sedekah" class="w-6 h-6 text-amber-500 rounded-lg focus:ring-amber-400 checklist-item" data-exp="50" data-type="gotong_royong">
-                            <div>
-                                <span class="text-[9px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-wider block mb-0.5">Epic Combo</span>
-                                <span class="block font-bold text-sm text-amber-900 dark:text-amber-100">Bagi Takjil / Sedekah</span>
-                                <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded mt-1 inline-block">+50 Koin & EXP</span>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-
+                    </div>
+                
                 <div class="bg-amber-100 dark:bg-amber-900/40 p-5 rounded-2xl border border-amber-200 dark:border-amber-800 mb-6">
                     <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-1 flex items-center gap-1">✨ Inspirasi Sedekah</h3>
-                    <p class="text-xs text-amber-700 dark:text-amber-500 mb-4 leading-relaxed">Lengkapi ibadah dengan berbagi takjil untuk Ojol & jalanan. Ada mini snack hampers gift praktis mulai Rp3.000 aja!</p>
+                    <p class="text-xs text-amber-700 dark:text-amber-500 mb-4 leading-relaxed">Lengkapi ibadah dengan berbagi rezeki. Ada mini snack hampers praktis mulai Rp3.000 aja!</p>
                     <a href="https://shopee.co.id/kadosouvenir/50106297771" target="_blank" class="block w-full text-center bg-orange-500 text-white font-bold py-2.5 rounded-xl text-sm hover:bg-orange-600 transition shadow-md shadow-orange-500/20">
-                        Cek Paket Takjil di Shopee
+                        Cek Inspirasi Berbagi
                     </a>
                 </div>
 
@@ -286,7 +248,7 @@
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3.5 shadow-inner">
                             <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3.5 rounded-full transition-all duration-1000 ease-out shadow-md" id="exp-bar" style="width: 0%"></div>
                         </div>
-                        <p class="mt-3 text-xs font-bold text-gray-400 dark:text-gray-500" id="display-title-bot">Gelar: Newbie Tobat</p>
+                        <p class="mt-3 text-xs font-bold text-gray-400 dark:text-gray-500" id="display-title-bot">Gelar: Fase Nyasar</p>
                     </div>
                 </div>
 
@@ -300,10 +262,11 @@
 
                 <div class="mb-6">
                     <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Analisis Karakter Kebaikan</h2>
-                    <div class="bg-white dark:bg-gray-800 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm flex justify-center">
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm flex justify-center flex-col items-center">
                         <div class="w-full max-w-[250px]">
                             <canvas id="radarChart"></canvas>
                         </div>
+                        <p id="aura-check-text" class="text-center text-xs font-black text-emerald-500 mt-3 animate-pulse">✨ Aura Check: +100 W Rizz!</p>
                     </div>
                     <p class="text-center text-[9px] text-gray-400 mt-2 italic">Grafik terbentuk otomatis dari jenis ibadah yang kamu selesaikan.</p>
                 </div>
@@ -362,7 +325,7 @@
         <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] h-[711px] bg-gradient-to-br from-emerald-600 to-teal-900 p-8 flex flex-col justify-between text-white">
             <div class="text-center mt-8">
                 <h2 class="text-5xl font-black mb-2 tracking-tight">Amalin.</h2>
-                <div class="bg-white/20 inline-block px-5 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm shadow-inner uppercase tracking-wider" id="export-gelar">Newbie Tobat</div>
+                <div class="bg-white/20 inline-block px-5 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm shadow-inner uppercase tracking-wider" id="export-gelar">Fase Nyasar</div>
             </div>
             <div class="bg-white/10 p-6 rounded-[2rem] backdrop-blur-md border border-white/20 shadow-2xl">
                 <div class="border-b border-white/20 pb-4 mb-4 text-center">
@@ -440,11 +403,11 @@
         
         function calculateLevel(exp) { return Math.floor(exp / 100) + 1 > 50 ? 50 : Math.floor(exp / 100) + 1; }
         function getTitle(lvl) {
-            if(lvl < 5) return "Newbie Tobat";
-            if(lvl < 10) return "Skena Masjid";
-            if(lvl < 20) return "Suhu Tajwid";
-            if(lvl < 35) return "Elite Pejuang Subuh";
-            return "Sepuh Jalur Langit";
+            if(lvl < 5) return "Fase Nyasar";
+            if(lvl < 10) return "Skena Ibadah";
+            if(lvl < 20) return "Rajin Parah";
+            if(lvl < 35) return "Suhu Akhlaq";
+            return "Backingan Pusat";
         }
 
         function updateAvatarBorder(level) {
@@ -577,36 +540,52 @@
         }
         fetchJadwalDinamis(); // Panggil fungsi ini agar berjalan otomatis
 
-        // --- 6. RENDER EPIC QUEST MINGGUAN ---
-        const epicQuests25 = [
-            { id: "eq-1", title: "Khatam 1 Juz Al-Quran Sekali Duduk", type: "ketuhanan", exp: 100 },
-            { id: "eq-2", title: "Puasa Sunnah Ayyamul Bidh", type: "ketuhanan", exp: 150 },
-            { id: "eq-3", title: "Sholat Tahajud 3 Hari Beruntun", type: "ketuhanan", exp: 120 },
-            { id: "eq-4", title: "Ikut Kerja Bakti / Bersih Masjid", type: "gotong_royong", exp: 150 },
-            { id: "eq-5", title: "Bagi 5 Snack ke Pekerja Jalanan", type: "peduli", exp: 150 },
-            { id: "eq-6", title: "Bantu Kerjaan Ortu Seharian Penuh", type: "tanggung_jawab", exp: 120 },
-            { id: "eq-7", title: "Hafal 1 Surah Pendek Baru", type: "ketuhanan", exp: 100 },
-            { id: "eq-8", title: "Screen-time HP di Bawah 4 Jam", type: "disiplin", exp: 100 },
-            { id: "eq-9", title: "Datang ke Kajian/Majelis Ilmu", type: "ketuhanan", exp: 80 },
-            { id: "eq-10", title: "Minta Maaf Duluan Kalau Salah", type: "tanggung_jawab", exp: 90 },
-            { id: "eq-11", title: "Olahraga/Jalan Pagi 30 Menit", type: "disiplin", exp: 60 },
-            { id: "eq-12", title: "Donasi Uang Saku ke Panti/Masjid", type: "peduli", exp: 120 },
-            { id: "eq-13", title: "Beresin Kamar Sampai Kinclong", type: "tanggung_jawab", exp: 80 },
-            { id: "eq-14", title: "Jadi Tutor: Ajarin Teman yang Gak Paham", type: "gotong_royong", exp: 100 },
-            { id: "eq-15", title: "Tidak Begadang & Bangun Subuh", type: "disiplin", exp: 70 },
-            { id: "eq-16", title: "Selesaikan Tugas Jauh Sebelum Deadline", type: "disiplin", exp: 80 },
-            { id: "eq-17", title: "Baca Buku Edukasi 1 Bab", type: "disiplin", exp: 70 },
-            { id: "eq-18", title: "Cuci Piring & Baju Sendiri", type: "tanggung_jawab", exp: 70 },
-            { id: "eq-19", title: "Membantu Mengatur Keuangan Rumah", type: "tanggung_jawab", exp: 80 },
-            { id: "eq-20", title: "Rapikan Shaf Sandal di Masjid", type: "gotong_royong", exp: 60 },
-            { id: "eq-21", title: "Patungan Jenguk Teman Sakit", type: "gotong_royong", exp: 90 },
-            { id: "eq-22", title: "Bantu Guru Bawa Barang", type: "gotong_royong", exp: 70 },
-            { id: "eq-23", title: "Borong Dagangan Teman Sendiri", type: "peduli", exp: 100 },
-            { id: "eq-24", title: "Beri Makan Kucing Jalanan", type: "peduli", exp: 60 },
-            { id: "eq-25", title: "Dengerin Teman Curhat Sampai Plong", type: "peduli", exp: 80 }
+        // --- 6. BANK DATA HABITS & EPIC COMBO (UNIVERSAL) ---
+        const dailyEasy = [
+            { id: "de1", title: "Senyum & sapa 3 orang hari ini", exp: 10, type: "peduli" },
+            { id: "de2", title: "Minum air putih sambil duduk & Bismillah", exp: 10, type: "disiplin" },
+            { id: "de3", title: "Rapikan tempat tidur pas baru bangun", exp: 10, type: "tanggung_jawab" },
+            { id: "de4", title: "Tahan jempol dari hate comment di sosmed", exp: 10, type: "peduli" },
+            { id: "de5", title: "Ucapkan 'Terima Kasih' tulus ke pekerja jasa", exp: 10, type: "gotong_royong" },
+            { id: "de6", title: "Matikan lampu/air yang tidak dipakai", exp: 10, type: "tanggung_jawab" },
+            { id: "de7", title: "Rapikan sepatu/sandal di teras/masjid", exp: 10, type: "disiplin" }
+        ];
+        
+        const dailyMed = [
+            { id: "dm1", title: "Sholat Dhuha minimal 2 Rakaat", exp: 30, type: "ketuhanan" },
+            { id: "dm2", title: "Baca Al-Quran 1 Lembar", exp: 30, type: "ketuhanan" },
+            { id: "dm3", title: "Datang on-time ke agenda hari ini", exp: 30, type: "disiplin" },
+            { id: "dm4", title: "Cuci piring/gelas sendiri sehabis makan", exp: 30, type: "tanggung_jawab" },
+            { id: "dm5", title: "Sedekah (Qris/Receh) ke kotak amal/pengamen", exp: 30, type: "gotong_royong" },
+            { id: "dm6", title: "No Toxic Words / Menahan marah seharian", exp: 30, type: "peduli" }
         ];
 
-        const currentEpic = epicQuests25[selisihMinggu % epicQuests25.length];
+        const dailyHard = [
+            { id: "dh1", title: "Sholat Subuh Berjamaah di Masjid", exp: 50, type: "ketuhanan" },
+            { id: "dh2", title: "Minta maaf duluan kalau ada salah", exp: 50, type: "tanggung_jawab" },
+            { id: "dh3", title: "Jenguk/Chat tanya kabar orang sakit", exp: 50, type: "peduli" },
+            { id: "dh4", title: "Puasa Doom Scrolling Sosmed 4 Jam", exp: 50, type: "disiplin" },
+            { id: "dh5", title: "Bersihkan toilet rumah/masjid dengan ikhlas", exp: 50, type: "gotong_royong" }
+        ];
+
+        const dailyExt = [
+            { id: "dx1", title: "Sholat Wajib 5 Waktu FULL Berjamaah", exp: 100, type: "ketuhanan" },
+            { id: "dx2", title: "Khatam 1 Juz Al-Quran hari ini", exp: 100, type: "ketuhanan" },
+            { id: "dx3", title: "Traktir makan orang yang sedang butuh", exp: 100, type: "gotong_royong" },
+            { id: "dx4", title: "Jujur mengakui kesalahan fatal tanpa ngeles", exp: 100, type: "tanggung_jawab" },
+            { id: "dx5", title: "Berdamai/Memaafkan musuh bebuyutan", exp: 100, type: "peduli" }
+        ];
+
+        const epicCombos = [
+            { id: "ec1", title: "Combo Morning Person (Tahajud + Subuh Jamaah)", exp: 80, type: "ketuhanan" },
+            { id: "ec2", title: "Combo Anti-Kikir (Sedekah + Traktir + Senyum)", exp: 80, type: "gotong_royong" },
+            { id: "ec3", title: "Combo Family Care (Bantu Kerjaan + Pijat + Doa)", exp: 80, type: "tanggung_jawab" },
+            { id: "ec4", title: "Combo Brainrot Healer (Puasa Sosmed 3 Jam + Baca Buku)", exp: 80, type: "disiplin" },
+            { id: "ec5", title: "Combo Lisan Emas (100x Istighfar + No Toxic 24 Jam)", exp: 80, type: "peduli" }
+        ];
+
+        // Logika Render Random Harian Menggunakan dayOfYear
+        const currentEpic = epicCombos[dayOfYear % epicCombos.length];
         const epicContainer = document.getElementById('epic-quest-container');
         if(epicContainer) {
             epicContainer.innerHTML = `
@@ -614,18 +593,77 @@
                     <div class="bg-white dark:bg-gray-800 p-4 rounded-[1.3rem] h-full flex items-center justify-between">
                         <div>
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="bg-purple-600 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase">EPIC MINGGU INI</span>
+                                <span class="bg-purple-600 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase">EPIC COMBO HARI INI</span>
                             </div>
                             <p class="font-black text-sm text-gray-800 dark:text-gray-100 mt-1">${currentEpic.title}</p>
-                            <p class="text-xs text-purple-600 dark:text-purple-400 font-bold">+${currentEpic.exp} Koin & EXP Tinggi!</p>
+                            <p class="text-xs text-purple-600 dark:text-purple-400 font-bold">+${currentEpic.exp} Koin & EXP!</p>
                         </div>
                         <label class="relative flex items-center justify-center cursor-pointer group">
-                            <input type="checkbox" id="epic-quest-${selisihMinggu}" class="w-8 h-8 text-purple-600 rounded-xl focus:ring-purple-500 checklist-item peer" data-exp="${currentEpic.exp}" data-type="${currentEpic.type}">
+                            <input type="checkbox" id="${currentEpic.id}" class="w-8 h-8 text-purple-600 rounded-xl focus:ring-purple-500 checklist-item peer" data-exp="${currentEpic.exp}" data-type="${currentEpic.type}">
                         </label>
                     </div>
                 </div>
             `;
         }
+        
+        // --- 6.5 VIP EVENT PUASA SENIN KAMIS ---
+        const dDay = today.getDay();
+        const dHour = today.getHours();
+        // Muncul Minggu malam (>= 18:00), Senin penuh, Rabu malam (>= 18:00), Kamis penuh.
+        const isVIPEvent = (dDay === 1 || dDay === 4) || (dDay === 0 && dHour >= 18) || (dDay === 3 && dHour >= 18);
+        
+        let vipBuff = localStorage.getItem('vip_buff_active') === 'true';
+
+        if(isVIPEvent) {
+            epicContainer.innerHTML += `
+                <div class="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 p-1 rounded-3xl shadow-xl shadow-yellow-500/30 mb-6 transform hover:scale-[1.02] transition animate-pulse">
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-[1.3rem] h-full flex items-center justify-between border border-white/40">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-yellow-100 text-yellow-800 text-[9px] font-black px-2 py-0.5 rounded-md uppercase border border-yellow-400">⚡ FLASH SALE LANGIT</span>
+                            </div>
+                            <p class="font-black text-sm text-white drop-shadow-md mt-1">Puasa Sunnah Senin/Kamis</p>
+                            <p class="text-[10px] text-yellow-100 font-bold">Aktifkan untuk dapat Buff x2 SEMUA EXP hari ini!</p>
+                        </div>
+                        <label class="relative flex items-center justify-center cursor-pointer group">
+                            <input type="checkbox" id="vip-puasa-buff" class="w-8 h-8 text-yellow-400 rounded-xl focus:ring-yellow-300 checklist-item peer" data-exp="100" data-type="ketuhanan">
+                        </label>
+                    </div>
+                </div>
+            `;
+        } else {
+            localStorage.setItem('vip_buff_active', 'false'); // Reset saat bukan hari event
+            vipBuff = false;
+        }
+
+        // Render Daily Quests Harian ke container #checklist-container
+        const chkContainer = document.getElementById('checklist-container');
+        const d1 = dailyEasy[dayOfYear % dailyEasy.length];
+        const d2 = dailyMed[dayOfYear % dailyMed.length];
+        const d3 = dailyMed[(dayOfYear + 1) % dailyMed.length];
+        const d4 = dailyHard[dayOfYear % dailyHard.length];
+        const d5 = dailyExt[dayOfYear % dailyExt.length];
+        
+        const dailyQuests = [d1, d2, d3, d4, d5];
+        let dailyHtml = '';
+        dailyQuests.forEach(q => {
+            let badge = q.exp <= 20 ? 'NPC Level' : q.exp <= 40 ? 'Skuy Level' : q.exp <= 70 ? 'Suhu Level' : 'Backingan Pusat';
+            let color = q.exp <= 20 ? 'text-gray-500' : q.exp <= 40 ? 'text-blue-500' : q.exp <= 70 ? 'text-orange-500' : 'text-rose-600';
+            
+            dailyHtml += `
+            <label class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm cursor-pointer hover:border-emerald-400 transition group">
+                <div class="flex items-center gap-4">
+                    <input type="checkbox" id="${q.id}" class="w-6 h-6 text-emerald-500 rounded-lg focus:ring-emerald-400 checklist-item" data-exp="${q.exp}" data-type="${q.type}">
+                    <div>
+                        <span class="text-[9px] font-black ${color} uppercase tracking-wider block mb-0.5">${badge}</span>
+                        <span class="block font-bold text-sm text-gray-700 dark:text-gray-200 group-hover:text-emerald-500 transition">${q.title}</span>
+                        <span class="text-[10px] font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/50 px-1.5 py-0.5 rounded mt-1 inline-block">+${q.exp} Koin & EXP</span>
+                    </div>
+                </div>
+            </label>
+            `;
+        });
+        if(chkContainer) chkContainer.innerHTML = dailyHtml;
 
         // --- 7. GACHA KEBAIKAN ---
         const gachaBtn = document.getElementById('gacha-container');
@@ -717,7 +755,7 @@
             window.radarChartInstance = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Skena Jalur Langit', 'Team Player', 'Hustle Habit', 'Main Character', 'Social Vibes'],
+                    labels: ['Aura Positive', 'Sigma Mindset', 'Brainrot Healer', 'Social Vibes', 'Jalur Langit'],
                     datasets: [{
                         label: 'Poin Karakter',
                         data: [statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli],
@@ -726,6 +764,12 @@
                 },
                 options: { scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: fontColor, font: { size: 10, family: "'Inter', sans-serif", weight: 'bold' } }, ticks: { display: false, beginAtZero: true } } }, plugins: { legend: { display: false } } }
             });
+            
+            const labels = ['Jalur Langit', 'Social Vibes', 'Brainrot Healer', 'Sigma Mindset', 'Aura Positive'];
+            const maxStatName = labels[ [statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli].indexOf(Math.max(...[statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli])) ];
+            
+            let auraEl = document.getElementById('aura-check-text');
+            if(auraEl) auraEl.innerText = `✨ Aura Check: +1000 W Rizz karena rajin ${maxStatName}!`;
         }
         function updateChartTheme() { renderRadarChart(); }
         btns.profile.addEventListener('click', () => setTimeout(renderRadarChart, 100));
@@ -737,9 +781,16 @@
             for(let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); last7Days.push(d.toDateString()); }
             last7Days.forEach(dateStr => {
                 const count = activityHistory.find(r => r.date === dateStr)?.count || 0;
-                let colorClass = count > 2 ? 'bg-emerald-500 dark:bg-emerald-400 shadow-sm shadow-emerald-500/50' : count > 0 ? 'bg-emerald-300 dark:bg-emerald-600' : 'bg-gray-200 dark:bg-gray-700';
+                
+                let colorClass, tooltip;
+                if (count === 0) { colorClass = 'bg-gray-200 dark:bg-gray-700'; tooltip = "Fase Nyasar"; }
+                else if (count <= 3) { colorClass = 'bg-emerald-200 dark:bg-emerald-900'; tooltip = "Minimal Niat"; }
+                else if (count <= 6) { colorClass = 'bg-emerald-400 dark:bg-emerald-700'; tooltip = "Skena Ibadah"; }
+                else if (count <= 10) { colorClass = 'bg-emerald-600 dark:bg-emerald-500'; tooltip = "Rajin Parah"; }
+                else { colorClass = 'bg-cyan-400 shadow-sm shadow-cyan-400/50 animate-pulse'; tooltip = "Backingan Pusat"; }
+                
                 const dayName = new Date(dateStr).toLocaleDateString('id-ID', {weekday: 'short'}).charAt(0);
-                container.innerHTML += `<div class="flex flex-col items-center gap-1"><div class="w-8 h-8 rounded-lg ${colorClass} transition-colors duration-500"></div><span class="text-[9px] font-bold text-gray-400">${dayName}</span></div>`;
+                container.innerHTML += `<div onclick="alert('Kasta Hari Ini: ${tooltip}')" class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition"><div class="w-8 h-8 rounded-lg ${colorClass} transition-colors duration-500" title="${tooltip}"></div><span class="text-[9px] font-bold text-gray-400">${dayName}</span></div>`;
             });
         }
         updateHeatmap();
@@ -759,8 +810,12 @@
             if (lastVisitStr && localStorage.getItem('completedYesterday') !== 'true') streakNum = 0;
             
             // 1. Reset Checklist Harian
-            let resets = ['quest-puasa', 'quest-tarawih', 'quest-tadarus', 'quest-sedekah', 'quest-gacha', todayFlash.id];
+            let resets = ['quest-gacha', todayFlash.id];
             sholatWajib.forEach(q => resets.push(q.id));
+            dailyQuests.forEach(q => resets.push(q.id));
+            resets.push(currentEpic.id);
+            resets.push('vip-puasa-buff');
+            
             resets.forEach(id => localStorage.setItem(id, 'false'));
             
             // 2. Reset Tasbih Harian menjadi 0
@@ -779,6 +834,7 @@
                 if (localStorage.getItem(box.id) === 'true') {
                     box.checked = true;
                     box.disabled = true; // Kunci permanen jika sudah pernah dicentang
+                    if(box.id === 'vip-puasa-buff') vipBuff = true;
                 }
                 
                 let newBox = box.cloneNode(true); 
@@ -794,10 +850,17 @@
                     localStorage.setItem(this.id, 'true');
                     this.disabled = true; 
                     
+                    if(this.id === 'vip-puasa-buff') {
+                        localStorage.setItem('vip_buff_active', 'true');
+                        vipBuff = true;
+                        alert("🎉 JALUR VIP AKTIF! Semua ibadahmu hari ini akan dikalikan 2 EXP-nya!");
+                    }
+                    
                     let expVal = parseInt(this.getAttribute('data-exp') || 0);
+                    let finalExp = vipBuff ? expVal * 2 : expVal;
                     let questType = this.getAttribute('data-type') || 'ketuhanan'; 
                     
-                    totalExp += expVal; totalKoin += expVal; 
+                    totalExp += finalExp; totalKoin += finalExp; 
                     
                     statsRadar[questType] += 5; 
                     localStorage.setItem('statsRadar', JSON.stringify(statsRadar));
@@ -808,7 +871,7 @@
                     if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
                     
                     if(window.addPendingGlobalMission) window.addPendingGlobalMission(1);
-                    if(window.syncExpToFirebase) window.syncExpToFirebase(expVal);
+                    if(window.syncExpToFirebase) window.syncExpToFirebase(finalExp);
                     
                     localStorage.setItem('totalExp', totalExp); 
                     localStorage.setItem('totalKoin', totalKoin);
@@ -896,7 +959,8 @@
                 
                 // EVALUASI MILESTONE (Hanya terjadi TEPAT di angka 33 dan 1000)
                 if (tasbihCount === 33) {
-                    totalKoin += 10; totalExp += 5;
+                    let bonusExp = vipBuff ? 10 : 5;
+                    totalKoin += 10; totalExp += bonusExp;
                     localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('totalExp', totalExp);
                     document.getElementById('koin-display').innerText = totalKoin; updateStatsUI();
                     
@@ -906,10 +970,11 @@
                 }
                 
                 if (tasbihCount === 1000) {
-                    totalExp += 500; localStorage.setItem('totalExp', totalExp); updateStatsUI();
+                    let bonusExp = vipBuff ? 1000 : 500;
+                    totalExp += bonusExp; localStorage.setItem('totalExp', totalExp); updateStatsUI();
                     confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
                     if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
-                    setTimeout(() => alert("MashaAllah! Kamu mencapai 1000x Dzikir.\n+500 EXP Bonus dberikan!"), 200);
+                    setTimeout(() => alert("MashaAllah! Kamu mencapai 1000x Dzikir.\nEXP Bonus diberikan!"), 200);
                 }
                 updateTasbihUI();
             });
@@ -925,11 +990,22 @@
         updateTasbihUI();
 
         const shopCatalog = [
-            { id: "badge_sultan", name: "Gelar: Sultan Sedekah 👑", price: 500, icon: "👑" }, 
-            { id: "confetti_gold", name: "Efek Confetti Emas", price: 800, icon: "✨" },
-            { id: "frame_diamond", name: "Bingkai Avatar Berlian", price: 1500, icon: "💎" },
-            { id: "title_sepuh", name: "Gelar: Sepuh Jalur Langit", price: 2000, icon: "📜" }
+            // Gelar / Title
+            { id: "title_valid", name: "Gelar: Si Paling Valid", price: 500, icon: "🔥", type: "title" }, 
+            { id: "title_core", name: "Gelar: Amalin Core", price: 800, icon: "✨", type: "title" },
+            { id: "title_pusat", name: "Gelar: Backingan Pusat 📿", price: 1500, icon: "📿", type: "title" },
+            { id: "title_sigma", name: "Gelar: Sigma Akhlaq 🗿", price: 2000, icon: "🗿", type: "title" },
+            // Frame Avatar
+            { id: "frame_api", name: "Frame: Api Biru", price: 1200, icon: "🟦", type: "frame" },
+            { id: "frame_neon", name: "Frame: Cyberpunk Neon", price: 1500, icon: "🟣", type: "frame" },
+            { id: "frame_sage", name: "Frame: Sage Green Estetik", price: 1000, icon: "🌿", type: "frame" },
+            // Efek Centang
+            { id: "efek_koin", name: "Efek: Hujan Koin", price: 800, icon: "🪙", type: "effect" },
+            { id: "efek_sakura", name: "Efek: Bunga Sakura", price: 1000, icon: "🌸", type: "effect" },
+            // Guild Items
+            { id: "guild_tiket", name: "Tiket Gacha Premium", price: 300, icon: "🎫", type: "consumable" }
         ];
+        
         let unlockedItems = JSON.parse(localStorage.getItem('unlockedItems') || '[]');
         window.renderShop = function() {
             const container = document.getElementById('shop-container'); if(!container) return; container.innerHTML = ''; 
@@ -985,22 +1061,22 @@
             }
             leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Menarik data dari langit... 📡</div>';
             try {
-                const qLeaderboard = query(collection(db, "users"), orderBy("weekly_exp", "desc"), limit(10));
+                const qLeaderboard = query(collection(db, "users"), orderBy("monthly_exp", "desc"), limit(10));
                 const snapshot = await getDocs(qLeaderboard);
                 leaderboardContainer.innerHTML = ''; 
                 let rank = 1;
                 snapshot.forEach((docSnap) => {
                     const userL = docSnap.data();
-                    if(userL.weekly_exp > 0) {
+                    if(userL.monthly_exp > 0) {
                         let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-gray-400';
                         const el = document.createElement('div');
                         el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
-                        el.innerHTML = `<div class="flex items-center gap-3"><span class="font-black text-lg w-5 text-center">${rank}</span><div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${userL.photo ? `<img src="${userL.photo}" class="w-full h-full object-cover">` : userL.name.charAt(0)}</div><span class="font-bold text-sm text-white truncate max-w-[120px]">${userL.name}</span></div><span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.weekly_exp} EXP</span>`;
+                        el.innerHTML = `<div class="flex items-center gap-3"><span class="font-black text-lg w-5 text-center">${rank}</span><div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${userL.photo ? `<img src="${userL.photo}" class="w-full h-full object-cover">` : userL.name.charAt(0)}</div><span class="font-bold text-sm text-white truncate max-w-[120px]">${userL.name}</span></div><span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
                         leaderboardContainer.appendChild(el);
                         rank++;
                     }
                 });
-                if(rank === 1) leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif minggu ini. Curi start sekarang!</div>';
+                if(rank === 1) leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif bulan ini. Curi start sekarang!</div>';
             } catch (e) {
                 leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat. Cek koneksi internetmu.</div>';
             }
@@ -1012,18 +1088,18 @@
             if(!user) return;
             try {
                 const userRef = doc(db, "users", user.uid);
-                await updateDoc(userRef, { total_exp: increment(expVal), weekly_exp: increment(expVal) });
+                await updateDoc(userRef, { total_exp: increment(expVal), monthly_exp: increment(expVal) });
             } catch (e) {}
         };
 
         const btnAdminReset = document.getElementById('btn-admin-reset');
         btnAdminReset.addEventListener('click', async () => {
-            if(confirm("Yakin mereset poin mingguan SEMUA user?")) {
+            if(confirm("Yakin mereset poin bulanan SEMUA user?")) {
                 btnAdminReset.innerText = "⏳ Memproses...";
                 try {
                     const usersSnap = await getDocs(collection(db, "users"));
                     const promises = [];
-                    usersSnap.forEach((userDoc) => { promises.push(updateDoc(doc(db, "users", userDoc.id), { weekly_exp: 0 })); });
+                    usersSnap.forEach((userDoc) => { promises.push(updateDoc(doc(db, "users", userDoc.id), { monthly_exp: 0 })); });
                     await Promise.all(promises);
                     alert("Leaderboard berhasil di-reset!");
                     fetchLeaderboard(); 
@@ -1034,10 +1110,10 @@
 
         // --- MISI GLOBAL ---
         const daftarMisiGlobal = [
-            { title: "10.000 Centang Ibadah Bersama", target: 10000 },
-            { title: "5.000 Sholat Subuh Berjamaah", target: 5000 },
-            { title: "25.000 Halaman Al-Quran Dibaca", target: 25000 },
-            { title: "15.000 Misi Sedekah Selesai", target: 15000 }
+            { title: "Kumpulkan 50.000 Rakaat Sholat Jamaah (Se-Indonesia)", target: 50000 },
+            { title: "25.000 Sedekah Kolektif Terkumpul", target: 25000 },
+            { title: "100.000 Lembar Al-Quran Dibaca Bersama", target: 100000 },
+            { title: "5.000 Jam Bebas Sosmed (Kumulatif)", target: 5000 }
         ];
         const tglRilisFB = new Date("2026-02-01T00:00:00"); 
         const todayFB = new Date();
@@ -1046,8 +1122,6 @@
         const nomorMinggu = selisihMingguGlobal + 1; 
 
         const globalMisiRef = doc(db, "global_stats", `misi_minggu_ke_${nomorMinggu}`);
-        let pendingGlobalPoints = 0; 
-        let isSyncingGlobal = false;
 
         async function fetchGlobalProgress() {
             try {
@@ -1071,26 +1145,21 @@
             } catch (e) {}
         }
 
-        window.addPendingGlobalMission = (poin) => {
+        window.addPendingGlobalMission = async (poin) => {
             if(!auth.currentUser) return;
-            pendingGlobalPoints += poin;
-            document.getElementById('sync-status').innerText = `Tertunda: ${pendingGlobalPoints} centang. Menunggu sinkronisasi...`;
-        };
-
-        async function syncGlobalMissionBatch() {
-            if (pendingGlobalPoints === 0 || isSyncingGlobal || !auth.currentUser) return;
-            isSyncingGlobal = true; const poinToSync = pendingGlobalPoints; pendingGlobalPoints = 0; 
-            document.getElementById('sync-status').innerText = "Sinkronisasi ke pusat... 📡";
+            document.getElementById('sync-status').innerText = "Menyumbang poin ke pusat... 📡";
             try {
-                await setDoc(globalMisiRef, { current_count: increment(poinToSync), target_count: misiSaatIni.target, nama_misi: misiSaatIni.title }, { merge: true });
+                await setDoc(globalMisiRef, { 
+                    current_count: increment(poin), 
+                    target_count: misiSaatIni.target, 
+                    nama_misi: misiSaatIni.title 
+                }, { merge: true });
                 document.getElementById('sync-status').innerText = "✅ Tersinkronisasi!";
                 fetchGlobalProgress(); 
-            } catch (error) {
-                pendingGlobalPoints += poinToSync; 
-                document.getElementById('sync-status').innerText = "❌ Gagal jaringan. Akan dicoba lagi.";
-            } finally { isSyncingGlobal = false; }
-        }
-        setInterval(syncGlobalMissionBatch, 10000);
+            } catch(e) {
+                document.getElementById('sync-status').innerText = "❌ Gagal jaringan. Cek koneksi.";
+            }
+        };
 
         // --- 12. SISTEM CIRCLE (GUILD) ---
         const unjoinedUI = document.getElementById('circle-unjoined');
@@ -1130,8 +1199,22 @@
 
         document.getElementById('btn-create-circle').addEventListener('click', async () => {
             if(!auth.currentUser) return alert("Login akun Google dulu ya untuk buat Circle!");
-            const circleName = prompt("Masukkan Nama Circle (Misal: Skenda Pejuang Subuh):");
+            
+            // Logika Syarat Sah Imam
+            let userLevel = calculateLevel(totalExp);
+            let userStreak = parseInt(localStorage.getItem('streak') || 0);
+            
+            if (userLevel < 5) return alert("Sabar Bos! Minimal Level 5 buat jadi Ketua Circle. Grinding EXP dulu ya.");
+            if (userStreak < 3) return alert("Imam harus istiqomah! Buktikan Streak 🔥 3 hari berturut-turut dulu.");
+            if (totalKoin < 500) return alert("Saldo koin kurang! Butuh 500 Koin untuk mahar bangun markas Circle.");
+
+            const circleName = prompt("Masukkan Nama Circle (Misal: Pejuang Subuh Jaksel):");
             if(!circleName) return;
+            
+            // Kurangi koin mahar
+            totalKoin -= 500;
+            localStorage.setItem('totalKoin', totalKoin);
+            document.getElementById('koin-display').innerText = totalKoin;
             
             const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
             const newCircleId = `circle_${Date.now()}`;
@@ -1142,7 +1225,7 @@
                 });
                 await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: newCircleId });
                 userCircleId = newCircleId;
-                alert(`Berhasil! Circle "${circleName}" aktif. Kode Invite: ${inviteCode}\nBagikan kode ini ke temanmu!`);
+                alert(`Berhasil! Circle "${circleName}" aktif. Saldo terpotong 500 Koin.\nKode Invite: ${inviteCode}\nBagikan kode ini ke temanmu!`);
                 fetchCircleData(newCircleId);
             } catch(e) { alert("Gagal: " + e.message); }
         });
@@ -1208,15 +1291,31 @@
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
                 
+                // Cek Bulan Saat Ini (Format: MM-YYYY)
+                const currentMonthStr = `${today.getMonth() + 1}-${today.getFullYear()}`;
+                
                 if (!docSnap.exists()) {
                     await setDoc(userRef, {
                         name: user.displayName, photo: user.photoURL,
                         koin: parseInt(localStorage.getItem('totalKoin') || 0), total_exp: parseInt(localStorage.getItem('totalExp') || 0),
-                        weekly_exp: 0, unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
-                        circle_id: null
+                        monthly_exp: parseInt(localStorage.getItem('totalExp') || 0),
+                        unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
+                        circle_id: null,
+                        last_reset_month: currentMonthStr // Simpan bulan pendaftaran
                     }, { merge: true });
                 } else {
                     const data = docSnap.data();
+                    
+                    // Logika Eksekusi Reset Bulanan
+                    if(data.last_reset_month !== currentMonthStr) {
+                        // Bulan ganti! Kembalikan monthly_exp ke 0
+                        await updateDoc(userRef, {
+                            monthly_exp: 0,
+                            last_reset_month: currentMonthStr
+                        });
+                        alert("Bulan Baru, Lembaran Baru! Peringkat Global direset untuk memberikan kesempatan yang sama buat semua player.");
+                    }
+
                     if(data.circle_id) {
                         userCircleId = data.circle_id;
                         fetchCircleData(userCircleId);
