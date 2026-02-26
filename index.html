@@ -156,7 +156,7 @@
                     <div class="absolute -left-4 -bottom-4 text-7xl opacity-20 transform -rotate-12">🎁</div>
                     <h3 class="font-black text-lg mb-1 drop-shadow-md relative z-10">Gacha Kebaikan Hari Ini</h3>
                     <p class="text-xs text-rose-100 font-medium mb-3 relative z-10" id="gacha-subtitle">Tap kotak ini untuk undi misi rahasia! (+50 Koin)</p>
-                    <div id="gacha-result" class="hidden bg-white/20 backdrop-blur-md p-3 rounded-2xl border border-white/30 text-sm font-bold mt-2 relative z-10"></div>
+                    <div id="gacha-result" class="hidden relative z-10"></div>
                 </div>
 
                 <div id="epic-quest-container"></div>
@@ -202,8 +202,7 @@
                     <h2 class="text-lg font-extrabold text-gray-800 dark:text-gray-100">Sunnah & Daily Habits 🎯</h2>
                 </div>
                 
-                <div class="space-y-3 mb-6" id="checklist-container">
-                    </div>
+                <div class="space-y-3 mb-6" id="checklist-container"></div>
                 
                 <div class="bg-amber-100 dark:bg-amber-900/40 p-5 rounded-2xl border border-amber-200 dark:border-amber-800 mb-6">
                     <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-1 flex items-center gap-1">✨ Inspirasi Sedekah</h3>
@@ -272,7 +271,12 @@
                 </div>
 
                 <div class="mb-6">
-                    <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Analisis Karakter Kebaikan</h2>
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Aura & Vibes Check ✨</h2>
+                        <button onclick="hardRefreshApp()" class="text-[10px] bg-gray-200 dark:bg-gray-700 hover:bg-emerald-100 dark:hover:bg-emerald-900 text-gray-600 dark:text-gray-300 px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1 shadow-sm active:scale-95">
+                            🔄 Refresh
+                        </button>
+                    </div>
                     <div class="bg-white dark:bg-gray-800 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm flex justify-center flex-col items-center">
                         <div class="w-full max-w-[250px]">
                             <canvas id="radarChart"></canvas>
@@ -358,6 +362,14 @@
     </style>
 
     <script>
+        // --- FUNGSI HARD REFRESH ANTI-CRASH ---
+        window.hardRefreshApp = function() {
+            if(confirm("Sistem terasa lambat atau crash? Klik OK untuk menyegarkan memori tanpa menghapus progresmu.")) {
+                localStorage.removeItem('statsRadar'); 
+                window.location.reload(true);
+            }
+        }
+
         // --- 1. GLOBAL VARS & WAKTU ---
         const today = new Date();
         const startOfYear = new Date(today.getFullYear(), 0, 0);
@@ -471,8 +483,8 @@
                     borderClass = "border-emerald-300 bg-emerald-50 dark:bg-emerald-900/30 opacity-80";
                     checkIcon = "✅";
                 } else if (isPast) {
-                    statusText = "❌ Waktu Terlewat";
-                    statusClass = "text-rose-500 font-bold";
+                    statusText = "❌ Waktu Terlewat (-EXP)";
+                    statusClass = "text-rose-500 font-bold animate-pulse";
                     borderClass = "border-rose-200 bg-rose-50 dark:bg-rose-900/20 opacity-70 grayscale-[50%]";
                     checkIcon = "❌";
                 } else if (isActive) {
@@ -572,14 +584,34 @@
         ];
 
         const epicCombos = [
-            { id: "ec1", title: "Puasa Sosmed 24 Jam Penuh Tanpa Terkecuali", exp: 150, type: "disiplin" },
-            { id: "ec2", title: "Khatam 3 Juz Al-Quran Dalam Satu Hari", exp: 150, type: "ketuhanan" },
-            { id: "ec3", title: "Cari & Beri Makan 5 Orang Kesusahan di Jalan", exp: 150, type: "peduli" },
-            { id: "ec4", title: "Tidak Mengeluh & Tidak Marah Sama Sekali 24 Jam", exp: 150, type: "tanggung_jawab" },
-            { id: "ec5", title: "Bantu Bersihkan Tempat Ibadah Umum Sendirian", exp: 150, type: "gotong_royong" }
+            { id: "ec1", title: "Puasa Sosmed (IG, TikTok, dll) 6 Jam di Siang Hari", exp: 150, type: "disiplin" },
+            { id: "ec2", title: "Tidak mengeluh & tidak sambat sama sekali 24 Jam", exp: 150, type: "tanggung_jawab" },
+            { id: "ec3", title: "Bantu 2 pekerjaan orang tua di rumah tanpa disuruh", exp: 150, type: "peduli" },
+            { id: "ec4", title: "Rapikan sandal/sepatu berantakan di masjid", exp: 150, type: "gotong_royong" },
+            { id: "ec5", title: "Tahan jempol dari komentar negatif di internet seharian", exp: 150, type: "disiplin" },
+            { id: "ec6", title: "Sholat Wajib 5 Waktu FULL Tepat Waktu (Di awal waktu)", exp: 200, type: "ketuhanan" },
+            { id: "ec7", title: "Baca Al-Kahfi di hari Jumat (Selesai 110 Ayat)", exp: 200, type: "ketuhanan" },
+            { id: "ec8", title: "Berdamai & chat duluan teman yang sedang musuhan", exp: 200, type: "peduli" },
+            { id: "ec9", title: "Sisihkan uang jajan/gaji hari ini khusus untuk disedekahkan", exp: 150, type: "gotong_royong" },
+            { id: "ec10", title: "Khatam 1 Juz Al-Quran dalam satu hari", exp: 150, type: "ketuhanan" },
+            { id: "ec11", title: "Bantu orang asing yang kesusahan di jalan", exp: 150, type: "gotong_royong" },
+            { id: "ec12", title: "Jujur mengakui kesalahan fatal hari ini tanpa ngeles", exp: 150, type: "tanggung_jawab" },
+            { id: "ec13", title: "Beri rating bintang 5 dan tip ke kurir/ojol", exp: 150, type: "peduli" },
+            { id: "ec14", title: "Puasa Sunnah (Senin/Kamis/Ayyamul Bidh)", exp: 200, type: "ketuhanan" },
+            { id: "ec15", title: "Bangun Sholat Tahajud minimal 2 rakaat", exp: 200, type: "ketuhanan" },
+            { id: "ec16", title: "Beri makan kucing/hewan jalanan", exp: 150, type: "peduli" },
+            { id: "ec17", title: "Bersihkan kamar mandi rumah sampai bersih ikhlas", exp: 150, type: "tanggung_jawab" },
+            { id: "ec18", title: "Tahan marah saat dipancing emosi seharian", exp: 150, type: "disiplin" },
+            { id: "ec19", title: "Baca buku/artikel bermanfaat selama 30 menit", exp: 150, type: "disiplin" },
+            { id: "ec20", title: "Dengarkan curhat teman/keluarga tanpa menghakimi", exp: 150, type: "peduli" },
+            { id: "ec21", title: "Buang sampah pada tempatnya & pungut 3 sampah di jalan", exp: 150, type: "gotong_royong" },
+            { id: "ec22", title: "Dzikir Istighfar 500x dalam sehari", exp: 150, type: "ketuhanan" },
+            { id: "ec23", title: "Sholat Dhuha minimal 4 Rakaat", exp: 150, type: "ketuhanan" },
+            { id: "ec24", title: "Matikan gadget 1 jam sebelum tidur", exp: 150, type: "disiplin" },
+            { id: "ec25", title: "Selesaikan semua target harianmu lebih awal", exp: 150, type: "tanggung_jawab" }
         ];
 
-        // Render Epic Combo Harian (Disabled by Default)
+        // Render Epic Combo Harian
         const currentEpic = epicCombos[dayOfYear % epicCombos.length];
         const epicContainer = document.getElementById('epic-quest-container');
         if(epicContainer) {
@@ -660,24 +692,41 @@
         });
         if(chkContainer) chkContainer.innerHTML = dailyHtml;
 
-        // --- 7. GACHA KEBAIKAN ---
+        // --- 7. GACHA KEBAIKAN DENGAN SISTEM WAJIB (KARTU MERAH) ---
         const gachaBtn = document.getElementById('gacha-container');
         const gachaRes = document.getElementById('gacha-result');
         const gachaSubtitle = document.getElementById('gacha-subtitle');
         const gachaMissions25 = ["Traktir teman minuman hari ini", "Senyum tulus ke 3 orang asing", "Bantu ortu membereskan rumah", "Sedekah subuh Rp2.000", "Baca Al-Kahfi 10 ayat pertama", "Berbagi makanan ke tetangga", "Pungut 3 sampah di jalanan", "Beri rating bintang 5 ke kurir", "Maafkan kesalahan orang hari ini", "Baca istighfar 100x hari ini", "Telepon/chat keluarga yang jauh", "Tahan amarah saat sedang kesal", "Beri komentar positif di medsos", "Berdoa untuk kebaikan sahabat", "Rapikan sandal/sepatu di masjid", "Isi kotak amal terdekat", "Ucapkan terima kasih ke satpam", "Baca sholawat nabi 100x", "Niatkan puasa sunnah untuk besok", "Bagikan ilmu bermanfaat di WA", "Matikan air/lampu yang tak terpakai", "Beri makan hewan jalanan", "Selesaikan tugas/kerjaan lebih awal", "Tabung sebagian uang jajan hari ini", "Dengarkan curhat teman dengan baik"];
         let hasGachaToday = localStorage.getItem('gachaDate') === new Date().toDateString();
         
-        function renderGachaResult(questText) {
-            gachaRes.innerHTML = `<label class="flex items-center justify-between cursor-pointer group mt-2 p-3 bg-white/30 rounded-xl border border-white/40 shadow-sm"><div class="flex items-center gap-3"><input type="checkbox" id="quest-gacha" class="w-6 h-6 text-rose-500 rounded checklist-item" data-exp="50" data-type="peduli" data-title="${questText}"><span class="font-bold text-sm text-white drop-shadow-md text-left leading-tight">${questText}</span></div></label>`;
+        function renderGachaResult(questText, isWajibFlag) {
+            let wajibUI = isWajibFlag ? 'bg-red-500/20 border-red-500 shadow-red-500/50' : 'bg-white/20 border-white/30';
+            let wajibText = isWajibFlag ? '<span class="block text-[10px] bg-red-600 text-white px-2 rounded mb-1 animate-pulse">⚠️ MISI LANGIT WAJIB! (-500 EXP jika gagal)</span>' : '';
+            
+            gachaRes.innerHTML = `<label class="flex items-center justify-between cursor-pointer group mt-2 p-3 ${wajibUI} rounded-xl border shadow-sm backdrop-blur-md transition"><div class="flex items-center gap-3"><input type="checkbox" id="quest-gacha" class="w-6 h-6 text-rose-500 rounded checklist-item" data-exp="${isWajibFlag ? '100' : '50'}" data-type="peduli" data-title="${questText}"><div>${wajibText}<span class="font-bold text-sm text-white drop-shadow-md text-left leading-tight">${questText}</span></div></div></label>`;
             gachaRes.classList.remove('hidden'); gachaSubtitle.classList.add('hidden');
         }
-        if(hasGachaToday) renderGachaResult(localStorage.getItem('gachaMission'));
+
+        if(hasGachaToday) renderGachaResult(localStorage.getItem('gachaMission'), localStorage.getItem('gachaIsWajib') === 'true');
         
         gachaBtn.addEventListener('click', () => {
             if(!hasGachaToday) {
                 let randomQuest = gachaMissions25[Math.floor(Math.random() * gachaMissions25.length)];
-                localStorage.setItem('gachaDate', new Date().toDateString()); localStorage.setItem('gachaMission', randomQuest);
-                renderGachaResult(randomQuest); confetti({particleCount: 80, spread: 60, colors: ['#fb7185', '#f43f5e', '#ffffff']});
+                let isWajibRoll = Math.random() < 0.2; // 20% peluang dapat Gacha Wajib
+                
+                localStorage.setItem('gachaDate', new Date().toDateString()); 
+                localStorage.setItem('gachaMission', randomQuest);
+                localStorage.setItem('gachaIsWajib', isWajibRoll ? 'true' : 'false');
+                
+                renderGachaResult(randomQuest, isWajibRoll); 
+                
+                if(isWajibRoll) {
+                    confetti({particleCount: 100, spread: 70, colors: ['#ff0000', '#000000']});
+                    if(navigator.vibrate) navigator.vibrate([200, 100, 200]);
+                } else {
+                    confetti({particleCount: 80, spread: 60, colors: ['#fb7185', '#f43f5e', '#ffffff']});
+                }
+                
                 hasGachaToday = true; attachChecklistListeners(); 
             }
         });
@@ -742,7 +791,7 @@
             }
         }, 15000); 
 
-        // --- 9. SISTEM RADAR CHART (GEN-Z) & HEATMAP ---
+        // --- 9. SISTEM RADAR CHART (AURA & VIBES CHECK) & HEATMAP ---
         let statsRadar = JSON.parse(localStorage.getItem('statsRadar')) || { ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10 };
         window.radarChartInstance = null;
         function renderRadarChart() {
@@ -802,15 +851,50 @@
             updateHeatmap();
         }
 
-        // --- 10. ATTACH LISTENERS (CHECKLIST PERMANEN & RESET HARIAN) ---
+        // --- 10. ATTACH LISTENERS & SANKSI PENALTI (WAJIB) ---
         const todayStr = new Date().toDateString();
         let lastVisitStr = localStorage.getItem('lastVisit');
         let streakNum = parseInt(localStorage.getItem('streak') || 0);
 
-        if (lastVisitStr !== todayStr) {
-            if (lastVisitStr && localStorage.getItem('completedYesterday') !== 'true') streakNum = 0;
+        if (lastVisitStr && lastVisitStr !== todayStr) {
+            // EKSEKUSI SANKSI JIKA GANTI HARI
+            let missedSholat = 0;
+            sholatWajib.forEach(q => { if(localStorage.getItem(q.id) !== 'true') missedSholat++; });
             
-            let resets = ['quest-gacha', todayFlash.id];
+            let penaltyExp = 0;
+            let isStreakLost = false;
+            
+            // Sanksi Berjenjang (Snowball Penalty)
+            if(missedSholat === 1) penaltyExp = 50;
+            else if(missedSholat === 2) penaltyExp = 150;
+            else if(missedSholat === 3) penaltyExp = 350;
+            else if(missedSholat === 4) penaltyExp = 750;
+            else if(missedSholat === 5) { penaltyExp = 1500; isStreakLost = true; streakNum = 0; }
+
+            // Sanksi Gacha Kebaikan Wajib
+            let gachaFailed = false;
+            if(localStorage.getItem('gachaIsWajib') === 'true' && localStorage.getItem('quest-gacha') !== 'true') {
+                penaltyExp += 500;
+                gachaFailed = true;
+            }
+
+            if(penaltyExp > 0) {
+                totalExp = Math.max(0, totalExp - penaltyExp); // Cegah nilai minus
+                localStorage.setItem('totalExp', totalExp);
+                
+                let alertMsg = `⚠️ LAPORAN JALUR LANGIT KEMARIN ⚠️\n\n`;
+                if(missedSholat > 0) alertMsg += `- Kamu meninggalkan ${missedSholat} Waktu Sholat!\n`;
+                if(gachaFailed) alertMsg += `- Kamu mengabaikan Misi Gacha Wajib!\n`;
+                alertMsg += `\nTotal Penalti: -${penaltyExp} EXP.`;
+                if(isStreakLost) alertMsg += `\n🔥 STREAK KAMU HANGUS! Mulai dari 0 lagi.`;
+                
+                setTimeout(() => alert(alertMsg), 1000); 
+            }
+
+            if (localStorage.getItem('completedYesterday') !== 'true' && !isStreakLost) streakNum = 0;
+            
+            // Reset Data Harian
+            let resets = ['quest-gacha', 'gachaIsWajib', 'gachaDate', 'gachaMission', todayFlash.id];
             sholatWajib.forEach(q => resets.push(q.id));
             dailyQuests.forEach(q => resets.push(q.id));
             resets.push(currentEpic.id);
@@ -825,7 +909,11 @@
             localStorage.setItem('completedYesterday', 'false'); 
             localStorage.setItem('lastVisit', todayStr); 
             localStorage.setItem('streak', streakNum);
+        } else if (!lastVisitStr) {
+            // First time ever open
+            localStorage.setItem('lastVisit', todayStr);
         }
+        
         document.getElementById('streak-display').innerText = `🔥 ${streakNum}`;
 
         function attachChecklistListeners() {
@@ -1009,19 +1097,12 @@
             });
         }
         renderShop();
-        window.buyItem = async function(id, price) {
-            if (totalKoin < price) { alert("Koin kamu kurang!"); return; }
-            if (!confirm(`Yakin tukar ${price} koin?`)) return;
-            totalKoin -= price; unlockedItems.push(id);
-            localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(unlockedItems));
-            document.getElementById('koin-display').innerText = totalKoin; renderShop();
-            if(window.syncPurchaseToFirebase) window.syncPurchaseToFirebase(id, price);
-        };
+        
     </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInAnonymously, linkWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, collection, query, orderBy, limit, getDocs, where } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-messaging.js";
 
@@ -1044,10 +1125,41 @@
         const btnLogout = document.getElementById('btn-logout');
         const nameInputFire = document.getElementById('user-name');
         
+        // 1. Auto Login Guest (Lazy Login Gatekeeper)
+        signInAnonymously(auth).catch((error) => console.warn("Guest Auth:", error));
+        
+        // 2. Modifikasi Fungsi Toko (Gatekeeper Cek Guest)
+        window.buyItem = async function(id, price) {
+            if (auth.currentUser?.isAnonymous) {
+                alert("⚠️ Tautkan akun Google-mu dulu di tab Stats untuk mengamankan item yang dibeli!");
+                switchTab('profile'); 
+                return;
+            }
+            if (totalKoin < price) { alert("Koin kamu kurang!"); return; }
+            if (!confirm(`Yakin tukar ${price} koin?`)) return;
+            totalKoin -= price; unlockedItems.push(id);
+            localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(unlockedItems));
+            document.getElementById('koin-display').innerText = totalKoin; renderShop();
+            if(window.syncPurchaseToFirebase) window.syncPurchaseToFirebase(id, price);
+        };
+
+        // 3. Perbaikan Fungsi Sync Store agar tidak crash
+        window.syncPurchaseToFirebase = async (itemId, priceVal) => {
+            const user = auth.currentUser;
+            if(!user || user.isAnonymous) return;
+            try {
+                const userRef = doc(db, "users", user.uid);
+                await updateDoc(userRef, { 
+                    koin: increment(-priceVal),
+                    unlocked_items: arrayUnion(itemId)
+                });
+            } catch (e) { console.warn("Sync Tertunda"); }
+        };
+
         async function fetchLeaderboard() {
             const leaderboardContainer = document.getElementById('leaderboard-container');
-            if(!auth.currentUser) {
-                leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Login untuk melihat peringkat.</div>';
+            if(!auth.currentUser || auth.currentUser.isAnonymous) {
+                leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Tautkan akun Google di tab Profil untuk melihat Peringkat!</div>';
                 return;
             }
             leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Menarik data dari langit... 📡</div>';
@@ -1076,11 +1188,11 @@
 
         window.syncExpToFirebase = async (expVal) => {
             const user = auth.currentUser;
-            if(!user) return;
+            if(!user || user.isAnonymous) return;
             try {
                 const userRef = doc(db, "users", user.uid);
                 await updateDoc(userRef, { total_exp: increment(expVal), monthly_exp: increment(expVal) });
-            } catch (e) {}
+            } catch (e) { console.warn("Sync exp tertunda") }
         };
 
         const btnAdminReset = document.getElementById('btn-admin-reset');
@@ -1101,7 +1213,10 @@
 
         // --- EDIT PROFIL ---
         document.getElementById('btn-edit-profile').addEventListener('click', async () => {
-            if(!auth.currentUser) return alert("Login dulu untuk edit profil!");
+            if(!auth.currentUser || auth.currentUser.isAnonymous) {
+                alert("Tautkan akun Google-mu dulu sebelum mengedit profil public!");
+                return;
+            }
             let newName = prompt("Masukkan Username Baru:", nameInputFire.value);
             if(newName && newName.trim() !== "") {
                 let newPhoto = prompt("Masukkan Link URL Foto Profil Baru (Kosongkan jika tidak ingin ganti):");
@@ -1162,7 +1277,7 @@
         }
 
         window.addPendingGlobalMission = async (poin) => {
-            if(!auth.currentUser) return;
+            if(!auth.currentUser || auth.currentUser.isAnonymous) return;
             document.getElementById('sync-status').innerText = "Menyumbang poin ke pusat... 📡";
             try {
                 await setDoc(globalMisiRef, { 
@@ -1210,13 +1325,13 @@
                     
                     let memberHtml = '';
                     for (let uid of data.members) {
-                        let isMe = (uid === auth.currentUser.uid);
+                        let isMe = (uid === auth.currentUser?.uid);
                         let isOwner = (uid === circleOwnerId);
                         let userSnap = await getDoc(doc(db, "users", uid));
                         let uname = userSnap.exists() ? userSnap.data().name : "User Misterius";
                         
                         let kickBtn = '';
-                        if (auth.currentUser.uid === circleOwnerId && !isOwner) {
+                        if (auth.currentUser?.uid === circleOwnerId && !isOwner) {
                             kickBtn = `<button onclick="kickMember('${uid}')" class="text-[8px] bg-red-500/80 px-1.5 rounded text-white hover:bg-red-600">Kick</button>`;
                         }
 
@@ -1290,7 +1405,7 @@
         const originalSyncExp = window.syncExpToFirebase;
         window.syncExpToFirebase = async (expVal) => {
             if(originalSyncExp) await originalSyncExp(expVal);
-            if(userCircleId && auth.currentUser) {
+            if(userCircleId && auth.currentUser && !auth.currentUser.isAnonymous) {
                 try {
                     await updateDoc(doc(db, "circles", userCircleId), { total_exp: increment(expVal) });
                     fetchCircleData(userCircleId); 
@@ -1299,7 +1414,7 @@
         };
 
         document.getElementById('btn-create-circle').addEventListener('click', async () => {
-            if(!auth.currentUser) return alert("Login akun Google dulu ya untuk buat Circle!");
+            if(!auth.currentUser || auth.currentUser.isAnonymous) return alert("⚠️ Tautkan akun Google-mu dulu di tab Stats untuk buat Circle!");
             
             let userLevel = calculateLevel(totalExp);
             let userStreak = parseInt(localStorage.getItem('streak') || 0);
@@ -1330,7 +1445,7 @@
         });
 
         document.getElementById('btn-join-circle').addEventListener('click', async () => {
-            if(!auth.currentUser) return alert("Login dulu ya!");
+            if(!auth.currentUser || auth.currentUser.isAnonymous) return alert("⚠️ Tautkan akun Google-mu dulu di tab Stats sebelum gabung Circle!");
             const code = prompt("Masukkan Kode Invite (6 Huruf/Angka):");
             if(!code) return;
 
@@ -1363,7 +1478,7 @@
                 if (permission === 'granted') {
                     const token = await getToken(messaging, { vapidKey: 'GANTI_DENGAN_VAPID_KEY_FIREBASE_KAMU' });
                     if (token) {
-                        if(auth.currentUser) await updateDoc(doc(db, "users", auth.currentUser.uid), { fcmToken: token });
+                        if(auth.currentUser && !auth.currentUser.isAnonymous) await updateDoc(doc(db, "users", auth.currentUser.uid), { fcmToken: token });
                         btnEnableNotif.classList.add('hidden');
                         alert("Alhamdulillah, Pengingat Ibadah diaktifkan!");
                     }
@@ -1373,14 +1488,26 @@
         btnEnableNotif.addEventListener('click', requestNotificationPermission);
         onMessage(messaging, (payload) => { alert(`Pesan Baru: ${payload.notification.title}\n${payload.notification.body}`); });
 
-        // --- AUTH & INIT DATA ---
+        // --- AUTH & GATEKEEPER ---
         btnLogin.addEventListener('click', async () => {
-            try { await signInWithPopup(auth, provider); } catch (e) { alert(e.message); }
+            try {
+                if (auth.currentUser && auth.currentUser.isAnonymous) {
+                    await linkWithPopup(auth.currentUser, provider);
+                    alert("Mantap! Akun berhasil diamankan permanen ke Cloud Google!");
+                } else {
+                    await signInWithPopup(auth, provider);
+                }
+            } catch (e) { 
+                if(e.code === 'auth/credential-already-in-use') alert("Akun Google ini sudah terdaftar. Pakai akun lain ya bos.");
+                else alert(e.message); 
+            }
         });
+        
         btnLogout.addEventListener('click', async () => { await signOut(auth); });
 
         onAuthStateChanged(auth, async (user) => {
-            if (user) {
+            if (user && !user.isAnonymous) {
+                // Jika login dengan Google Resmi
                 btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
                 nameInputFire.value = user.displayName; nameInputFire.readOnly = true;
                 
@@ -1391,7 +1518,6 @@
                 const docSnap = await getDoc(userRef);
                 const currentMonthStr = `${today.getMonth() + 1}-${today.getFullYear()}`;
                 
-                // FIX MISI GLOBAL TITLE SAAT LOGIN
                 const gmt = document.getElementById('global-mission-title');
                 if(gmt) gmt.innerText = misiSaatIni.title;
                 
@@ -1407,11 +1533,11 @@
                 } else {
                     const data = docSnap.data();
                     
-                    // FIX DATA RESET: Tarik DB sinkronisasi ke LocalStorage
-                    totalExp = data.total_exp || 0;
-                    totalKoin = data.koin || 0;
+                    totalExp = data.total_exp || parseInt(localStorage.getItem('totalExp') || 0);
+                    totalKoin = data.koin || parseInt(localStorage.getItem('totalKoin') || 0);
                     localStorage.setItem('totalExp', totalExp);
                     localStorage.setItem('totalKoin', totalKoin);
+                    
                     const koinDisp = document.getElementById('koin-display');
                     if(koinDisp) koinDisp.innerText = totalKoin;
                     updateStatsUI(); 
@@ -1432,11 +1558,16 @@
 
                 fetchLeaderboard(); fetchGlobalProgress();
             } else {
+                // Jika sedang Guest (Anonymous) atau Logged Out
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
                 btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
                 nameInputFire.readOnly = false;
                 userCircleId = null;
                 fetchCircleData(null);
+                
+                const gmt = document.getElementById('global-mission-title');
+                if(gmt) gmt.innerText = misiSaatIni.title;
+                fetchLeaderboard(); fetchGlobalProgress();
             }
         });
     </script>
