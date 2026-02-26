@@ -1211,7 +1211,13 @@
                         let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-gray-400';
                         const el = document.createElement('div');
                         el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
-                        el.innerHTML = `<div class="flex items-center gap-3"><span class="font-black text-lg w-5 text-center">${rank}</span><div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${userL.photo ? `<img src="${userL.photo}" class="w-full h-full object-cover">` : userL.name.charAt(0)}</div><span class="font-bold text-sm text-white truncate max-w-[120px]">${userL.name}</span></div><span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
+                        
+                        // Perbaikan Bug: Penambahan onerror untuk link foto yang rusak
+                        let photoHTML = userL.photo 
+                            ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` 
+                            : userL.name.charAt(0).toUpperCase();
+
+                        el.innerHTML = `<div class="flex items-center gap-3"><span class="font-black text-lg w-5 text-center">${rank}</span><div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${photoHTML}</div><span class="font-bold text-sm text-white truncate max-w-[120px]">${userL.name}</span></div><span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
                         leaderboardContainer.appendChild(el);
                         rank++;
                     }
@@ -1546,7 +1552,6 @@
             if (user && !user.isAnonymous) {
                 // Jika login dengan Google Resmi
                 btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
-                nameInputFire.value = user.displayName; nameInputFire.readOnly = true;
                 
                 if(user.uid === "UID_ADMIN_KAMU_DISINI") { btnAdminReset.classList.remove('hidden'); btnAdminReset.classList.add('block'); }
                 if(Notification.permission !== 'granted') btnEnableNotif.classList.remove('hidden');
@@ -1559,16 +1564,38 @@
                 if(gmt) gmt.innerText = misiSaatIni.title;
                 
                 if (!docSnap.exists()) {
+                    // USER BARU PERTAMA KALI LOGIN (Ambil bawaan Google)
+                    let defaultName = user.displayName || "User";
                     await setDoc(userRef, {
-                        name: user.displayName, photo: user.photoURL,
+                        name: defaultName, photo: user.photoURL || "",
                         koin: parseInt(localStorage.getItem('totalKoin') || 0), total_exp: parseInt(localStorage.getItem('totalExp') || 0),
                         monthly_exp: parseInt(localStorage.getItem('totalExp') || 0),
                         unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
                         circle_id: null,
                         last_reset_month: currentMonthStr 
                     }, { merge: true });
+                    
+                    // Render nama baru
+                    nameInputFire.value = defaultName;
+                    localStorage.setItem('userName', defaultName);
+                    if(user.photoURL) {
+                        document.getElementById('avatar-initial').innerHTML = `<img src="${user.photoURL}" class="w-full h-full object-cover">`;
+                    }
                 } else {
+                    // USER LAMA (TARIK DATA HASIL EDITAN DARI DATABASE, BUKAN DARI GOOGLE)
                     const data = docSnap.data();
+                    
+                    // Prioritaskan nama dari database, jika tidak ada baru pakai default Google
+                    let customName = data.name || user.displayName || "User";
+                    nameInputFire.value = customName;
+                    localStorage.setItem('userName', customName);
+                    
+                    // Render foto dari database (lengkap dengan pelindung jika link foto rusak)
+                    if (data.photo && data.photo.trim() !== "") {
+                        document.getElementById('avatar-initial').innerHTML = `<img src="${data.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${customName.charAt(0).toUpperCase()}'">`;
+                    } else {
+                        document.getElementById('avatar-initial').innerText = customName.charAt(0).toUpperCase();
+                    }
                     
                     totalExp = data.total_exp || parseInt(localStorage.getItem('totalExp') || 0);
                     totalKoin = data.koin || parseInt(localStorage.getItem('totalKoin') || 0);
@@ -1592,13 +1619,16 @@
                         fetchCircleData(userCircleId);
                     }
                 }
+                
+                // Kunci input nama SETELAH data yang benar selesai di-render
+                nameInputFire.readOnly = true; 
 
                 fetchLeaderboard(); fetchGlobalProgress();
             } else {
                 // Jika sedang Guest (Anonymous) atau Logged Out
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
                 btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
-                nameInputFire.readOnly = false;
+                nameInputFire.readOnly = false; // Buka input agar Guest bisa mengetik nama
                 userCircleId = null;
                 fetchCircleData(null);
                 
@@ -1610,3 +1640,4 @@
     </script>
 </body>
 </html>
+
