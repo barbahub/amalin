@@ -225,24 +225,6 @@
         <div id="view-profile" class="hidden animate-[fadeIn_0.4s_ease-out] flex-1">
             <div class="p-6">
 
-                <div class="mb-6">
-                    <button id="btn-login" class="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-100 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-3 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                        Hubungkan Akun Google
-                    </button>
-                    <div class="flex gap-2 w-full mt-2">
-                        <button id="btn-logout" class="hidden flex-1 bg-rose-100 text-rose-600 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
-                            Keluar Akun
-                        </button>
-                        <button id="btn-admin-reset" class="hidden bg-gray-800 text-white font-bold py-3.5 px-4 rounded-2xl shadow-sm hover:bg-gray-700 transition" title="Reset Peringkat Mingguan (Admin)">
-                            ⚠️ Reset
-                        </button>
-                    </div>
-                    <button id="btn-enable-notif" class="hidden w-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-indigo-100 transition mt-3 border border-indigo-200 dark:border-indigo-800">
-                        🔔 Aktifkan Pengingat Ibadah
-                    </button>
-                </div>
-
                 <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-[2rem] border border-gray-200 dark:border-gray-700 shadow-lg text-center mb-6 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-emerald-400 to-transparent opacity-20"></div>
                     
@@ -324,6 +306,30 @@
                     </div>
                     <div id="shop-container" class="grid grid-cols-2 gap-3"></div>
                 </div>
+
+                <div class="bg-gray-100 dark:bg-gray-800/50 p-5 rounded-3xl border border-gray-200 dark:border-gray-700 mt-8 mb-4">
+                    <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <span>⚙️</span> Pengaturan Akun
+                    </h2>
+                    
+                    <button id="btn-login" class="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-100 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-3 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                        Hubungkan Akun Google
+                    </button>
+                    
+                    <div class="flex gap-2 w-full mt-2">
+                        <button id="btn-logout" class="hidden flex-1 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
+                            Keluar Akun
+                        </button>
+                        <button id="btn-admin-reset" class="hidden bg-gray-800 text-white font-bold py-3.5 px-4 rounded-2xl shadow-sm hover:bg-gray-700 transition" title="Reset Peringkat Mingguan">
+                            ⚠️
+                        </button>
+                    </div>
+                    
+                    <button id="btn-enable-notif" class="hidden w-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-indigo-100 transition mt-3 border border-indigo-200 dark:border-indigo-800">
+                        🔔 Aktifkan Pengingat Ibadah
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -365,11 +371,17 @@
     </style>
 
     <script>
-        // --- FUNGSI HARD REFRESH ANTI-CRASH ---
+        // --- FUNGSI HARD REFRESH TINGKAT QUANTUM ---
         window.hardRefreshApp = function() {
-            if(confirm("Sistem terasa lambat atau crash? Klik OK untuk menyegarkan memori tanpa menghapus progresmu.")) {
+            if(confirm("Tampilan nge-bug atau data nyangkut? Ini akan melakukan Deep Refresh. Lanjutkan?")) {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                        for(let registration of registrations) { registration.unregister(); }
+                    });
+                }
                 localStorage.removeItem('statsRadar'); 
-                window.location.reload(true);
+                localStorage.removeItem('activityHistory');
+                setTimeout(() => { window.location.href = window.location.pathname + '?refresh=' + new Date().getTime(); }, 300);
             }
         }
 
@@ -558,7 +570,7 @@
                 });
             });
         }
-        renderSholatWajib(); // Dipanggil 1 kali di tempat yang benar
+        renderSholatWajib(); 
             
         // --- 5.5 API JADWAL SHOLAT DINAMIS ---
         async function fetchJadwalDinamis() {
@@ -839,9 +851,10 @@
             }
         }, 15000); 
 
-        // --- 9. SISTEM RADAR CHART (AURA & VIBES CHECK) & HEATMAP ---
-        let statsRadar = JSON.parse(localStorage.getItem('statsRadar')) || { ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10 };
+        // --- 9. SISTEM RADAR CHART & HEATMAP (GLOBAL VARIABLES) ---
+        window.statsRadar = JSON.parse(localStorage.getItem('statsRadar')) || { ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10 };
         window.radarChartInstance = null;
+        
         function renderRadarChart() {
             const ctx = document.getElementById('radarChart').getContext('2d');
             const isDark = document.documentElement.classList.contains('dark');
@@ -856,7 +869,7 @@
                     labels: ['Aura Positive', 'Sigma Mindset', 'Brainrot Healer', 'Social Vibes', 'Jalur Langit'],
                     datasets: [{
                         label: 'Poin Karakter',
-                        data: [statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli],
+                        data: [window.statsRadar.ketuhanan, window.statsRadar.gotong_royong, window.statsRadar.disiplin, window.statsRadar.tanggung_jawab, window.statsRadar.peduli],
                         backgroundColor: 'rgba(16, 185, 129, 0.2)', borderColor: 'rgba(16, 185, 129, 1)', pointBackgroundColor: 'rgba(251, 191, 36, 1)', borderWidth: 2,
                     }]
                 },
@@ -864,7 +877,7 @@
             });
             
             const labels = ['Jalur Langit', 'Social Vibes', 'Brainrot Healer', 'Sigma Mindset', 'Aura Positive'];
-            const maxStatName = labels[ [statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli].indexOf(Math.max(...[statsRadar.ketuhanan, statsRadar.gotong_royong, statsRadar.disiplin, statsRadar.tanggung_jawab, statsRadar.peduli])) ];
+            const maxStatName = labels[ [window.statsRadar.ketuhanan, window.statsRadar.gotong_royong, window.statsRadar.disiplin, window.statsRadar.tanggung_jawab, window.statsRadar.peduli].indexOf(Math.max(...[window.statsRadar.ketuhanan, window.statsRadar.gotong_royong, window.statsRadar.disiplin, window.statsRadar.tanggung_jawab, window.statsRadar.peduli])) ];
             
             let auraEl = document.getElementById('aura-check-text');
             if(auraEl) auraEl.innerText = `✨ Aura Check: +1000 W Rizz karena rajin ${maxStatName}!`;
@@ -872,13 +885,13 @@
         function updateChartTheme() { renderRadarChart(); }
         btns.profile.addEventListener('click', () => setTimeout(renderRadarChart, 100));
 
-        let activityHistory = JSON.parse(localStorage.getItem('activityHistory')) || [];
+        window.activityHistory = JSON.parse(localStorage.getItem('activityHistory')) || [];
         function updateHeatmap() {
             const container = document.getElementById('heatmap-container'); container.innerHTML = '';
             const last7Days = [];
             for(let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); last7Days.push(d.toDateString()); }
             last7Days.forEach(dateStr => {
-                const count = activityHistory.find(r => r.date === dateStr)?.count || 0;
+                const count = window.activityHistory.find(r => r.date === dateStr)?.count || 0;
                 
                 let colorClass, tooltip;
                 if (count === 0) { colorClass = 'bg-gray-200 dark:bg-gray-700'; tooltip = "Fase Nyasar"; }
@@ -892,10 +905,12 @@
             });
         }
         updateHeatmap();
+        
         function logActivityForHeatmap() {
-            const dateStr = new Date().toDateString(); let recordIndex = activityHistory.findIndex(r => r.date === dateStr);
-            if(recordIndex >= 0) activityHistory[recordIndex].count += 1; else activityHistory.push({ date: dateStr, count: 1 });
-            if(activityHistory.length > 14) activityHistory.shift(); localStorage.setItem('activityHistory', JSON.stringify(activityHistory));
+            const dateStr = new Date().toDateString(); let recordIndex = window.activityHistory.findIndex(r => r.date === dateStr);
+            if(recordIndex >= 0) window.activityHistory[recordIndex].count += 1; else window.activityHistory.push({ date: dateStr, count: 1 });
+            if(window.activityHistory.length > 14) window.activityHistory.shift(); 
+            localStorage.setItem('activityHistory', JSON.stringify(window.activityHistory));
             updateHeatmap();
         }
 
@@ -997,8 +1012,9 @@
                     
                     totalExp += finalExp; totalKoin += finalExp; 
                     
-                    statsRadar[questType] += 5; 
-                    localStorage.setItem('statsRadar', JSON.stringify(statsRadar));
+                    // PENTING: Update Global Variable
+                    window.statsRadar[questType] += 5; 
+                    localStorage.setItem('statsRadar', JSON.stringify(window.statsRadar));
                     if(window.radarChartInstance) renderRadarChart();
                     logActivityForHeatmap(); 
                     pushToLiveFeed(nameInput.value || "Kamu", questTitle, finalExp);
@@ -1119,21 +1135,17 @@
             });
         }
         updateTasbihUI();
-window.updateBadges = function() {
-            // Trofi terbuka berdasarkan poin dari Stats Radar & Streak
-            if(statsRadar.ketuhanan >= 50) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
-            if(statsRadar.gotong_royong >= 50) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
-            if(statsRadar.ketuhanan >= 100) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
-            if(statsRadar.disiplin >= 50) document.getElementById('badge-tahajud').classList.remove('opacity-40', 'grayscale');
+
+        window.updateBadges = function() {
+            if(window.statsRadar.ketuhanan >= 50) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
+            if(window.statsRadar.gotong_royong >= 50) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
+            if(window.statsRadar.ketuhanan >= 100) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
+            if(window.statsRadar.disiplin >= 50) document.getElementById('badge-tahajud').classList.remove('opacity-40', 'grayscale');
             
-            // Trofi Tasbih (Jika total klik > 100)
             let totalDzikir = parseInt(localStorage.getItem('tasbih_subhanallah')||0) + parseInt(localStorage.getItem('tasbih_alhamdulillah')||0) + parseInt(localStorage.getItem('tasbih_allahuakbar')||0);
             if(totalDzikir >= 100) document.getElementById('badge-tasbih').classList.remove('opacity-40', 'grayscale');
-            
-            // Trofi Habit (Jika streak >= 7 hari)
             if(parseInt(localStorage.getItem('streak')||0) >= 7) document.getElementById('badge-habit').classList.remove('opacity-40', 'grayscale');
         }
-        // Panggil saat aplikasi pertama dimuat
         setTimeout(updateBadges, 500);
         
         const shopCatalog = [
@@ -1149,11 +1161,11 @@ window.updateBadges = function() {
             { id: "guild_tiket", name: "Tiket Gacha Premium", price: 3000, icon: "🎫", type: "consumable" }
         ];
         
-        let unlockedItems = JSON.parse(localStorage.getItem('unlockedItems') || '[]');
+        window.unlockedItems = JSON.parse(localStorage.getItem('unlockedItems') || '[]');
         window.renderShop = function() {
             const container = document.getElementById('shop-container'); if(!container) return; container.innerHTML = ''; 
             shopCatalog.forEach(item => {
-                const isOwned = unlockedItems.includes(item.id);
+                const isOwned = window.unlockedItems.includes(item.id);
                 const card = document.createElement('div');
                 card.className = `p-3 rounded-2xl border-2 text-center transition ${isOwned ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'}`;
                 card.innerHTML = `<div class="text-4xl mb-2 drop-shadow-sm">${item.icon}</div><h3 class="font-bold text-xs text-gray-700 dark:text-gray-200 mb-2">${item.name}</h3>${isOwned ? `<span class="text-emerald-600 dark:text-emerald-400 font-bold text-[11px] block py-1.5">✓ Dimiliki</span>` : `<button onclick="buyItem('${item.id}', ${item.price})" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-1.5 rounded-xl text-xs font-bold active:scale-95 transition shadow-sm">🪙 ${item.price}</button>`}`;
@@ -1189,10 +1201,8 @@ window.updateBadges = function() {
         const btnLogout = document.getElementById('btn-logout');
         const nameInputFire = document.getElementById('user-name');
         
-        // 1. Auto Login Guest (Lazy Login Gatekeeper)
         signInAnonymously(auth).catch((error) => console.warn("Guest Auth:", error));
         
-        // 2. Modifikasi Fungsi Toko (Gatekeeper Cek Guest)
         window.buyItem = async function(id, price) {
             if (auth.currentUser?.isAnonymous) {
                 alert("⚠️ Tautkan akun Google-mu dulu di tab Stats untuk mengamankan item yang dibeli!");
@@ -1201,13 +1211,12 @@ window.updateBadges = function() {
             }
             if (totalKoin < price) { alert("Koin kamu kurang!"); return; }
             if (!confirm(`Yakin tukar ${price} koin?`)) return;
-            totalKoin -= price; unlockedItems.push(id);
-            localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(unlockedItems));
+            totalKoin -= price; window.unlockedItems.push(id);
+            localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(window.unlockedItems));
             document.getElementById('koin-display').innerText = totalKoin; renderShop();
             if(window.syncPurchaseToFirebase) window.syncPurchaseToFirebase(id, price);
         };
 
-        // 3. Perbaikan Fungsi Sync Store agar tidak crash
         window.syncPurchaseToFirebase = async (itemId, priceVal) => {
             const user = auth.currentUser;
             if(!user || user.isAnonymous) return;
@@ -1239,7 +1248,6 @@ window.updateBadges = function() {
                         const el = document.createElement('div');
                         el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
                         
-                        // Perbaikan Bug: Penambahan onerror untuk link foto yang rusak
                         let photoHTML = userL.photo 
                             ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` 
                             : userL.name.charAt(0).toUpperCase();
@@ -1256,7 +1264,6 @@ window.updateBadges = function() {
         }
         document.getElementById('btn-refresh-leaderboard').addEventListener('click', fetchLeaderboard);
 
-        // --- FUNGSI SINKRONISASI KE CLOUD ---
         window.syncExpToFirebase = async (expVal) => {
             const user = auth.currentUser;
             if(!user || user.isAnonymous) return;
@@ -1280,124 +1287,11 @@ window.updateBadges = function() {
             if(!user || user.isAnonymous) return;
             try {
                 await updateDoc(doc(db, "users", user.uid), {
-                    statsRadar: JSON.parse(localStorage.getItem('statsRadar')),
-                    activityHistory: JSON.parse(localStorage.getItem('activityHistory'))
+                    statsRadar: window.statsRadar,
+                    activityHistory: window.activityHistory
                 });
             } catch (e) { console.warn("Gagal simpan stats ke cloud"); }
         };
-
-        
-        
-        btnLogout.addEventListener('click', async () => { await signOut(auth); });
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user && !user.isAnonymous) {
-                // Tampilan Tombol
-                btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
-                
-                const userRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(userRef);
-                const currentMonthStr = `${new Date().getMonth() + 1}-${new Date().getFullYear()}`;
-                
-                if (!docSnap.exists()) {
-                    // USER BARU: Buat brankas data baru
-                    let defaultName = user.displayName || "User";
-                    await setDoc(userRef, {
-                        name: defaultName, photo: user.photoURL || "", bio: "", quote: "",
-                        koin: parseInt(localStorage.getItem('totalKoin') || 0), 
-                        total_exp: parseInt(localStorage.getItem('totalExp') || 0),
-                        monthly_exp: parseInt(localStorage.getItem('totalExp') || 0),
-                        unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
-                        statsRadar: JSON.parse(localStorage.getItem('statsRadar')),
-                        activityHistory: JSON.parse(localStorage.getItem('activityHistory')),
-                        circle_id: null,
-                        last_reset_month: currentMonthStr 
-                    }, { merge: true });
-                    
-                    document.getElementById('user-name').value = defaultName;
-                    localStorage.setItem('userName', defaultName);
-                    if(user.photoURL) document.getElementById('avatar-initial').innerHTML = `<img src="${user.photoURL}" class="w-full h-full object-cover">`;
-                } else {
-                    // USER LAMA: Tarik semua data dari Firebase dan paksakan ke Layar/LocalStorage
-                    const data = docSnap.data();
-                    
-                    // 1. Pulihkan Profil
-                    let customName = data.name || user.displayName || "User";
-                    document.getElementById('user-name').value = customName;
-                    document.getElementById('user-bio').value = data.bio || "";
-                    document.getElementById('user-quote').value = data.quote || "";
-                    localStorage.setItem('userName', customName);
-                    localStorage.setItem('userBio', data.bio || "");
-                    localStorage.setItem('userQuote', data.quote || "");
-                    
-                    if (data.photo && data.photo.trim() !== "") {
-                        document.getElementById('avatar-initial').innerHTML = `<img src="${data.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${customName.charAt(0).toUpperCase()}'">`;
-                    } else {
-                        document.getElementById('avatar-initial').innerText = customName.charAt(0).toUpperCase();
-                    }
-                    
-                    // 2. Pulihkan EXP & Koin
-                    let tExp = data.total_exp || 0;
-                    let tKoin = data.koin || 0;
-                    localStorage.setItem('totalExp', tExp);
-                    localStorage.setItem('totalKoin', tKoin);
-                    
-                    // PENTING: Update variabel global agar hitungan tidak bocor
-                    window.totalExp = tExp; 
-                    window.totalKoin = tKoin;
-                    
-                    const koinDisp = document.getElementById('koin-display');
-                    if(koinDisp) koinDisp.innerText = tKoin;
-                    
-                    // 3. Pulihkan Toko & Inventaris
-                    if(data.unlocked_items) {
-                        localStorage.setItem('unlockedItems', JSON.stringify(data.unlocked_items));
-                        window.unlockedItems = data.unlocked_items; // Update variabel global js
-                        if(window.renderShop) renderShop();
-                    }
-
-                    // 4. Pulihkan Radar Aura & Heatmap 7 Hari
-                    if(data.statsRadar) {
-                        localStorage.setItem('statsRadar', JSON.stringify(data.statsRadar));
-                        window.statsRadar = data.statsRadar; // Update variabel global
-                        if(window.radarChartInstance) renderRadarChart();
-                    }
-                    if(data.activityHistory) {
-                        localStorage.setItem('activityHistory', JSON.stringify(data.activityHistory));
-                        window.activityHistory = data.activityHistory; // Update variabel global
-                        if(window.updateHeatmap) updateHeatmap();
-                    }
-                    
-                    // 5. Render Ulang UI Stats & Trofi
-                    if(typeof updateStatsUI === 'function') updateStatsUI(); 
-                    if(typeof updateBadges === 'function') updateBadges();
-                    
-                    // 6. Cek Reset Bulanan
-                    if(data.last_reset_month !== currentMonthStr) {
-                        await updateDoc(userRef, { monthly_exp: 0, last_reset_month: currentMonthStr });
-                        alert("Bulan Baru! Peringkat Global direset untuk memberikan kesempatan yang sama buat semua player.");
-                    }
-
-                    // 7. Cek Circle
-                    if(data.circle_id) {
-                        userCircleId = data.circle_id;
-                        if(typeof fetchCircleData === 'function') fetchCircleData(userCircleId);
-                    }
-                }
-                
-                document.getElementById('user-name').readOnly = true; 
-                if(typeof fetchLeaderboard === 'function') fetchLeaderboard(); 
-                if(typeof fetchGlobalProgress === 'function') fetchGlobalProgress();
-            } else {
-                // GUEST MODE
-                btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
-                document.getElementById('user-name').readOnly = false; 
-                userCircleId = null;
-                if(typeof fetchCircleData === 'function') fetchCircleData(null);
-                if(typeof fetchLeaderboard === 'function') fetchLeaderboard(); 
-                if(typeof fetchGlobalProgress === 'function') fetchGlobalProgress();
-            }
-        });
 
         const btnAdminReset = document.getElementById('btn-admin-reset');
         btnAdminReset.addEventListener('click', async () => {
@@ -1415,7 +1309,6 @@ window.updateBadges = function() {
             }
         });
 
-        // --- EDIT PROFIL ---
         document.getElementById('btn-edit-profile').addEventListener('click', async () => {
             if(!auth.currentUser || auth.currentUser.isAnonymous) {
                 alert("Tautkan akun Google-mu dulu sebelum mengedit profil public!");
@@ -1443,7 +1336,6 @@ window.updateBadges = function() {
             }
         });
 
-        // --- MISI GLOBAL ---
         const daftarMisiGlobal = [
             { title: "Kumpulkan 50.000 Rakaat Sholat Jamaah (Se-Indonesia)", target: 50000 },
             { title: "25.000 Sedekah Kolektif Terkumpul", target: 25000 },
@@ -1496,7 +1388,6 @@ window.updateBadges = function() {
             }
         };
 
-        // --- 12. SISTEM CIRCLE (GUILD) ADVANCED ---
         const unjoinedUI = document.getElementById('circle-unjoined');
         const joinedUI = document.getElementById('circle-joined');
         let userCircleId = null;
@@ -1674,7 +1565,6 @@ window.updateBadges = function() {
             } catch(e) { alert("Gagal gabung: " + e.message); }
         });
 
-        // --- NOTIFIKASI PUSH ---
         const btnEnableNotif = document.getElementById('btn-enable-notif');
         async function requestNotificationPermission() {
             try {
@@ -1692,9 +1582,7 @@ window.updateBadges = function() {
         btnEnableNotif.addEventListener('click', requestNotificationPermission);
         onMessage(messaging, (payload) => { alert(`Pesan Baru: ${payload.notification.title}\n${payload.notification.body}`); });
 
-        // --- AUTH & GATEKEEPER (ANTI-SPAM & FILTER ERROR) ---
         btnLogin.addEventListener('click', async () => {
-            // 1. Simpan UI asli dan bekukan tombol agar tidak bisa di-spam klik 2x
             const originalHTML = btnLogin.innerHTML;
             btnLogin.disabled = true;
             btnLogin.classList.add('opacity-50', 'cursor-not-allowed');
@@ -1708,20 +1596,14 @@ window.updateBadges = function() {
                     await signInWithPopup(auth, provider);
                 }
             } catch (e) { 
-                // 2. Filter Error: Abaikan jika user sengaja menutup pop-up/batal login
                 if (e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request') {
                     console.log("Proses login dibatalkan oleh sistem/user.");
-                } 
-                // Filter Error: Email sudah terkait dengan akun lain
-                else if (e.code === 'auth/credential-already-in-use') {
+                } else if (e.code === 'auth/credential-already-in-use') {
                     alert("Akun Google ini sudah terdaftar. Pakai akun email lain ya bos.");
-                } 
-                // Error lainnya
-                else {
+                } else {
                     alert("Gagal menghubungkan: " + e.message); 
                 }
             } finally {
-                // 3. Apapun hasilnya (sukses/batal/gagal), kembalikan tombol seperti semula
                 btnLogin.disabled = false;
                 btnLogin.classList.remove('opacity-50', 'cursor-not-allowed');
                 btnLogin.innerHTML = originalHTML;
@@ -1732,7 +1614,6 @@ window.updateBadges = function() {
 
         onAuthStateChanged(auth, async (user) => {
             if (user && !user.isAnonymous) {
-                // Jika login dengan Google Resmi
                 btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
                 
                 if(user.uid === "UID_ADMIN_KAMU_DISINI") { btnAdminReset.classList.remove('hidden'); btnAdminReset.classList.add('block'); }
@@ -1746,33 +1627,33 @@ window.updateBadges = function() {
                 if(gmt) gmt.innerText = misiSaatIni.title;
                 
                 if (!docSnap.exists()) {
-                    // USER BARU PERTAMA KALI LOGIN (Ambil bawaan Google)
                     let defaultName = user.displayName || "User";
                     await setDoc(userRef, {
-                        name: defaultName, photo: user.photoURL || "",
-                        koin: parseInt(localStorage.getItem('totalKoin') || 0), total_exp: parseInt(localStorage.getItem('totalExp') || 0),
+                        name: defaultName, photo: user.photoURL || "", bio: "", quote: "",
+                        koin: parseInt(localStorage.getItem('totalKoin') || 0), 
+                        total_exp: parseInt(localStorage.getItem('totalExp') || 0),
                         monthly_exp: parseInt(localStorage.getItem('totalExp') || 0),
                         unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
+                        statsRadar: window.statsRadar,
+                        activityHistory: window.activityHistory,
                         circle_id: null,
                         last_reset_month: currentMonthStr 
                     }, { merge: true });
                     
-                    // Render nama baru
-                    nameInputFire.value = defaultName;
+                    document.getElementById('user-name').value = defaultName;
                     localStorage.setItem('userName', defaultName);
-                    if(user.photoURL) {
-                        document.getElementById('avatar-initial').innerHTML = `<img src="${user.photoURL}" class="w-full h-full object-cover">`;
-                    }
+                    if(user.photoURL) document.getElementById('avatar-initial').innerHTML = `<img src="${user.photoURL}" class="w-full h-full object-cover">`;
                 } else {
-                    // USER LAMA (TARIK DATA HASIL EDITAN DARI DATABASE, BUKAN DARI GOOGLE)
                     const data = docSnap.data();
                     
-                    // Prioritaskan nama dari database, jika tidak ada baru pakai default Google
                     let customName = data.name || user.displayName || "User";
-                    nameInputFire.value = customName;
+                    document.getElementById('user-name').value = customName;
+                    document.getElementById('user-bio').value = data.bio || "";
+                    document.getElementById('user-quote').value = data.quote || "";
                     localStorage.setItem('userName', customName);
+                    localStorage.setItem('userBio', data.bio || "");
+                    localStorage.setItem('userQuote', data.quote || "");
                     
-                    // Render foto dari database (lengkap dengan pelindung jika link foto rusak)
                     if (data.photo && data.photo.trim() !== "") {
                         document.getElementById('avatar-initial').innerHTML = `<img src="${data.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${customName.charAt(0).toUpperCase()}'">`;
                     } else {
@@ -1784,44 +1665,58 @@ window.updateBadges = function() {
                     localStorage.setItem('totalExp', totalExp);
                     localStorage.setItem('totalKoin', totalKoin);
                     
+                    window.totalExp = totalExp; 
+                    window.totalKoin = totalKoin;
+                    
                     const koinDisp = document.getElementById('koin-display');
                     if(koinDisp) koinDisp.innerText = totalKoin;
+                    
+                    if(data.statsRadar) {
+                        window.statsRadar = data.statsRadar;
+                        localStorage.setItem('statsRadar', JSON.stringify(data.statsRadar));
+                        if(typeof renderRadarChart === 'function') renderRadarChart();
+                    }
+                    if(data.activityHistory) {
+                        window.activityHistory = data.activityHistory;
+                        localStorage.setItem('activityHistory', JSON.stringify(data.activityHistory));
+                        if(typeof updateHeatmap === 'function') updateHeatmap();
+                    }
+
+                    if(data.unlocked_items) {
+                        window.unlockedItems = data.unlocked_items;
+                        localStorage.setItem('unlockedItems', JSON.stringify(window.unlockedItems));
+                        if(typeof renderShop === 'function') renderShop();
+                    }
+                    
                     updateStatsUI(); 
                     
                     if(data.last_reset_month !== currentMonthStr) {
-                        await updateDoc(userRef, {
-                            monthly_exp: 0,
-                            last_reset_month: currentMonthStr
-                        });
-                        alert("Bulan Baru, Lembaran Baru! Peringkat Global direset untuk memberikan kesempatan yang sama buat semua player.");
+                        await updateDoc(userRef, { monthly_exp: 0, last_reset_month: currentMonthStr });
+                        alert("Bulan Baru! Peringkat Global direset untuk memberikan kesempatan yang sama buat semua player.");
                     }
 
                     if(data.circle_id) {
                         userCircleId = data.circle_id;
-                        fetchCircleData(userCircleId);
+                        if(typeof fetchCircleData === 'function') fetchCircleData(userCircleId);
                     }
                 }
                 
-                // Kunci input nama SETELAH data yang benar selesai di-render
-                nameInputFire.readOnly = true; 
-
-                fetchLeaderboard(); fetchGlobalProgress();
+                document.getElementById('user-name').readOnly = true; 
+                if(typeof fetchLeaderboard === 'function') fetchLeaderboard(); 
+                if(typeof fetchGlobalProgress === 'function') fetchGlobalProgress();
             } else {
-                // Jika sedang Guest (Anonymous) atau Logged Out
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
                 btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
-                nameInputFire.readOnly = false; // Buka input agar Guest bisa mengetik nama
+                document.getElementById('user-name').readOnly = false;
                 userCircleId = null;
-                fetchCircleData(null);
+                if(typeof fetchCircleData === 'function') fetchCircleData(null);
                 
                 const gmt = document.getElementById('global-mission-title');
                 if(gmt) gmt.innerText = misiSaatIni.title;
-                fetchLeaderboard(); fetchGlobalProgress();
+                if(typeof fetchLeaderboard === 'function') fetchLeaderboard(); 
+                if(typeof fetchGlobalProgress === 'function') fetchGlobalProgress();
             }
         });
     </script>
 </body>
 </html>
-
-
-
