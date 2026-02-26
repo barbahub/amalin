@@ -162,6 +162,8 @@
                     <div id="gacha-result" class="hidden relative z-10"></div>
                 </div>
 
+                <div id="exam-container" class="hidden"></div>
+
                 <div id="epic-quest-container"></div>
 
                 <div class="flex justify-between items-end mt-2 mb-3">
@@ -266,7 +268,7 @@
                         <div class="w-full max-w-[250px]">
                             <canvas id="radarChart"></canvas>
                         </div>
-                        <p id="aura-check-text" class="text-center text-xs font-black text-emerald-500 mt-3 animate-pulse">✨ Aura Check: +100 W Rizz!</p>
+                        <p id="aura-check-text" class="text-center text-xs font-black text-emerald-500 mt-3 animate-pulse">✨ Aura Check: Belum ada data</p>
                     </div>
                     <p class="text-center text-[9px] text-gray-400 mt-2 italic">Grafik terbentuk otomatis dari jenis ibadah yang kamu selesaikan.</p>
                 </div>
@@ -346,23 +348,6 @@
             </button>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] h-[711px] bg-gradient-to-br from-emerald-600 to-teal-900 p-8 flex flex-col justify-between text-white">
-            <div class="text-center mt-8">
-                <h2 class="text-5xl font-black mb-2 tracking-tight">AmalPad.</h2>
-                <div class="bg-white/20 inline-block px-5 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm shadow-inner uppercase tracking-wider" id="export-gelar">Fase Nyasar</div>
-            </div>
-            <div class="bg-white/10 p-6 rounded-[2rem] backdrop-blur-md border border-white/20 shadow-2xl">
-                <div class="border-b border-white/20 pb-4 mb-4 text-center">
-                    <h3 id="export-name" class="font-black text-3xl text-white tracking-wide uppercase">PLAYER</h3>
-                </div>
-                <div class="bg-black/20 rounded-2xl p-3 mb-4 text-center flex justify-between px-6">
-                    <div><p class="text-[10px] text-emerald-300 font-bold">LEVEL</p><p class="font-black text-2xl" id="export-level">1</p></div>
-                    <div><p class="text-[10px] text-yellow-400 font-bold">TOTAL EXP</p><p class="font-black text-2xl text-yellow-400" id="export-exp">0</p></div>
-                </div>
-                <ul id="export-list" class="space-y-3 font-semibold text-base px-1"></ul>
-            </div>
-        </div>
-
     </div>
 
     <style>
@@ -389,17 +374,12 @@
         const today = new Date();
         const startOfYear = new Date(today.getFullYear(), 0, 0);
         const dayOfYear = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24));
-        const tglRilis = new Date("2026-02-01T00:00:00"); 
-        const selisihMinggu = Math.floor(Math.max(0, today - tglRilis) / (1000 * 60 * 60 * 24 * 7));
         const currentHour = today.getHours();
 
         // --- 2. DARK MODE GRATIS ---
         const darkToggle = document.getElementById('dark-toggle');
         const htmlElement = document.documentElement;
-        if (localStorage.getItem('theme') === 'dark') { 
-            htmlElement.classList.add('dark'); 
-            darkToggle.innerText = '☀️'; 
-        }
+        if (localStorage.getItem('theme') === 'dark') { htmlElement.classList.add('dark'); darkToggle.innerText = '☀️'; }
         darkToggle.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
             localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
@@ -422,7 +402,7 @@
         btns.target.addEventListener('click', () => switchTab('target'));
         btns.profile.addEventListener('click', () => switchTab('profile'));
 
-        // --- 4. PROFIL, KUTIPAN & LEVELING LOKAL ---
+        // --- 4. PROFIL & SISTEM LEVELING LIMIT BREAKER ---
         const nameInput = document.getElementById('user-name'); 
         const bioInput = document.getElementById('user-bio');
         const quoteInput = document.getElementById('user-quote');
@@ -431,24 +411,35 @@
         bioInput.value = localStorage.getItem('userBio') || '';
         quoteInput.value = localStorage.getItem('userQuote') || '';
         
-        nameInput.addEventListener('change', () => { 
-            localStorage.setItem('userName', nameInput.value); 
-            if(window.syncProfileToFirebase) window.syncProfileToFirebase(); 
-        });
-        bioInput.addEventListener('change', () => { 
-            localStorage.setItem('userBio', bioInput.value); 
-            if(window.syncProfileToFirebase) window.syncProfileToFirebase(); 
-        });
-        quoteInput.addEventListener('change', () => { 
-            localStorage.setItem('userQuote', quoteInput.value); 
-            if(window.syncProfileToFirebase) window.syncProfileToFirebase(); 
-        });
+        nameInput.addEventListener('change', () => { localStorage.setItem('userName', nameInput.value); if(window.syncProfileToFirebase) window.syncProfileToFirebase(); });
+        bioInput.addEventListener('change', () => { localStorage.setItem('userBio', bioInput.value); if(window.syncProfileToFirebase) window.syncProfileToFirebase(); });
+        quoteInput.addEventListener('change', () => { localStorage.setItem('userQuote', quoteInput.value); if(window.syncProfileToFirebase) window.syncProfileToFirebase(); });
 
-        let totalExp = parseInt(localStorage.getItem('totalExp') || 0);
-        let totalKoin = parseInt(localStorage.getItem('totalKoin') || 0);
-        document.getElementById('koin-display').innerText = totalKoin;
+        window.totalExp = parseInt(localStorage.getItem('totalExp') || 0);
+        window.totalKoin = parseInt(localStorage.getItem('totalKoin') || 0);
+        window.passedExams = JSON.parse(localStorage.getItem('passedExams')) || [];
+        document.getElementById('koin-display').innerText = window.totalKoin;
         
-        function calculateLevel(exp) { return Math.floor(exp / 100) + 1 > 50 ? 50 : Math.floor(exp / 100) + 1; }
+        // Data Ujian Kelipatan 10
+        const breakthroughExams = {
+            10: { title: "Puasa Sunnah 1 Hari & Sedekah Subuh 3x Berturut-turut (Kejujuranmu diuji!)" },
+            20: { title: "Khatam Al-Quran 1 Juz & Tidak marah sama sekali selama 3 Hari" },
+            30: { title: "Sholat Tahajud 3 Hari Berturut-turut di sepertiga malam" },
+            40: { title: "Hapus 1 Sosmed paling toxic di HP-mu selama 1 Minggu penuh" },
+            50: { title: "Konsisten Sholat Wajib Berjamaah di Masjid selama 7 Hari" }
+        };
+
+        function calculateLevel(exp) { 
+            let rawLevel = Math.floor(exp / 100) + 1; 
+            // Logika Capping: Jika EXP cukup tapi belum lulus ujian, level mentok di angka berakhiran 9
+            if (rawLevel >= 50 && !window.passedExams.includes(50)) return 49;
+            if (rawLevel >= 40 && !window.passedExams.includes(40)) return 39;
+            if (rawLevel >= 30 && !window.passedExams.includes(30)) return 29;
+            if (rawLevel >= 20 && !window.passedExams.includes(20)) return 19;
+            if (rawLevel >= 10 && !window.passedExams.includes(10)) return 9;
+            return rawLevel > 50 ? 50 : rawLevel;
+        }
+
         function getTitle(lvl) {
             if(lvl < 5) return "Fase Nyasar";
             if(lvl < 10) return "Skena Ibadah";
@@ -465,17 +456,65 @@
             else { avatar.classList.add('ring-4', 'ring-gray-200', 'dark:ring-gray-600'); }
         }
 
-        function updateStatsUI() {
-            let currentLevel = calculateLevel(totalExp); let currentTitle = getTitle(currentLevel);
-            let expNextLevel = currentLevel * 100; let expCurrentLevel = totalExp % 100;
+        function checkExamStatus(currentLvl) {
+            let rawLvl = Math.floor(window.totalExp / 100) + 1;
+            let examContainer = document.getElementById('exam-container');
+            if (!examContainer) return;
+
+            if (rawLvl > currentLvl) {
+                // User is stuck! Show Exam
+                let targetExamLvl = currentLvl + 1; // 10, 20, 30...
+                examContainer.innerHTML = `
+                    <div class="bg-gradient-to-r from-red-600 to-orange-600 p-5 rounded-3xl shadow-xl shadow-red-500/30 text-white mb-6 animate-pulse transition">
+                        <h3 class="font-black text-lg flex items-center gap-2"><span>⚠️</span> UJIAN LEVEL ${targetExamLvl}</h3>
+                        <p class="text-[11px] mb-3 font-medium text-red-100">Levelmu stuck di ${currentLvl}! Selesaikan ujian nyata ini untuk menembus limit. EXP tetap ditabung kok.</p>
+                        <div class="bg-white/20 p-3 rounded-xl backdrop-blur-sm border border-white/30">
+                            <p class="font-bold text-sm mb-3 drop-shadow-sm">"${breakthroughExams[targetExamLvl].title}"</p>
+                            <button onclick="takeExam(${targetExamLvl})" class="w-full bg-white text-red-600 font-black py-2 rounded-xl text-sm hover:scale-95 transition shadow-sm">Ya, Aku Sudah Selesai!</button>
+                        </div>
+                    </div>
+                `;
+                examContainer.classList.remove('hidden');
+            } else {
+                examContainer.classList.add('hidden');
+            }
+        }
+
+        window.takeExam = function(capLvl) {
+            if(confirm(`Ujian Kejujuran!\n\nApakah kamu BENAR-BENAR sudah menyelesaikan:\n"${breakthroughExams[capLvl].title}"?\n\n(Tuhan Maha Melihat lho, dosa kalau bohong!)`)) {
+                window.passedExams.push(capLvl);
+                localStorage.setItem('passedExams', JSON.stringify(window.passedExams));
+                if(window.syncProfileToFirebase) window.syncProfileToFirebase();
+                updateStatsUI();
+                alert(`MASHALLAH! Limit Break berhasil. Kamu resmi naik ke Level ${capLvl}!`);
+                confetti({particleCount: 200, spread: 100, origin: { y: 0.3 }});
+            }
+        }
+
+        window.updateStatsUI = function() {
+            let currentLevel = calculateLevel(window.totalExp); 
+            let currentTitle = getTitle(currentLevel);
+            
+            let rawLvl = Math.floor(window.totalExp / 100) + 1;
+            let expNextLevel = currentLevel * 100; 
+            let expCurrentLevel = window.totalExp % 100;
             let percent = (expCurrentLevel / 100) * 100;
+
+            if (rawLvl > currentLvl) { // Capped state
+                document.getElementById('display-exp').innerText = `${window.totalExp} / MAX (Ujian)`;
+                percent = 100;
+            } else {
+                document.getElementById('display-exp').innerText = `${window.totalExp} / ${expNextLevel} EXP`;
+            }
+
             document.getElementById('header-level').innerText = `Lv.${currentLevel}`;
             document.getElementById('header-title').innerText = currentTitle;
             document.getElementById('display-level').innerText = `Level ${currentLevel}`;
-            document.getElementById('display-exp').innerText = `${totalExp} / ${expNextLevel} EXP`;
             document.getElementById('exp-bar').style.width = `${percent}%`;
             document.getElementById('display-title-bot').innerText = `🏆 Gelar: ${currentTitle}`;
+            
             updateAvatarBorder(currentLevel);
+            checkExamStatus(currentLevel);
         }
         updateStatsUI();
 
@@ -515,14 +554,12 @@
                     let penaltyKey = `penalty_done_${q.id}_${new Date().toDateString()}`;
                     if(localStorage.getItem(penaltyKey) !== 'true') {
                         localStorage.setItem(penaltyKey, 'true');
-                        totalExp = Math.max(0, totalExp - 50); 
-                        localStorage.setItem('totalExp', totalExp);
+                        window.totalExp = Math.max(0, window.totalExp - 50); 
+                        localStorage.setItem('totalExp', window.totalExp);
                         updateStatsUI();
                         if(window.syncExpToFirebase) window.syncExpToFirebase(-50);
-                        
                         setTimeout(() => alert(`⚠️ ASTAGHFIRULLAH!\nKamu ketahuan melewati batas waktu ${q.title}!\n\nHukuman Instan: -50 EXP.`), 600);
                     }
-
                 } else if (isActive) {
                     statusText = "🟢 SEDANG BERLANGSUNG!";
                     statusClass = "text-emerald-500 animate-pulse font-black";
@@ -557,10 +594,10 @@
                     this.disabled = true; 
                     
                     let finalExp = typeof vipBuff !== 'undefined' && vipBuff ? parseInt(this.getAttribute('data-exp')) * 2 : parseInt(this.getAttribute('data-exp'));
-                    totalExp += finalExp; totalKoin += finalExp; 
-                    localStorage.setItem('totalExp', totalExp); 
-                    localStorage.setItem('totalKoin', totalKoin);
-                    document.getElementById('koin-display').innerText = totalKoin; 
+                    window.totalExp += finalExp; window.totalKoin += finalExp; 
+                    localStorage.setItem('totalExp', window.totalExp); 
+                    localStorage.setItem('totalKoin', window.totalKoin);
+                    document.getElementById('koin-display').innerText = window.totalKoin; 
                     updateStatsUI();
                     
                     if(window.syncExpToFirebase) window.syncExpToFirebase(finalExp);
@@ -607,15 +644,13 @@
         }
         fetchJadwalDinamis();
 
-        // --- 6. BANK DATA HABITS & EPIC COMBO (UNIVERSAL) ---
+        // --- 6. BANK DATA HABITS KASTA GEN Z ---
         const dailyEasy = [
             { id: "de1", title: "Senyum & sapa 3 orang hari ini", exp: 10, type: "peduli" },
             { id: "de2", title: "Minum air putih sambil duduk & Bismillah", exp: 10, type: "disiplin" },
             { id: "de3", title: "Rapikan tempat tidur pas baru bangun", exp: 10, type: "tanggung_jawab" },
             { id: "de4", title: "Tahan jempol dari hate comment di sosmed", exp: 10, type: "peduli" },
-            { id: "de5", title: "Ucapkan 'Terima Kasih' tulus ke pekerja jasa", exp: 10, type: "gotong_royong" },
-            { id: "de6", title: "Matikan lampu/air yang tidak dipakai", exp: 10, type: "tanggung_jawab" },
-            { id: "de7", title: "Rapikan sepatu/sandal di teras/masjid", exp: 10, type: "disiplin" }
+            { id: "de5", title: "Ucapkan 'Terima Kasih' tulus ke pekerja jasa", exp: 10, type: "gotong_royong" }
         ];
         
         const dailyMed = [
@@ -623,106 +658,24 @@
             { id: "dm2", title: "Baca Al-Quran 1 Lembar", exp: 30, type: "ketuhanan" },
             { id: "dm3", title: "Datang on-time ke agenda hari ini", exp: 30, type: "disiplin" },
             { id: "dm4", title: "Cuci piring/gelas sendiri sehabis makan", exp: 30, type: "tanggung_jawab" },
-            { id: "dm5", title: "Sedekah (Qris/Receh) ke kotak amal/pengamen", exp: 30, type: "gotong_royong" },
-            { id: "dm6", title: "No Toxic Words / Menahan marah seharian", exp: 30, type: "peduli" }
+            { id: "dm5", title: "Sedekah (Qris/Receh) ke kotak amal/pengamen", exp: 30, type: "gotong_royong" }
         ];
 
         const dailyHard = [
             { id: "dh1", title: "Sholat Subuh Berjamaah di Masjid", exp: 50, type: "ketuhanan" },
             { id: "dh2", title: "Minta maaf duluan kalau ada salah", exp: 50, type: "tanggung_jawab" },
             { id: "dh3", title: "Jenguk/Chat tanya kabar orang sakit", exp: 50, type: "peduli" },
-            { id: "dh4", title: "Puasa Doom Scrolling Sosmed 4 Jam", exp: 50, type: "disiplin" },
-            { id: "dh5", title: "Bersihkan toilet rumah/masjid dengan ikhlas", exp: 50, type: "gotong_royong" }
+            { id: "dh4", title: "Puasa Doom Scrolling Sosmed 4 Jam", exp: 50, type: "disiplin" }
         ];
 
         const dailyExt = [
             { id: "dx1", title: "Sholat Wajib 5 Waktu FULL Berjamaah", exp: 100, type: "ketuhanan" },
             { id: "dx2", title: "Khatam 1 Juz Al-Quran hari ini", exp: 100, type: "ketuhanan" },
             { id: "dx3", title: "Traktir makan orang yang sedang butuh", exp: 100, type: "gotong_royong" },
-            { id: "dx4", title: "Jujur mengakui kesalahan fatal tanpa ngeles", exp: 100, type: "tanggung_jawab" },
-            { id: "dx5", title: "Berdamai/Memaafkan musuh bebuyutan", exp: 100, type: "peduli" }
+            { id: "dx4", title: "Jujur mengakui kesalahan fatal tanpa ngeles", exp: 100, type: "tanggung_jawab" }
         ];
 
-        const epicCombos = [
-            { id: "ec1", title: "Puasa Sosmed (IG, TikTok, dll) 6 Jam di Siang Hari", exp: 150, type: "disiplin" },
-            { id: "ec2", title: "Tidak mengeluh & tidak sambat sama sekali 24 Jam", exp: 150, type: "tanggung_jawab" },
-            { id: "ec3", title: "Bantu 2 pekerjaan orang tua di rumah tanpa disuruh", exp: 150, type: "peduli" },
-            { id: "ec4", title: "Rapikan sandal/sepatu berantakan di masjid", exp: 150, type: "gotong_royong" },
-            { id: "ec5", title: "Tahan jempol dari komentar negatif di internet seharian", exp: 150, type: "disiplin" },
-            { id: "ec6", title: "Sholat Wajib 5 Waktu FULL Tepat Waktu (Di awal waktu)", exp: 200, type: "ketuhanan" },
-            { id: "ec7", title: "Baca Al-Kahfi di hari Jumat (Selesai 110 Ayat)", exp: 200, type: "ketuhanan" },
-            { id: "ec8", title: "Berdamai & chat duluan teman yang sedang musuhan", exp: 200, type: "peduli" },
-            { id: "ec9", title: "Sisihkan uang jajan/gaji hari ini khusus untuk disedekahkan", exp: 150, type: "gotong_royong" },
-            { id: "ec10", title: "Khatam 1 Juz Al-Quran dalam satu hari", exp: 150, type: "ketuhanan" },
-            { id: "ec11", title: "Bantu orang asing yang kesusahan di jalan", exp: 150, type: "gotong_royong" },
-            { id: "ec12", title: "Jujur mengakui kesalahan fatal hari ini tanpa ngeles", exp: 150, type: "tanggung_jawab" },
-            { id: "ec13", title: "Beri rating bintang 5 dan tip ke kurir/ojol", exp: 150, type: "peduli" },
-            { id: "ec14", title: "Puasa Sunnah (Senin/Kamis/Ayyamul Bidh)", exp: 200, type: "ketuhanan" },
-            { id: "ec15", title: "Bangun Sholat Tahajud minimal 2 rakaat", exp: 200, type: "ketuhanan" },
-            { id: "ec16", title: "Beri makan kucing/hewan jalanan", exp: 150, type: "peduli" },
-            { id: "ec17", title: "Bersihkan kamar mandi rumah sampai bersih ikhlas", exp: 150, type: "tanggung_jawab" },
-            { id: "ec18", title: "Tahan marah saat dipancing emosi seharian", exp: 150, type: "disiplin" },
-            { id: "ec19", title: "Baca buku/artikel bermanfaat selama 30 menit", exp: 150, type: "disiplin" },
-            { id: "ec20", title: "Dengarkan curhat teman/keluarga tanpa menghakimi", exp: 150, type: "peduli" },
-            { id: "ec21", title: "Buang sampah pada tempatnya & pungut 3 sampah di jalan", exp: 150, type: "gotong_royong" },
-            { id: "ec22", title: "Dzikir Istighfar 500x dalam sehari", exp: 150, type: "ketuhanan" },
-            { id: "ec23", title: "Sholat Dhuha minimal 4 Rakaat", exp: 150, type: "ketuhanan" },
-            { id: "ec24", title: "Matikan gadget 1 jam sebelum tidur", exp: 150, type: "disiplin" },
-            { id: "ec25", title: "Selesaikan semua target harianmu lebih awal", exp: 150, type: "tanggung_jawab" }
-        ];
-
-        // Render Epic Combo Harian
-        const currentEpic = epicCombos[dayOfYear % epicCombos.length];
-        const epicContainer = document.getElementById('epic-quest-container');
-        if(epicContainer) {
-            epicContainer.innerHTML = `
-                <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-1 rounded-3xl shadow-lg mb-6 transform hover:scale-[1.01] transition">
-                    <div class="bg-white dark:bg-gray-800 p-4 rounded-[1.3rem] h-full flex items-center justify-between">
-                        <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="bg-purple-600 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase">EPIC COMBO HARI INI</span>
-                            </div>
-                            <p class="font-black text-sm text-gray-800 dark:text-gray-100 mt-1">${currentEpic.title}</p>
-                            <p class="text-xs text-purple-600 dark:text-purple-400 font-bold">+${currentEpic.exp} Koin & EXP!</p>
-                        </div>
-                        <label class="relative flex items-center justify-center cursor-pointer group">
-                            <input type="checkbox" id="${currentEpic.id}" disabled class="w-8 h-8 text-purple-600 rounded-xl focus:ring-purple-500 checklist-item peer disabled:opacity-30 disabled:cursor-not-allowed" data-exp="${currentEpic.exp}" data-type="${currentEpic.type}" data-title="${currentEpic.title}">
-                            <span id="epic-lock-icon" class="absolute text-2xl peer-disabled:block hidden pointer-events-none">🔒</span>
-                        </label>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // --- 6.5 VIP EVENT PUASA SENIN KAMIS ---
-        const dDay = today.getDay();
-        const dHour = today.getHours();
-        const isVIPEvent = (dDay === 1 || dDay === 4) || (dDay === 0 && dHour >= 18) || (dDay === 3 && dHour >= 18);
-        let vipBuff = localStorage.getItem('vip_buff_active') === 'true';
-
-        if(isVIPEvent) {
-            epicContainer.innerHTML += `
-                <div class="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 p-1 rounded-3xl shadow-xl shadow-yellow-500/30 mb-6 transform hover:scale-[1.02] transition animate-pulse">
-                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-[1.3rem] h-full flex items-center justify-between border border-white/40">
-                        <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="bg-yellow-100 text-yellow-800 text-[9px] font-black px-2 py-0.5 rounded-md uppercase border border-yellow-400">⚡ FLASH SALE LANGIT</span>
-                            </div>
-                            <p class="font-black text-sm text-white drop-shadow-md mt-1">Puasa Sunnah Senin/Kamis</p>
-                            <p class="text-[10px] text-yellow-100 font-bold">Aktifkan untuk dapat Buff x2 SEMUA EXP hari ini!</p>
-                        </div>
-                        <label class="relative flex items-center justify-center cursor-pointer group">
-                            <input type="checkbox" id="vip-puasa-buff" class="w-8 h-8 text-yellow-400 rounded-xl focus:ring-yellow-300 checklist-item peer" data-exp="100" data-type="ketuhanan" data-title="Puasa Sunnah Senin/Kamis">
-                        </label>
-                    </div>
-                </div>
-            `;
-        } else {
-            localStorage.setItem('vip_buff_active', 'false');
-            vipBuff = false;
-        }
-
-        // Render Daily Quests
+        // Render Daily Quests with Gen Z Difficulty Text
         const chkContainer = document.getElementById('checklist-container');
         const dailyQuests = [
             dailyEasy[dayOfYear % dailyEasy.length],
@@ -734,7 +687,7 @@
         
         let dailyHtml = '';
         dailyQuests.forEach(q => {
-            let badge = q.exp <= 20 ? 'NPC Level' : q.exp <= 40 ? 'Skuy Level' : q.exp <= 70 ? 'Suhu Level' : 'Backingan Pusat';
+            let badge = q.exp <= 20 ? 'Chill (EZ)' : q.exp <= 40 ? 'Skena (Mid)' : q.exp <= 70 ? 'Suhu (Hard)' : 'Pusat (Insane)';
             let color = q.exp <= 20 ? 'text-gray-500' : q.exp <= 40 ? 'text-blue-500' : q.exp <= 70 ? 'text-orange-500' : 'text-rose-600';
             
             dailyHtml += `
@@ -756,7 +709,7 @@
         const gachaBtn = document.getElementById('gacha-container');
         const gachaRes = document.getElementById('gacha-result');
         const gachaSubtitle = document.getElementById('gacha-subtitle');
-        const gachaMissions25 = ["Traktir teman minuman hari ini", "Senyum tulus ke 3 orang asing", "Bantu ortu membereskan rumah", "Sedekah subuh Rp2.000", "Baca Al-Kahfi 10 ayat pertama", "Berbagi makanan ke tetangga", "Pungut 3 sampah di jalanan", "Beri rating bintang 5 ke kurir", "Maafkan kesalahan orang hari ini", "Baca istighfar 100x hari ini", "Telepon/chat keluarga yang jauh", "Tahan amarah saat sedang kesal", "Beri komentar positif di medsos", "Berdoa untuk kebaikan sahabat", "Rapikan sandal/sepatu di masjid", "Isi kotak amal terdekat", "Ucapkan terima kasih ke satpam", "Baca sholawat nabi 100x", "Niatkan puasa sunnah untuk besok", "Bagikan ilmu bermanfaat di WA", "Matikan air/lampu yang tak terpakai", "Beri makan hewan jalanan", "Selesaikan tugas/kerjaan lebih awal", "Tabung sebagian uang jajan hari ini", "Dengarkan curhat teman dengan baik"];
+        const gachaMissions25 = ["Traktir teman minuman hari ini", "Senyum tulus ke 3 orang asing", "Bantu ortu membereskan rumah", "Sedekah subuh Rp2.000", "Baca Al-Kahfi 10 ayat pertama", "Berbagi makanan ke tetangga", "Pungut 3 sampah di jalanan", "Beri rating bintang 5 ke kurir", "Maafkan kesalahan orang hari ini"];
         let hasGachaToday = localStorage.getItem('gachaDate') === new Date().toDateString();
         
         function renderGachaResult(questText, isWajibFlag) {
@@ -777,82 +730,40 @@
                 localStorage.setItem('gachaDate', new Date().toDateString()); 
                 localStorage.setItem('gachaMission', randomQuest);
                 localStorage.setItem('gachaIsWajib', isWajibRoll ? 'true' : 'false');
-                
                 renderGachaResult(randomQuest, isWajibRoll); 
                 
-                if(isWajibRoll) {
-                    confetti({particleCount: 100, spread: 70, colors: ['#ff0000', '#000000']});
-                    if(navigator.vibrate) navigator.vibrate([200, 100, 200]);
-                } else {
-                    confetti({particleCount: 80, spread: 60, colors: ['#fb7185', '#f43f5e', '#ffffff']});
-                }
+                if(isWajibRoll) { confetti({particleCount: 100, spread: 70, colors: ['#ff0000', '#000000']}); if(navigator.vibrate) navigator.vibrate([200, 100, 200]); } 
+                else { confetti({particleCount: 80, spread: 60, colors: ['#fb7185', '#f43f5e', '#ffffff']}); }
                 
                 hasGachaToday = true; attachChecklistListeners(); 
             }
         });
 
-        // --- 8. RENDER FLASH QUEST ---
-        const flashQuests25 = [
-            { id: "fq-1", title: "Pejuang Subuh Berjamaah", exp: 50, start: 4, end: 6, type: "ketuhanan" },
-            { id: "fq-2", title: "Sholat Dhuha 2 Rakaat", exp: 40, start: 7, end: 11, type: "ketuhanan" },
-            { id: "fq-3", title: "Sedekah Makan Siang", exp: 30, start: 11, end: 13, type: "gotong_royong" },
-            { id: "fq-4", title: "Sholat Ashar di Awal Waktu", exp: 40, start: 15, end: 16, type: "disiplin" }
-        ];
-
-        const todayFlash = flashQuests25[dayOfYear % flashQuests25.length];
-        const isFlashActive = currentHour >= todayFlash.start && currentHour <= todayFlash.end;
-        const flashStatusText = isFlashActive ? "🟢 BUKA SEKARANG" : `${todayFlash.start.toString().padStart(2, '0')}:00 - ${todayFlash.end.toString().padStart(2, '0')}:00`;
-        const flashStatusClass = isFlashActive ? "text-emerald-500" : "text-gray-500";
-
-        const flashContainer = document.getElementById('flash-quest-container');
-        if(flashContainer) {
-            flashContainer.innerHTML = `
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm mb-6 flex items-center justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-md animate-pulse">FLASH QUEST</span>
-                            <span class="text-xs font-bold ${flashStatusClass}" id="flash-time-status">${flashStatusText}</span>
-                        </div>
-                        <p class="font-bold text-sm dark:text-gray-200">${todayFlash.title}</p>
-                        <p class="text-xs text-yellow-500 font-bold">+${todayFlash.exp} Koin & EXP</p>
-                    </div>
-                    <label class="relative flex items-center justify-center cursor-pointer group" id="flash-quest-label">
-                        <input type="checkbox" id="${todayFlash.id}" class="w-8 h-8 text-emerald-500 rounded-xl focus:ring-emerald-400 checklist-item peer" ${isFlashActive ? '' : 'disabled'} data-exp="${todayFlash.exp}" data-type="${todayFlash.type}" data-title="${todayFlash.title}">
-                        <div class="absolute text-gray-400 peer-disabled:block hidden pointer-events-none text-xl">🔒</div>
-                    </label>
-                </div>
-            `;
-        }
-
-        // --- LIVE FEED SYSTEM (SIMULATED & REAL-TIME) ---
-        function pushToLiveFeed(playerName, questName, points) {
-            const feedContainer = document.getElementById('live-feed-container');
-            if(feedContainer && feedContainer.querySelector('p')) feedContainer.innerHTML = ''; 
-            
-            const item = document.createElement('div');
-            item.className = "bg-white dark:bg-gray-800 p-3 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm flex items-center gap-3 animate-[fadeIn_0.5s_ease-out]";
-            item.innerHTML = `
-                <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-600 text-xs font-bold uppercase">${playerName.charAt(0)}</div>
-                <div class="flex-1">
-                    <p class="text-[11px] text-gray-500"><span class="font-bold text-gray-800 dark:text-gray-200">${playerName}</span> menyelesaikan</p>
-                    <p class="text-xs font-bold text-emerald-600 dark:text-emerald-400 truncate max-w-[180px]">${questName}</p>
-                </div>
-                <span class="text-[10px] font-black text-yellow-500 bg-yellow-50 dark:bg-yellow-900/30 px-2 py-1 rounded-lg">+${points}</span>
-            `;
-            if(feedContainer) feedContainer.prepend(item); 
-        }
-
-        const dummyNames = ["Bima_Sigma", "Putri.Skuy", "Abdi_Pusat", "Rina_Chill", "Deni_Core"];
-        setInterval(() => {
-            if(Math.random() > 0.5) {
-                let rName = dummyNames[Math.floor(Math.random() * dummyNames.length)];
-                let rQuest = dailyQuests[Math.floor(Math.random() * dailyQuests.length)];
-                pushToLiveFeed(rName, rQuest.title, rQuest.exp);
+        // --- 9. SISTEM RADAR CHART & HEATMAP (GLOBAL VARIABLES WITH AUTO RECOVERY) ---
+        // Defensive Init untuk mencegah stuck/hilang saat parse error
+        function initRadarData() {
+            let data = localStorage.getItem('statsRadar');
+            if (data && data !== "undefined") {
+                try { 
+                    let parsed = JSON.parse(data); 
+                    if(parsed && typeof parsed.ketuhanan !== 'undefined') return parsed;
+                } catch(e) {}
             }
-        }, 15000); 
+            return { ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10 };
+        }
+        function initHistoryData() {
+            let data = localStorage.getItem('activityHistory');
+            if (data && data !== "undefined") {
+                try { 
+                    let parsed = JSON.parse(data); 
+                    if(Array.isArray(parsed)) return parsed;
+                } catch(e) {}
+            }
+            return [];
+        }
 
-        // --- 9. SISTEM RADAR CHART & HEATMAP (GLOBAL VARIABLES) ---
-        window.statsRadar = JSON.parse(localStorage.getItem('statsRadar')) || { ketuhanan: 10, gotong_royong: 10, disiplin: 10, tanggung_jawab: 10, peduli: 10 };
+        window.statsRadar = initRadarData();
+        window.activityHistory = initHistoryData();
         window.radarChartInstance = null;
         
         function renderRadarChart() {
@@ -885,9 +796,9 @@
         function updateChartTheme() { renderRadarChart(); }
         btns.profile.addEventListener('click', () => setTimeout(renderRadarChart, 100));
 
-        window.activityHistory = JSON.parse(localStorage.getItem('activityHistory')) || [];
         function updateHeatmap() {
-            const container = document.getElementById('heatmap-container'); container.innerHTML = '';
+            const container = document.getElementById('heatmap-container'); if(!container) return; 
+            container.innerHTML = '';
             const last7Days = [];
             for(let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); last7Days.push(d.toDateString()); }
             last7Days.forEach(dateStr => {
@@ -920,21 +831,18 @@
         let streakNum = parseInt(localStorage.getItem('streak') || 0);
 
         if (lastVisitStr && lastVisitStr !== todayStr) {
-            // EKSEKUSI SANKSI JIKA GANTI HARI
             let missedSholat = 0;
             sholatWajib.forEach(q => { if(localStorage.getItem(q.id) !== 'true') missedSholat++; });
             
             let penaltyExp = 0;
             let isStreakLost = false;
             
-            // Sanksi Berjenjang (Snowball Penalty)
             if(missedSholat === 1) penaltyExp = 50;
             else if(missedSholat === 2) penaltyExp = 150;
             else if(missedSholat === 3) penaltyExp = 350;
             else if(missedSholat === 4) penaltyExp = 750;
             else if(missedSholat === 5) { penaltyExp = 1500; isStreakLost = true; streakNum = 0; }
 
-            // Sanksi Gacha Kebaikan Wajib
             let gachaFailed = false;
             if(localStorage.getItem('gachaIsWajib') === 'true' && localStorage.getItem('quest-gacha') !== 'true') {
                 penaltyExp += 500;
@@ -942,38 +850,31 @@
             }
 
             if(penaltyExp > 0) {
-                totalExp = Math.max(0, totalExp - penaltyExp); // Cegah nilai minus
-                localStorage.setItem('totalExp', totalExp);
+                window.totalExp = Math.max(0, window.totalExp - penaltyExp);
+                localStorage.setItem('totalExp', window.totalExp);
                 
                 let alertMsg = `⚠️ LAPORAN JALUR LANGIT KEMARIN ⚠️\n\n`;
                 if(missedSholat > 0) alertMsg += `- Kamu meninggalkan ${missedSholat} Waktu Sholat!\n`;
                 if(gachaFailed) alertMsg += `- Kamu mengabaikan Misi Gacha Wajib!\n`;
                 alertMsg += `\nTotal Penalti: -${penaltyExp} EXP.`;
                 if(isStreakLost) alertMsg += `\n🔥 STREAK KAMU HANGUS! Mulai dari 0 lagi.`;
-                
                 setTimeout(() => alert(alertMsg), 1000); 
             }
 
             if (localStorage.getItem('completedYesterday') !== 'true' && !isStreakLost) streakNum = 0;
             
-            // Reset Data Harian
             let resets = ['quest-gacha', 'gachaIsWajib', 'gachaDate', 'gachaMission', todayFlash.id];
             sholatWajib.forEach(q => resets.push(q.id));
             dailyQuests.forEach(q => resets.push(q.id));
-            resets.push(currentEpic.id);
             resets.push('vip-puasa-buff');
-            
             resets.forEach(id => localStorage.setItem(id, 'false'));
             
-            ['tasbih_subhanallah', 'tasbih_alhamdulillah', 'tasbih_allahuakbar', 'tasbih_custom'].forEach(t_id => {
-                localStorage.setItem(t_id, 0);
-            });
+            ['tasbih_subhanallah', 'tasbih_alhamdulillah', 'tasbih_allahuakbar', 'tasbih_custom'].forEach(t_id => { localStorage.setItem(t_id, 0); });
 
             localStorage.setItem('completedYesterday', 'false'); 
             localStorage.setItem('lastVisit', todayStr); 
             localStorage.setItem('streak', streakNum);
         } else if (!lastVisitStr) {
-            // First time ever open
             localStorage.setItem('lastVisit', todayStr);
         }
         
@@ -981,44 +882,28 @@
 
         function attachChecklistListeners() {
             document.querySelectorAll('.checklist-item').forEach(box => {
-                if (localStorage.getItem(box.id) === 'true') {
-                    box.checked = true;
-                    box.disabled = true; 
-                    if(box.id === 'vip-puasa-buff') vipBuff = true;
-                }
-                
-                let newBox = box.cloneNode(true); 
-                box.parentNode.replaceChild(newBox, box);
+                if (localStorage.getItem(box.id) === 'true') { box.checked = true; box.disabled = true; if(box.id === 'vip-puasa-buff') vipBuff = true; }
+                let newBox = box.cloneNode(true); box.parentNode.replaceChild(newBox, box);
                 
                 newBox.addEventListener('change', function() {
-                    if (!this.checked) {
-                        this.checked = true;
-                        return;
-                    }
-
-                    localStorage.setItem(this.id, 'true');
-                    this.disabled = true; 
+                    if (!this.checked) { this.checked = true; return; }
+                    localStorage.setItem(this.id, 'true'); this.disabled = true; 
                     
                     if(this.id === 'vip-puasa-buff') {
-                        localStorage.setItem('vip_buff_active', 'true');
-                        vipBuff = true;
-                        alert("🎉 JALUR VIP AKTIF! Semua ibadahmu hari ini akan dikalikan 2 EXP-nya!");
+                        localStorage.setItem('vip_buff_active', 'true'); vipBuff = true; alert("🎉 JALUR VIP AKTIF! Semua ibadahmu hari ini akan dikalikan 2 EXP-nya!");
                     }
                     
                     let expVal = parseInt(this.getAttribute('data-exp') || 0);
-                    let finalExp = vipBuff ? expVal * 2 : expVal;
+                    let finalExp = typeof vipBuff !== 'undefined' && vipBuff ? expVal * 2 : expVal;
                     let questType = this.getAttribute('data-type') || 'ketuhanan'; 
-                    let questTitle = this.getAttribute('data-title') || "Selesaikan Misi";
                     
-                    totalExp += finalExp; totalKoin += finalExp; 
+                    window.totalExp += finalExp; window.totalKoin += finalExp; 
                     
-                    // PENTING: Update Global Variable
                     window.statsRadar[questType] += 5; 
                     localStorage.setItem('statsRadar', JSON.stringify(window.statsRadar));
                     if(window.radarChartInstance) renderRadarChart();
                     logActivityForHeatmap(); 
-                    pushToLiveFeed(nameInput.value || "Kamu", questTitle, finalExp);
-
+                    
                     confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } });
                     if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
                     
@@ -1027,9 +912,9 @@
                     if(window.syncStatsToFirebase) window.syncStatsToFirebase();
                     if(window.updateBadges) updateBadges();
                     
-                    localStorage.setItem('totalExp', totalExp); 
-                    localStorage.setItem('totalKoin', totalKoin);
-                    document.getElementById('koin-display').innerText = totalKoin; 
+                    localStorage.setItem('totalExp', window.totalExp); 
+                    localStorage.setItem('totalKoin', window.totalKoin);
+                    document.getElementById('koin-display').innerText = window.totalKoin; 
                     updateStatsUI();
 
                     let anyChecked = document.querySelectorAll('.checklist-item:checked').length > 0;
@@ -1039,51 +924,23 @@
                             streakNum = 1; localStorage.setItem('streak', streakNum); document.getElementById('streak-display').innerText = `🔥 ${streakNum}`;
                         }
                     }
-                    
-                    // Cek Syarat Unlock Epic Combo
-                    let dailyCheckedCount = 0;
-                    dailyQuests.forEach(dq => { if(localStorage.getItem(dq.id) === 'true') dailyCheckedCount++; });
-                    if(dailyCheckedCount >= 5) {
-                        const epicBox = document.getElementById(currentEpic.id);
-                        const epicLock = document.getElementById('epic-lock-icon');
-                        if(epicBox && epicBox.disabled) {
-                            epicBox.disabled = false;
-                            if(epicLock) epicLock.classList.add('hidden');
-                            alert("🔥 EPIC COMBO TERBUKA! Selesaikan tantangan kasta Suhu ini!");
-                        }
-                    }
                 });
             });
         }
         attachChecklistListeners(); 
 
-        // --- 11. TASBIH DIGITAL & MARKETPLACE TOKO ---
+        // --- 11. TASBIH DIGITAL & RAK TROFI ---
         let currentTasbihType = document.getElementById('tasbih-type') ? document.getElementById('tasbih-type').value : 'subhanallah';
         let tasbihCount = parseInt(localStorage.getItem(`tasbih_${currentTasbihType}`) || 0);
         
         const tasbihBtn = document.getElementById('btn-tasbih');
         const tasbihCounterDisplay = document.getElementById('tasbih-counter');
         const tasbihBar = document.getElementById('tasbih-bar');
-        const tasbihTypeSelector = document.getElementById('tasbih-type');
-        const tasbihResetBtn = document.getElementById('tasbih-reset');
         const tasbihTargetText = document.getElementById('tasbih-target-text');
-        const tasbihCustomInput = document.getElementById('tasbih-custom-input'); 
-
-        if(tasbihCustomInput) {
-            tasbihCustomInput.value = localStorage.getItem('tasbih_custom_text') || '';
-            tasbihCustomInput.addEventListener('input', (e) => { localStorage.setItem('tasbih_custom_text', e.target.value); });
-        }
         
         function updateTasbihUI() {
             if(!tasbihCounterDisplay) return;
             tasbihCounterDisplay.innerText = tasbihCount;
-
-            if(currentTasbihType === 'custom') {
-                tasbihCustomInput.classList.remove('hidden'); tasbihCustomInput.classList.add('block');
-            } else {
-                tasbihCustomInput.classList.remove('block'); tasbihCustomInput.classList.add('hidden');
-            }
-
             let progress = 0;
             if (tasbihCount < 33) { tasbihTargetText.innerText = "33"; progress = (tasbihCount / 33) * 100; } 
             else if (tasbihCount < 1000) { tasbihTargetText.innerText = "1000"; progress = (tasbihCount / 1000) * 100; } 
@@ -1091,8 +948,8 @@
             tasbihBar.style.width = `${progress}%`;
         }
         
-        if (tasbihTypeSelector) {
-            tasbihTypeSelector.addEventListener('change', (e) => {
+        if (document.getElementById('tasbih-type')) {
+            document.getElementById('tasbih-type').addEventListener('change', (e) => {
                 currentTasbihType = e.target.value;
                 tasbihCount = parseInt(localStorage.getItem(`tasbih_${currentTasbihType}`) || 0);
                 updateTasbihUI();
@@ -1106,32 +963,13 @@
                 if (navigator.vibrate) navigator.vibrate(30); 
                 
                 if (tasbihCount === 33) {
-                    let bonusExp = vipBuff ? 10 : 5;
-                    totalKoin += 10; totalExp += bonusExp;
-                    localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('totalExp', totalExp);
-                    document.getElementById('koin-display').innerText = totalKoin; updateStatsUI();
-                    
+                    window.totalKoin += 10; window.totalExp += 5;
+                    localStorage.setItem('totalKoin', window.totalKoin); localStorage.setItem('totalExp', window.totalExp);
+                    document.getElementById('koin-display').innerText = window.totalKoin; updateStatsUI();
                     confetti({ particleCount: 60, spread: 50, origin: { y: 0.8 } });
-                    if (navigator.vibrate) navigator.vibrate([100, 50, 100]); 
-                    setTimeout(() => alert("Alhamdulillah! Target 33x tercapai. Koin bertambah!\nLanjut ke 1000x untuk dapat Mega EXP!"), 200);
-                }
-                
-                if (tasbihCount === 1000) {
-                    let bonusExp = vipBuff ? 1000 : 500;
-                    totalExp += bonusExp; localStorage.setItem('totalExp', totalExp); updateStatsUI();
-                    confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
-                    if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
-                    setTimeout(() => alert("MashaAllah! Kamu mencapai 1000x Dzikir.\nEXP Bonus diberikan!"), 200);
+                    setTimeout(() => alert("Alhamdulillah! Target 33x tercapai. Lanjut ke 1000x untuk dapat Mega EXP!"), 200);
                 }
                 updateTasbihUI();
-            });
-        }
-
-        if (tasbihResetBtn) {
-            tasbihResetBtn.addEventListener('click', () => {
-                if(confirm("Yakin ingin mereset angka tasbih ini ke 0?")) {
-                    tasbihCount = 0; localStorage.setItem(`tasbih_${currentTasbihType}`, 0); updateTasbihUI();
-                }
             });
         }
         updateTasbihUI();
@@ -1141,7 +979,6 @@
             if(window.statsRadar.gotong_royong >= 50) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
             if(window.statsRadar.ketuhanan >= 100) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
             if(window.statsRadar.disiplin >= 50) document.getElementById('badge-tahajud').classList.remove('opacity-40', 'grayscale');
-            
             let totalDzikir = parseInt(localStorage.getItem('tasbih_subhanallah')||0) + parseInt(localStorage.getItem('tasbih_alhamdulillah')||0) + parseInt(localStorage.getItem('tasbih_allahuakbar')||0);
             if(totalDzikir >= 100) document.getElementById('badge-tasbih').classList.remove('opacity-40', 'grayscale');
             if(parseInt(localStorage.getItem('streak')||0) >= 7) document.getElementById('badge-habit').classList.remove('opacity-40', 'grayscale');
@@ -1154,11 +991,7 @@
             { id: "title_pusat", name: "Gelar: Backingan Pusat 📿", price: 15000, icon: "📿", type: "title" },
             { id: "title_sigma", name: "Gelar: Sigma Akhlaq 🗿", price: 20000, icon: "🗿", type: "title" },
             { id: "frame_api", name: "Frame: Api Biru", price: 12000, icon: "🟦", type: "frame" },
-            { id: "frame_neon", name: "Frame: Cyberpunk Neon", price: 15000, icon: "🟣", type: "frame" },
-            { id: "frame_sage", name: "Frame: Sage Green Estetik", price: 10000, icon: "🌿", type: "frame" },
-            { id: "efek_koin", name: "Efek: Hujan Koin", price: 8000, icon: "🪙", type: "effect" },
-            { id: "efek_sakura", name: "Efek: Bunga Sakura", price: 10000, icon: "🌸", type: "effect" },
-            { id: "guild_tiket", name: "Tiket Gacha Premium", price: 3000, icon: "🎫", type: "consumable" }
+            { id: "frame_neon", name: "Frame: Cyberpunk Neon", price: 15000, icon: "🟣", type: "frame" }
         ];
         
         window.unlockedItems = JSON.parse(localStorage.getItem('unlockedItems') || '[]');
@@ -1173,7 +1006,6 @@
             });
         }
         renderShop();
-        
     </script>
 
     <script type="module">
@@ -1199,7 +1031,6 @@
 
         const btnLogin = document.getElementById('btn-login');
         const btnLogout = document.getElementById('btn-logout');
-        const nameInputFire = document.getElementById('user-name');
         
         signInAnonymously(auth).catch((error) => console.warn("Guest Auth:", error));
         
@@ -1209,11 +1040,11 @@
                 switchTab('profile'); 
                 return;
             }
-            if (totalKoin < price) { alert("Koin kamu kurang!"); return; }
+            if (window.totalKoin < price) { alert("Koin kamu kurang!"); return; }
             if (!confirm(`Yakin tukar ${price} koin?`)) return;
-            totalKoin -= price; window.unlockedItems.push(id);
-            localStorage.setItem('totalKoin', totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(window.unlockedItems));
-            document.getElementById('koin-display').innerText = totalKoin; renderShop();
+            window.totalKoin -= price; window.unlockedItems.push(id);
+            localStorage.setItem('totalKoin', window.totalKoin); localStorage.setItem('unlockedItems', JSON.stringify(window.unlockedItems));
+            document.getElementById('koin-display').innerText = window.totalKoin; renderShop();
             if(window.syncPurchaseToFirebase) window.syncPurchaseToFirebase(id, price);
         };
 
@@ -1247,20 +1078,14 @@
                         let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-gray-400';
                         const el = document.createElement('div');
                         el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
-                        
-                        let photoHTML = userL.photo 
-                            ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` 
-                            : userL.name.charAt(0).toUpperCase();
-
+                        let photoHTML = userL.photo ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` : userL.name.charAt(0).toUpperCase();
                         el.innerHTML = `<div class="flex items-center gap-3"><span class="font-black text-lg w-5 text-center">${rank}</span><div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${photoHTML}</div><span class="font-bold text-sm text-white truncate max-w-[120px]">${userL.name}</span></div><span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
                         leaderboardContainer.appendChild(el);
                         rank++;
                     }
                 });
                 if(rank === 1) leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif bulan ini. Curi start sekarang!</div>';
-            } catch (e) {
-                leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat. Cek koneksi internetmu.</div>';
-            }
+            } catch (e) {}
         }
         document.getElementById('btn-refresh-leaderboard').addEventListener('click', fetchLeaderboard);
 
@@ -1277,9 +1102,10 @@
                 await updateDoc(doc(db, "users", user.uid), {
                     name: document.getElementById('user-name').value,
                     bio: document.getElementById('user-bio').value,
-                    quote: document.getElementById('user-quote').value
+                    quote: document.getElementById('user-quote').value,
+                    passedExams: window.passedExams 
                 });
-            } catch (e) { console.warn("Gagal simpan profil ke cloud"); }
+            } catch (e) {}
         };
 
         window.syncStatsToFirebase = async () => {
@@ -1290,304 +1116,12 @@
                     statsRadar: window.statsRadar,
                     activityHistory: window.activityHistory
                 });
-            } catch (e) { console.warn("Gagal simpan stats ke cloud"); }
-        };
-
-        const btnAdminReset = document.getElementById('btn-admin-reset');
-        btnAdminReset.addEventListener('click', async () => {
-            if(confirm("Yakin mereset poin bulanan SEMUA user?")) {
-                btnAdminReset.innerText = "⏳ Memproses...";
-                try {
-                    const usersSnap = await getDocs(collection(db, "users"));
-                    const promises = [];
-                    usersSnap.forEach((userDoc) => { promises.push(updateDoc(doc(db, "users", userDoc.id), { monthly_exp: 0 })); });
-                    await Promise.all(promises);
-                    alert("Leaderboard berhasil di-reset!");
-                    fetchLeaderboard(); 
-                } catch(e) { alert("Error: " + e.message); }
-                btnAdminReset.innerText = "⚠️ Reset";
-            }
-        });
-
-        document.getElementById('btn-edit-profile').addEventListener('click', async () => {
-            if(!auth.currentUser || auth.currentUser.isAnonymous) {
-                alert("Tautkan akun Google-mu dulu sebelum mengedit profil public!");
-                return;
-            }
-            let newName = prompt("Masukkan Username Baru:", nameInputFire.value);
-            if(newName && newName.trim() !== "") {
-                let newPhoto = prompt("Masukkan Link URL Foto Profil Baru (Kosongkan jika tidak ingin ganti):");
-                try {
-                    let updateData = { name: newName };
-                    if(newPhoto && newPhoto.trim() !== "") updateData.photo = newPhoto;
-                    
-                    await updateDoc(doc(db, "users", auth.currentUser.uid), updateData);
-                    nameInputFire.value = newName;
-                    nameInput.value = newName;
-                    localStorage.setItem('userName', newName);
-                    
-                    if(updateData.photo) {
-                        document.getElementById('avatar-initial').innerHTML = `<img src="${updateData.photo}" class="w-full h-full object-cover">`;
-                    } else {
-                        document.getElementById('avatar-initial').innerText = newName.charAt(0).toUpperCase();
-                    }
-                    alert("Profil berhasil di-update bos!");
-                } catch (e) { alert("Gagal update profil: " + e.message); }
-            }
-        });
-
-        const daftarMisiGlobal = [
-            { title: "Kumpulkan 50.000 Rakaat Sholat Jamaah (Se-Indonesia)", target: 50000 },
-            { title: "25.000 Sedekah Kolektif Terkumpul", target: 25000 },
-            { title: "100.000 Lembar Al-Quran Dibaca Bersama", target: 100000 },
-            { title: "5.000 Jam Bebas Sosmed (Kumulatif)", target: 5000 }
-        ];
-        const tglRilisFB = new Date("2026-02-01T00:00:00"); 
-        const todayFB = new Date();
-        const selisihMingguGlobal = Math.floor(Math.max(0, todayFB - tglRilisFB) / (1000 * 60 * 60 * 24 * 7));
-        const misiSaatIni = daftarMisiGlobal[selisihMingguGlobal % daftarMisiGlobal.length];
-        const nomorMinggu = selisihMingguGlobal + 1; 
-
-        const globalMisiRef = doc(db, "global_stats", `misi_minggu_ke_${nomorMinggu}`);
-
-        async function fetchGlobalProgress() {
-            try {
-                const docSnap = await getDoc(globalMisiRef);
-                let current = 0;
-                if (docSnap.exists()) current = docSnap.data().current_count || 0;
-                
-                const target = misiSaatIni.target; 
-                let percent = (current / target) * 100;
-                if (percent > 100) percent = 100;
-
-                document.getElementById('global-progress-text').innerText = `${current.toLocaleString('id-ID')} / ${target.toLocaleString('id-ID')}`;
-                document.getElementById('global-progress-percent').innerText = `${Math.floor(percent)}%`;
-                document.getElementById('global-progress-bar').style.width = `${percent}%`;
-                
-                if (current >= target) {
-                    document.getElementById('global-progress-text').innerText = "🎉 TARGET TERCAPAI!";
-                    document.getElementById('global-progress-bar').classList.add('from-emerald-400', 'to-emerald-300');
-                    document.getElementById('global-progress-bar').classList.remove('from-yellow-400', 'to-yellow-300');
-                }
             } catch (e) {}
-        }
-
-        window.addPendingGlobalMission = async (poin) => {
-            if(!auth.currentUser || auth.currentUser.isAnonymous) return;
-            document.getElementById('sync-status').innerText = "Menyumbang poin ke pusat... 📡";
-            try {
-                await setDoc(globalMisiRef, { 
-                    current_count: increment(poin), 
-                    target_count: misiSaatIni.target, 
-                    nama_misi: misiSaatIni.title 
-                }, { merge: true });
-                document.getElementById('sync-status').innerText = "✅ Tersinkronisasi!";
-                fetchGlobalProgress(); 
-            } catch(e) {
-                document.getElementById('sync-status').innerText = "❌ Gagal jaringan. Cek koneksi.";
-            }
         };
-
-        const unjoinedUI = document.getElementById('circle-unjoined');
-        const joinedUI = document.getElementById('circle-joined');
-        let userCircleId = null;
-        let circleOwnerId = null;
-
-        document.getElementById('circle-members-display').addEventListener('click', () => {
-            document.getElementById('circle-members-modal').classList.toggle('hidden');
-        });
-
-        window.fetchCircleData = async (circleId) => {
-            if(!circleId) { unjoinedUI.classList.remove('hidden'); joinedUI.classList.add('hidden'); return; }
-            try {
-                const snap = await getDoc(doc(db, "circles", circleId));
-                if(snap.exists()) {
-                    const data = snap.data();
-                    unjoinedUI.classList.add('hidden'); joinedUI.classList.remove('hidden');
-                    document.getElementById('circle-name-display').innerText = data.name;
-                    document.getElementById('circle-code-display').innerText = data.invite_code;
-                    document.getElementById('circle-members-display').innerText = `${data.members.length}/10 Anggota (Lihat)`;
-                    
-                    let guildLvl = Math.floor(data.total_exp / 1000) + 1; 
-                    document.getElementById('circle-level-display').innerText = `Lv. ${guildLvl}`;
-                    document.getElementById('circle-exp-text').innerText = data.total_exp;
-                    document.getElementById('circle-exp-bar').style.width = `${(data.total_exp % 1000) / 1000 * 100}%`;
-                    
-                    circleOwnerId = data.created_by; 
-
-                    const memberListDiv = document.getElementById('circle-members-list');
-                    memberListDiv.innerHTML = '<span class="text-[10px] text-blue-200 animate-pulse">Memuat anggota...</span>';
-                    
-                    let memberHtml = '';
-                    for (let uid of data.members) {
-                        let isMe = (uid === auth.currentUser?.uid);
-                        let isOwner = (uid === circleOwnerId);
-                        let userSnap = await getDoc(doc(db, "users", uid));
-                        let uname = userSnap.exists() ? userSnap.data().name : "User Misterius";
-                        
-                        let kickBtn = '';
-                        if (auth.currentUser?.uid === circleOwnerId && !isOwner) {
-                            kickBtn = `<button onclick="kickMember('${uid}')" class="text-[8px] bg-red-500/80 px-1.5 rounded text-white hover:bg-red-600">Kick</button>`;
-                        }
-
-                        memberHtml += `
-                            <div class="flex justify-between items-center bg-black/20 p-1.5 rounded-lg">
-                                <span class="text-[11px] text-white font-medium flex items-center gap-1">
-                                    ${isOwner ? '👑' : '👤'} ${uname} ${isMe ? '(Kamu)' : ''}
-                                </span>
-                                ${kickBtn}
-                            </div>
-                        `;
-                    }
-                    memberListDiv.innerHTML = memberHtml;
-                }
-            } catch(e) { console.error("Error Circle:", e); }
-        }
-
-        window.kickMember = async (targetUid) => {
-            if(!confirm("Tendang member ini dari Circle?")) return;
-            try {
-                const circleRef = doc(db, "circles", userCircleId);
-                const circleSnap = await getDoc(circleRef);
-                let currentMembers = circleSnap.data().members;
-                let newMembers = currentMembers.filter(id => id !== targetUid);
-                await updateDoc(circleRef, { members: newMembers });
-                
-                await updateDoc(doc(db, "users", targetUid), { circle_id: null });
-                alert("Member berhasil di-kick!");
-                fetchCircleData(userCircleId); 
-            } catch(e) { alert("Error kick: " + e.message); }
-        };
-
-        document.getElementById('btn-leave-circle').addEventListener('click', async () => {
-            if(!confirm("Yakin ingin keluar dari Circle ini? EXP yang sudah disumbangkan tidak bisa ditarik lho!")) return;
-            try {
-                const circleRef = doc(db, "circles", userCircleId);
-                const circleSnap = await getDoc(circleRef);
-                let currentMembers = circleSnap.data().members;
-                let newMembers = currentMembers.filter(id => id !== auth.currentUser.uid);
-                await updateDoc(circleRef, { members: newMembers });
-                
-                await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: null });
-                userCircleId = null;
-                alert("Berhasil keluar dari Circle.");
-                fetchCircleData(null);
-            } catch(e) { alert("Error: " + e.message); }
-        });
-
-        document.getElementById('btn-rank-circle').addEventListener('click', async () => {
-            const container = document.getElementById('leaderboard-container');
-            container.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Memuat Top Circle... 📡</div>';
-            try {
-                const qCircleRank = query(collection(db, "circles"), orderBy("total_exp", "desc"), limit(5));
-                const snapshot = await getDocs(qCircleRank);
-                container.innerHTML = '<p class="text-[10px] font-bold text-center text-indigo-300 mb-2 uppercase">🛡️ TOP 5 CIRCLE GLOBAL 🛡️</p>'; 
-                let rank = 1;
-                snapshot.forEach((docSnap) => {
-                    const cData = docSnap.data();
-                    let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : 'border-white/10 bg-white/5 text-blue-200';
-                    const el = document.createElement('div');
-                    el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
-                    el.innerHTML = `<div class="flex items-center gap-2"><span class="font-black text-lg w-4 text-center">${rank}</span><span class="font-bold text-sm truncate max-w-[120px]">${cData.name}</span></div><span class="text-[10px] font-black bg-black/30 px-2 py-1 rounded-lg">${cData.total_exp} EXP</span>`;
-                    container.appendChild(el);
-                    rank++;
-                });
-            } catch (e) {
-                container.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat rank circle.</div>';
-            }
-        });
-
-        const originalSyncExp = window.syncExpToFirebase;
-        window.syncExpToFirebase = async (expVal) => {
-            if(originalSyncExp) await originalSyncExp(expVal);
-            if(userCircleId && auth.currentUser && !auth.currentUser.isAnonymous) {
-                try {
-                    await updateDoc(doc(db, "circles", userCircleId), { total_exp: increment(expVal) });
-                    fetchCircleData(userCircleId); 
-                } catch(e){}
-            }
-        };
-
-        document.getElementById('btn-create-circle').addEventListener('click', async () => {
-            if(!auth.currentUser || auth.currentUser.isAnonymous) return alert("⚠️ Tautkan akun Google-mu dulu di tab Stats untuk buat Circle!");
-            
-            let userLevel = calculateLevel(totalExp);
-            let userStreak = parseInt(localStorage.getItem('streak') || 0);
-            
-            if (userLevel < 5) return alert("Sabar Bos! Minimal Level 5 buat jadi Ketua Circle. Grinding EXP dulu ya.");
-            if (userStreak < 3) return alert("Imam harus istiqomah! Buktikan Streak 🔥 3 hari berturut-turut dulu.");
-            if (totalKoin < 500) return alert("Saldo koin kurang! Butuh 500 Koin untuk mahar bangun markas Circle.");
-
-            const circleName = prompt("Masukkan Nama Circle (Misal: Pejuang Subuh Jaksel):");
-            if(!circleName) return;
-            
-            totalKoin -= 500;
-            localStorage.setItem('totalKoin', totalKoin);
-            document.getElementById('koin-display').innerText = totalKoin;
-            
-            const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-            const newCircleId = `circle_${Date.now()}`;
-            
-            try {
-                await setDoc(doc(db, "circles", newCircleId), {
-                    name: circleName, invite_code: inviteCode, members: [auth.currentUser.uid], total_exp: 0, created_by: auth.currentUser.uid
-                });
-                await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: newCircleId });
-                userCircleId = newCircleId;
-                alert(`Berhasil! Circle "${circleName}" aktif. Saldo terpotong 500 Koin.\nKode Invite: ${inviteCode}\nBagikan kode ini ke temanmu!`);
-                fetchCircleData(newCircleId);
-            } catch(e) { alert("Gagal: " + e.message); }
-        });
-
-        document.getElementById('btn-join-circle').addEventListener('click', async () => {
-            if(!auth.currentUser || auth.currentUser.isAnonymous) return alert("⚠️ Tautkan akun Google-mu dulu di tab Stats sebelum gabung Circle!");
-            const code = prompt("Masukkan Kode Invite (6 Huruf/Angka):");
-            if(!code) return;
-
-            try {
-                const q = query(collection(db, "circles"), where("invite_code", "==", code.toUpperCase()));
-                const querySnapshot = await getDocs(q);
-                
-                if(querySnapshot.empty) return alert("Waduh, Circle tidak ditemukan! Cek lagi kodenya.");
-                
-                let foundCircleId = null, circleData = null;
-                querySnapshot.forEach((doc) => { foundCircleId = doc.id; circleData = doc.data(); });
-                
-                if(circleData.members.length >= 10) return alert("Circle ini sudah penuh (Max 10)!");
-                if(circleData.members.includes(auth.currentUser.uid)) return alert("Kamu sudah gabung di sini!");
-                
-                await updateDoc(doc(db, "circles", foundCircleId), { members: arrayUnion(auth.currentUser.uid) });
-                await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: foundCircleId });
-                
-                userCircleId = foundCircleId;
-                alert(`Mantap! Berhasil gabung ke Circle "${circleData.name}"!`);
-                fetchCircleData(foundCircleId);
-            } catch(e) { alert("Gagal gabung: " + e.message); }
-        });
-
-        const btnEnableNotif = document.getElementById('btn-enable-notif');
-        async function requestNotificationPermission() {
-            try {
-                const permission = await Notification.requestPermission();
-                if (permission === 'granted') {
-                    const token = await getToken(messaging, { vapidKey: 'GANTI_DENGAN_VAPID_KEY_FIREBASE_KAMU' });
-                    if (token) {
-                        if(auth.currentUser && !auth.currentUser.isAnonymous) await updateDoc(doc(db, "users", auth.currentUser.uid), { fcmToken: token });
-                        btnEnableNotif.classList.add('hidden');
-                        alert("Alhamdulillah, Pengingat Ibadah diaktifkan!");
-                    }
-                } else alert("Akses notifikasi ditolak.");
-            } catch (error) {}
-        }
-        btnEnableNotif.addEventListener('click', requestNotificationPermission);
-        onMessage(messaging, (payload) => { alert(`Pesan Baru: ${payload.notification.title}\n${payload.notification.body}`); });
 
         btnLogin.addEventListener('click', async () => {
             const originalHTML = btnLogin.innerHTML;
-            btnLogin.disabled = true;
-            btnLogin.classList.add('opacity-50', 'cursor-not-allowed');
-            btnLogin.innerHTML = "⏳ Membuka Google...";
-
+            btnLogin.disabled = true; btnLogin.classList.add('opacity-50', 'cursor-not-allowed'); btnLogin.innerHTML = "⏳ Membuka Google...";
             try {
                 if (auth.currentUser && auth.currentUser.isAnonymous) {
                     await linkWithPopup(auth.currentUser, provider);
@@ -1596,17 +1130,11 @@
                     await signInWithPopup(auth, provider);
                 }
             } catch (e) { 
-                if (e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request') {
-                    console.log("Proses login dibatalkan oleh sistem/user.");
-                } else if (e.code === 'auth/credential-already-in-use') {
-                    alert("Akun Google ini sudah terdaftar. Pakai akun email lain ya bos.");
-                } else {
-                    alert("Gagal menghubungkan: " + e.message); 
-                }
+                if (e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request') console.log("Proses login dibatalkan.");
+                else if (e.code === 'auth/credential-already-in-use') alert("Akun Google ini sudah terdaftar. Pakai akun email lain ya bos.");
+                else alert("Gagal menghubungkan: " + e.message); 
             } finally {
-                btnLogin.disabled = false;
-                btnLogin.classList.remove('opacity-50', 'cursor-not-allowed');
-                btnLogin.innerHTML = originalHTML;
+                btnLogin.disabled = false; btnLogin.classList.remove('opacity-50', 'cursor-not-allowed'); btnLogin.innerHTML = originalHTML;
             }
         });
         
@@ -1616,15 +1144,9 @@
             if (user && !user.isAnonymous) {
                 btnLogin.classList.add('hidden'); btnLogout.classList.remove('hidden');
                 
-                if(user.uid === "UID_ADMIN_KAMU_DISINI") { btnAdminReset.classList.remove('hidden'); btnAdminReset.classList.add('block'); }
-                if(Notification.permission !== 'granted') btnEnableNotif.classList.remove('hidden');
-
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
                 const currentMonthStr = `${today.getMonth() + 1}-${today.getFullYear()}`;
-                
-                const gmt = document.getElementById('global-mission-title');
-                if(gmt) gmt.innerText = misiSaatIni.title;
                 
                 if (!docSnap.exists()) {
                     let defaultName = user.displayName || "User";
@@ -1636,6 +1158,7 @@
                         unlocked_items: JSON.parse(localStorage.getItem('unlockedItems') || '[]'),
                         statsRadar: window.statsRadar,
                         activityHistory: window.activityHistory,
+                        passedExams: window.passedExams,
                         circle_id: null,
                         last_reset_month: currentMonthStr 
                     }, { merge: true });
@@ -1660,21 +1183,21 @@
                         document.getElementById('avatar-initial').innerText = customName.charAt(0).toUpperCase();
                     }
                     
-                    totalExp = data.total_exp || parseInt(localStorage.getItem('totalExp') || 0);
-                    totalKoin = data.koin || parseInt(localStorage.getItem('totalKoin') || 0);
-                    localStorage.setItem('totalExp', totalExp);
-                    localStorage.setItem('totalKoin', totalKoin);
+                    window.totalExp = data.total_exp || parseInt(localStorage.getItem('totalExp') || 0);
+                    window.totalKoin = data.koin || parseInt(localStorage.getItem('totalKoin') || 0);
+                    localStorage.setItem('totalExp', window.totalExp);
+                    localStorage.setItem('totalKoin', window.totalKoin);
+                    document.getElementById('koin-display').innerText = window.totalKoin;
                     
-                    window.totalExp = totalExp; 
-                    window.totalKoin = totalKoin;
-                    
-                    const koinDisp = document.getElementById('koin-display');
-                    if(koinDisp) koinDisp.innerText = totalKoin;
-                    
+                    if(data.passedExams) {
+                        window.passedExams = data.passedExams;
+                        localStorage.setItem('passedExams', JSON.stringify(window.passedExams));
+                    }
+
                     if(data.statsRadar) {
                         window.statsRadar = data.statsRadar;
                         localStorage.setItem('statsRadar', JSON.stringify(data.statsRadar));
-                        if(typeof renderRadarChart === 'function') renderRadarChart();
+                        if(typeof renderRadarChart === 'function') setTimeout(renderRadarChart, 500); 
                     }
                     if(data.activityHistory) {
                         window.activityHistory = data.activityHistory;
@@ -1688,33 +1211,19 @@
                         if(typeof renderShop === 'function') renderShop();
                     }
                     
-                    updateStatsUI(); 
+                    if(typeof updateStatsUI === 'function') updateStatsUI(); 
                     
                     if(data.last_reset_month !== currentMonthStr) {
                         await updateDoc(userRef, { monthly_exp: 0, last_reset_month: currentMonthStr });
-                        alert("Bulan Baru! Peringkat Global direset untuk memberikan kesempatan yang sama buat semua player.");
-                    }
-
-                    if(data.circle_id) {
-                        userCircleId = data.circle_id;
-                        if(typeof fetchCircleData === 'function') fetchCircleData(userCircleId);
                     }
                 }
                 
                 document.getElementById('user-name').readOnly = true; 
                 if(typeof fetchLeaderboard === 'function') fetchLeaderboard(); 
-                if(typeof fetchGlobalProgress === 'function') fetchGlobalProgress();
             } else {
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
-                btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
                 document.getElementById('user-name').readOnly = false;
-                userCircleId = null;
-                if(typeof fetchCircleData === 'function') fetchCircleData(null);
-                
-                const gmt = document.getElementById('global-mission-title');
-                if(gmt) gmt.innerText = misiSaatIni.title;
                 if(typeof fetchLeaderboard === 'function') fetchLeaderboard(); 
-                if(typeof fetchGlobalProgress === 'function') fetchGlobalProgress();
             }
         });
     </script>
