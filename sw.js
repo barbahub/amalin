@@ -1,5 +1,5 @@
 // GANTI ANGKA VERSI INI SETIAP KALI ANDA MENGUBAH INDEX.HTML
-const CACHE_NAME = 'amalpad-skena-v1.25'; 
+const CACHE_NAME = 'amalpad-skena-v1.26'; 
 
 const urlsToCache = [
     './',
@@ -48,6 +48,7 @@ self.addEventListener('fetch', event => {
         })
     );
 });
+
 
 
 
