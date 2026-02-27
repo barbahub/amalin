@@ -70,7 +70,7 @@
                                 <div class="absolute inset-0 bg-white/20 w-full animate-[pulse_2s_ease-in-out_infinite]"></div>
                             </div>
                         </div>
-                        <p class="text-[10px] text-emerald-200 mt-2 font-medium text-center">Data Tersinkronisasi ✅</p>
+                        <p class="text-[10px] text-emerald-200 mt-2 font-medium text-center" id="sync-status">Data Tersinkronisasi ✅</p>
                     </div>
                 </div>
 
@@ -136,10 +136,13 @@
                             </div>
                         </div>
 
-                        <div class="bg-blue-900/40 rounded-xl p-3 border border-blue-400/30">
-                            <h4 class="text-xs font-black text-white uppercase tracking-wider mb-2 flex items-center gap-1">⚔️ Misi Gotong Royong</h4>
-                            <div id="circle-quests-container" class="space-y-2">
-                                </div>
+                        <div class="bg-blue-900/40 rounded-xl border border-blue-400/30 overflow-hidden mb-4">
+                            <button id="btn-toggle-coop" class="w-full flex justify-between items-center p-3 text-xs font-black text-white uppercase tracking-wider transition hover:bg-blue-800/50 outline-none">
+                                <span class="flex items-center gap-1">⚔️ Misi Gotong Royong</span>
+                                <span id="icon-toggle-coop" class="transform transition-transform duration-300">▼</span>
+                            </button>
+                            <div id="circle-quests-container" class="hidden px-3 pb-3 space-y-2">
+                            </div>
                         </div>
 
                         <div id="circle-members-modal" class="hidden mt-3 bg-white/10 rounded-xl p-3 backdrop-blur-md border border-white/20 h-32 overflow-y-auto">
@@ -153,7 +156,7 @@
 
                 <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-5 shadow-lg text-white mb-6 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-8xl opacity-10">👑</div>
-                    <div class="flex justify-between items-end mb-4 relative z-10">
+                    <div class="flex justify-between items-end mb-3 relative z-10">
                         <h2 class="text-lg font-extrabold tracking-wide flex items-center gap-2">
                             <span>🏆</span> Top Rank Global
                         </h2>
@@ -162,7 +165,12 @@
                         </button>
                     </div>
                     
-                    <div class="space-y-3 relative z-10" id="leaderboard-container">
+                    <div class="flex bg-black/20 rounded-xl p-1 mb-4 relative z-10">
+                        <button id="tab-lb-individu" class="flex-1 text-xs font-bold py-1.5 rounded-lg bg-white/20 text-white shadow-sm transition">Individu</button>
+                        <button id="tab-lb-circle" class="flex-1 text-xs font-bold py-1.5 rounded-lg text-indigo-200 hover:text-white hover:bg-white/10 transition">Circle</button>
+                    </div>
+                    
+                    <div class="space-y-3 relative z-10 min-h-[150px]" id="leaderboard-container">
                         <div class="text-center text-xs py-4 text-indigo-200 font-bold animate-pulse">Menyiapkan daftar jawara...</div>
                     </div>
                 </div>
@@ -292,31 +300,8 @@
                 </div>
 
                 <h2 class="text-sm font-bold mb-3 text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rak Trofi Badge</h2>
-                <div class="flex gap-3 overflow-x-auto pb-4 mb-6">
-                    <div id="badge-tarawih" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
-                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">🕌</div>
-                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Si Paling Tarawih</p>
-                    </div>
-                    <div id="badge-sedekah" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
-                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">🎁</div>
-                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Sultan Sedekah</p>
-                    </div>
-                    <div id="badge-tadarus" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
-                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">📖</div>
-                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">KhatamSkuy</p>
-                    </div>
-                    <div id="badge-tahajud" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
-                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">🌌</div>
-                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Ahli Tahajud</p>
-                    </div>
-                    <div id="badge-tasbih" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
-                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">📿</div>
-                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Master Dzikir</p>
-                    </div>
-                    <div id="badge-habit" class="opacity-40 grayscale text-center min-w-[85px] transition-all duration-500">
-                        <div class="text-3xl bg-white dark:bg-gray-800 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-sm border border-gray-100 dark:border-gray-700">🔥</div>
-                        <p class="text-[10px] font-bold text-gray-600 dark:text-gray-300">Habit Builder</p>
-                    </div>
+                <div class="flex gap-3 overflow-x-auto pb-4 mb-6 snap-x" id="badge-rack-container">
+                    <div class="text-xs text-gray-400 animate-pulse w-full text-center">Memuat Rak Trofi...</div>
                 </div>
 
                 <div class="flex gap-3 mb-6 border-b border-dashed border-gray-200 dark:border-gray-700 pb-6">
@@ -1307,8 +1292,12 @@
                     
                     window.totalExp += finalExp; window.totalKoin += finalExp; 
                     
-                    if(window.statsRadar[questType] !== undefined) window.statsRadar[questType] += 5; 
+                    // Batasi stat maksimal di 100 agar UI radar chart tidak off-scale
+                    if(window.statsRadar[questType] !== undefined) {
+                        window.statsRadar[questType] = Math.min(100, window.statsRadar[questType] + 5); 
+                    }
                     localStorage.setItem('statsRadar', JSON.stringify(window.statsRadar));
+
                     if(window.radarChartInstance) window.renderCharts();
                     window.logActivityForHeatmap(); 
                     window.pushToLiveFeed(nameInput.value || "Kamu", questTitle, finalExp);
@@ -1506,15 +1495,53 @@
         }
         updateTasbihUI();
 
+        const badgeData = [
+            { id: 'bdg_pusat', icon: '🕋', name: 'Wali Pusat', type: 'pusat', reqStat: 50, reqExam: 10, desc: 'Pancaran ibadah wajib yang tiada tara.' },
+            { id: 'bdg_aura', icon: '✨', name: 'Aura Memikat', type: 'aura', reqStat: 50, reqExam: 10, desc: 'Karisma dan adab yang menyejukkan hati.' },
+            { id: 'bdg_peka', icon: '👼', name: 'Malaikat Peka', type: 'peka', reqStat: 50, reqExam: 20, desc: 'Punya empati tinggi, pendengar curhat terbaik.' },
+            { id: 'bdg_sigma', icon: '🗿', name: 'Sigma Sejati', type: 'sigma', reqStat: 50, reqExam: 20, desc: 'Mandiri, disiplin, tangguh, dan selalu on-time.' },
+            { id: 'bdg_derma', icon: '🎁', name: 'Sultan Sedekah', type: 'derma', reqStat: 50, reqExam: 30, desc: 'Dermawan sejati yang tangannya selalu di atas.' },
+            { id: 'bdg_stoic', icon: '🧊', name: 'Master Stoic', type: 'stoic', reqStat: 50, reqExam: 30, desc: 'Ketenangan batin bagai air, pantang tersulut emosi.' },
+            { id: 'bdg_habit', icon: '🔥', name: 'Habit Builder', type: 'streak', reqStat: 7, reqExam: 10, desc: 'Menjaga konsistensi adalah kunci segalanya.' }
+        ];
+
         window.updateBadges = function() {
-            if(window.statsRadar.pusat >= 50) document.getElementById('badge-tarawih').classList.remove('opacity-40', 'grayscale');
-            if(window.statsRadar.derma >= 50) document.getElementById('badge-sedekah').classList.remove('opacity-40', 'grayscale');
-            if(window.statsRadar.pusat >= 100) document.getElementById('badge-tadarus').classList.remove('opacity-40', 'grayscale');
-            if(window.statsRadar.stoic >= 50) document.getElementById('badge-tahajud').classList.remove('opacity-40', 'grayscale');
+            const container = document.getElementById('badge-rack-container');
+            if(!container) return;
+            let html = '';
             
-            let totalDzikir = parseInt(localStorage.getItem('tasbih_subhanallah')||0) + parseInt(localStorage.getItem('tasbih_alhamdulillah')||0) + parseInt(localStorage.getItem('tasbih_allahuakbar')||0);
-            if(totalDzikir >= 100) document.getElementById('badge-tasbih').classList.remove('opacity-40', 'grayscale');
-            if(parseInt(localStorage.getItem('streak')||0) >= 7) document.getElementById('badge-habit').classList.remove('opacity-40', 'grayscale');
+            let userStreak = parseInt(localStorage.getItem('streak') || 0);
+
+            badgeData.forEach(b => {
+                let currentVal = b.type === 'streak' ? userStreak : (window.statsRadar[b.type] || 0);
+                
+                // Syarat 1: Cek Poin & Syarat 2: Cek Ujian
+                let isStatMet = currentVal >= b.reqStat;
+                let isExamMet = localStorage.getItem(`exam_passed_${b.reqExam}`) === 'true';
+                let isUnlocked = isStatMet && isExamMet;
+
+                let stateClass = isUnlocked 
+                    ? "bg-white dark:bg-gray-800 border-emerald-400 shadow-emerald-500/20 shadow-md transform hover:-translate-y-1" 
+                    : "bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-60 grayscale";
+                
+                let iconClass = isUnlocked ? "text-emerald-500 drop-shadow-md" : "text-gray-400";
+                let titleColor = isUnlocked ? "text-gray-800 dark:text-gray-100" : "text-gray-500 dark:text-gray-400";
+                
+                // Konten Pop-up Dinamis
+                let infoContent = `<span class='text-sm text-emerald-600 block mb-2'>${b.desc}</span><b>Syarat Mendapatkan Trofi:</b><br><br>`;
+                infoContent += `<div class='text-left ml-2'>`;
+                infoContent += `${isStatMet ? '✅' : '❌'} Poin <b>${b.type.toUpperCase()}</b> capai ${b.reqStat} <span class='text-[10px] text-gray-500'>(Skormu: ${currentVal})</span><br>`;
+                infoContent += `${isExamMet ? '✅' : '❌'} Lulus <b>Ujian Rank Lv.${b.reqExam}</b>`;
+                infoContent += `</div>`;
+
+                html += `
+                <div onclick="openInfoModal('${isUnlocked ? '🎉 ' : '🔒 '}${b.name}', \`${infoContent}\`)" class="snap-center cursor-pointer flex-shrink-0 w-[95px] rounded-2xl p-3 border-2 text-center transition-all duration-300 ${stateClass}">
+                    <div class="text-3xl mb-2 flex items-center justify-center h-10 ${iconClass}">${isUnlocked ? b.icon : '🔒'}</div>
+                    <p class="text-[10px] font-extrabold uppercase tracking-wide leading-tight ${titleColor}">${b.name}</p>
+                </div>
+                `;
+            });
+            container.innerHTML = html;
         }
         setTimeout(window.updateBadges, 500);
 
@@ -1544,6 +1571,48 @@
             });
         }
         window.renderShop();
+
+        // --- LOGIKA UI/UX DROPDOWN MISI GOTONG ROYONG ---
+        const btnToggleCoop = document.getElementById('btn-toggle-coop');
+        const containerCoop = document.getElementById('circle-quests-container');
+        const iconCoop = document.getElementById('icon-toggle-coop');
+        
+        if(btnToggleCoop && containerCoop) {
+            btnToggleCoop.addEventListener('click', () => {
+                containerCoop.classList.toggle('hidden');
+                iconCoop.style.transform = containerCoop.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        }
+
+        // --- LOGIKA UI/UX TABS LEADERBOARD ---
+        let currentLbTab = 'individu'; 
+        const tabLbIndividu = document.getElementById('tab-lb-individu');
+        const tabLbCircle = document.getElementById('tab-lb-circle');
+        const lbContainer = document.getElementById('leaderboard-container');
+
+        if(tabLbIndividu && tabLbCircle) {
+            tabLbIndividu.addEventListener('click', () => {
+                currentLbTab = 'individu';
+                tabLbIndividu.className = "flex-1 text-xs font-bold py-1.5 rounded-lg bg-white/20 text-white shadow-sm transition";
+                tabLbCircle.className = "flex-1 text-xs font-bold py-1.5 rounded-lg text-indigo-200 hover:text-white hover:bg-white/10 transition";
+                window.fetchLeaderboard();
+            });
+
+            tabLbCircle.addEventListener('click', () => {
+                currentLbTab = 'circle';
+                tabLbCircle.className = "flex-1 text-xs font-bold py-1.5 rounded-lg bg-white/20 text-white shadow-sm transition";
+                tabLbIndividu.className = "flex-1 text-xs font-bold py-1.5 rounded-lg text-indigo-200 hover:text-white hover:bg-white/10 transition";
+                window.fetchLeaderboard();
+            });
+        }
+
+        // Jika Tombol 'Lihat Top Global Circle' di tab Circle di klik
+        document.getElementById('btn-rank-circle').addEventListener('click', () => {
+            if(tabLbCircle) {
+                tabLbCircle.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Auto scroll ke bawah
+                if(currentLbTab !== 'circle') tabLbCircle.click(); // Otomatis pindah ke Tab Circle
+            }
+        });
     </script>
 
     <script type="module">
@@ -1597,42 +1666,74 @@
             } catch (e) { console.warn("Sync Tertunda"); }
         };
 
+        // --- FUNGSI FETCH LEADERBOARD BARU (BISA SWITCH INDIVIDU & CIRCLE) ---
         window.fetchLeaderboard = async function() {
-            const leaderboardContainer = document.getElementById('leaderboard-container');
+            const lbContainer = document.getElementById('leaderboard-container');
+            if(!lbContainer) return;
             if(!auth.currentUser || auth.currentUser.isAnonymous) {
-                leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Tautkan akun Google di tab Profil untuk melihat Peringkat!</div>';
+                lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Tautkan akun Google di tab Profil untuk melihat Peringkat!</div>';
                 return;
             }
-            leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Menarik data dari langit... 📡</div>';
+            
+            lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Menarik data dari langit... 📡</div>';
+            
             try {
-                const qLeaderboard = query(collection(db, "users"), orderBy("monthly_exp", "desc"), limit(10));
-                const snapshot = await getDocs(qLeaderboard);
-                leaderboardContainer.innerHTML = ''; let rank = 1;
-                snapshot.forEach((docSnap) => {
-                    const userL = docSnap.data();
-                    if(userL.monthly_exp > 0) {
-                        let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-gray-400';
+                if (typeof currentLbTab === 'undefined' || currentLbTab === 'individu') {
+                    const qLeaderboard = query(collection(db, "users"), orderBy("monthly_exp", "desc"), limit(10));
+                    const snapshot = await getDocs(qLeaderboard);
+                    lbContainer.innerHTML = ''; let rank = 1;
+                    
+                    snapshot.forEach((docSnap) => {
+                        const userL = docSnap.data();
+                        if(userL.monthly_exp > 0) {
+                            let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-gray-400';
+                            const el = document.createElement('div');
+                            el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
+                            
+                            let photoHTML = userL.photo 
+                                ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` 
+                                : userL.name.charAt(0).toUpperCase();
+                            
+                            el.innerHTML = `
+                                <div class="flex items-center gap-3 cursor-pointer" onclick="window.showUserPopup('${userL.name}', 'Top Global Ranker', '${userL.name.charAt(0).toUpperCase()}', ${userL.monthly_exp})">
+                                    <span class="font-black text-lg w-5 text-center">${rank}</span>
+                                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${photoHTML}</div>
+                                    <span class="font-bold text-sm text-white truncate max-w-[120px] hover:text-yellow-300 transition">${userL.name}</span>
+                                </div>
+                                <span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
+                            lbContainer.appendChild(el); rank++;
+                        }
+                    });
+                    if(rank === 1) lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif bulan ini. Curi start sekarang!</div>';
+                
+                } else {
+                    // TAB CIRCLE TERPILIH
+                    const qCircleRank = query(collection(db, "circles"), orderBy("total_exp", "desc"), limit(10));
+                    const snapshot = await getDocs(qCircleRank);
+                    lbContainer.innerHTML = ''; let rank = 1;
+                    
+                    snapshot.forEach((docSnap) => {
+                        const cData = docSnap.data();
+                        let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-blue-200';
                         const el = document.createElement('div');
-                        el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
-                        
-                        let photoHTML = userL.photo 
-                            ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` 
-                            : userL.name.charAt(0).toUpperCase();
-                        
+                        el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm cursor-pointer hover:scale-[1.02] transition-transform ${colorClasses}`;
                         el.innerHTML = `
-                            <div class="flex items-center gap-3 cursor-pointer" onclick="window.showUserPopup('${userL.name}', 'Top Global Ranker', '${userL.name.charAt(0).toUpperCase()}', ${userL.monthly_exp})">
+                            <div class="flex items-center gap-3" onclick="window.showCirclePopup('${cData.name}', ${cData.total_exp})">
                                 <span class="font-black text-lg w-5 text-center">${rank}</span>
-                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${photoHTML}</div>
-                                <span class="font-bold text-sm text-white truncate max-w-[120px] hover:text-yellow-300 transition">${userL.name}</span>
+                                <div class="w-8 h-8 rounded-2xl bg-white/20 flex items-center justify-center font-bold text-lg overflow-hidden shadow-inner">${cData.logo ? `<img src="${cData.logo}" class="w-full h-full object-cover">` : '🛡️'}</div>
+                                <span class="font-bold text-sm truncate max-w-[120px] hover:text-white transition">${cData.name}</span>
                             </div>
-                            <span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
-                        leaderboardContainer.appendChild(el);
-                        rank++;
-                    }
-                });
-                if(rank === 1) leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif bulan ini. Curi start sekarang!</div>';
-            } catch (e) { leaderboardContainer.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat. Cek koneksi internetmu.</div>'; }
+                            <span class="text-[10px] font-black bg-black/30 px-2 py-1 rounded-lg">${cData.total_exp} EXP</span>`;
+                        lbContainer.appendChild(el); rank++;
+                    });
+                    if(rank === 1) lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada circle yang terbentuk. Buat yang pertama!</div>';
+                }
+            } catch (e) { 
+                lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat. Cek koneksi internetmu.</div>'; 
+            }
         };
+
+        // Attach listener dari button UI sebelumnya ke fungsi yg baru ditarik
         document.getElementById('btn-refresh-leaderboard').addEventListener('click', window.fetchLeaderboard);
 
         let syncTimeout = null; let pendingExpSync = 0;
@@ -1901,30 +2002,6 @@
             } catch(e) { alert("Gagal gabung: " + e.message); }
         });
 
-        document.getElementById('btn-rank-circle').addEventListener('click', async () => {
-            const container = document.getElementById('leaderboard-container');
-            container.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200 animate-pulse">Memuat Top Circle... 📡</div>';
-            try {
-                const qCircleRank = query(collection(db, "circles"), orderBy("total_exp", "desc"), limit(5));
-                const snapshot = await getDocs(qCircleRank);
-                container.innerHTML = '<p class="text-[10px] font-bold text-center text-indigo-300 mb-2 uppercase">🛡️ TOP 5 CIRCLE GLOBAL 🛡️</p>'; 
-                let rank = 1;
-                snapshot.forEach((docSnap) => {
-                    const cData = docSnap.data();
-                    let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : 'border-white/10 bg-white/5 text-blue-200';
-                    const el = document.createElement('div');
-                    el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm cursor-pointer hover:scale-[1.02] transition-transform ${colorClasses}`;
-                    el.innerHTML = `
-                        <div class="flex items-center gap-2" onclick="window.showCirclePopup('${cData.name}', ${cData.total_exp})">
-                            <span class="font-black text-lg w-4 text-center">${rank}</span>
-                            <span class="font-bold text-sm truncate max-w-[120px] hover:text-white transition">${cData.name}</span>
-                        </div>
-                        <span class="text-[10px] font-black bg-black/30 px-2 py-1 rounded-lg">${cData.total_exp} EXP</span>`;
-                    container.appendChild(el); rank++;
-                });
-            } catch (e) { container.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat rank circle.</div>'; }
-        });
-
         // Notifications
         const btnEnableNotif = document.getElementById('btn-enable-notif');
         async function requestNotificationPermission() {
@@ -2003,13 +2080,27 @@
                     if(koinDisp) koinDisp.innerText = window.totalKoin;
                     if(typeof updateStatsUI === 'function') updateStatsUI();
                     
+                    // FIX BUG: Cegah data ditimpa 0 oleh database kosong saat login
                     if(data.statsRadar) {
-                        window.statsRadar = data.statsRadar; localStorage.setItem('statsRadar', JSON.stringify(data.statsRadar));
+                        let localTotal = Object.values(window.statsRadar).reduce((a, b) => a + b, 0);
+                        let cloudTotal = Object.values(data.statsRadar).reduce((a, b) => a + b, 0);
+                        
+                        // Jika poin di cloud lebih tinggi, pakai data cloud. Jika lokal lebih tinggi (habis farming as guest), push lokal ke cloud!
+                        if(cloudTotal >= localTotal) {
+                            window.statsRadar = data.statsRadar; 
+                            localStorage.setItem('statsRadar', JSON.stringify(data.statsRadar));
+                        } else {
+                            window.syncStatsToFirebase(); // Paksa cloud ngikutin progres HP kamu
+                        }
                         if(window.renderCharts) window.renderCharts();
+                        if(window.updateBadges) window.updateBadges();
                     }
                     
                     if(data.activityHistory) {
-                        window.activityHistory = data.activityHistory; localStorage.setItem('activityHistory', JSON.stringify(data.activityHistory));
+                        if(data.activityHistory.length >= window.activityHistory.length) {
+                            window.activityHistory = data.activityHistory; 
+                            localStorage.setItem('activityHistory', JSON.stringify(data.activityHistory));
+                        }
                         if(window.updateHeatmap) window.updateHeatmap();
                     }
 
@@ -2027,6 +2118,10 @@
                 btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
                 nameInputFire.readOnly = false; window.userCircleId = null; window.fetchCircleData(null);
                 
+                // Refresh UI untuk state guest
+                if(window.renderCharts) window.renderCharts();
+                if(window.updateBadges) window.updateBadges();
+
                 const gmt = document.getElementById('global-mission-title');
                 if(gmt) gmt.innerText = misiSaatIni.title;
                 window.fetchLeaderboard(); window.fetchGlobalProgress();
