@@ -16,7 +16,7 @@ if(btnShare) {
         btnShare.disabled = true;
  
         try {
-            // Ambil info dari window yang sudah di-set di player.js
+            // Ambil info level
             let info = window.calculateLevelInfo ? window.calculateLevelInfo(window.totalExp) : {level: 1};
             let overall = Math.min(99, Math.floor(info.level * 1.8) + 10); 
             
@@ -26,7 +26,8 @@ if(btnShare) {
 
             const userNameEl = document.getElementById('user-name');
             const cardName = document.getElementById('card-name');
-            if(cardName) cardName.innerText = userNameEl ? (userNameEl.value || 'PLAYER') : 'PLAYER';
+            let playerName = userNameEl ? (userNameEl.value || 'PLAYER') : 'PLAYER';
+            if(cardName) cardName.innerText = playerName;
             
             const cardTitle = document.getElementById('card-title');
             if(cardTitle) cardTitle.innerText = window.getTitle ? window.getTitle(info.level) : "NPC Duniawi";
@@ -34,35 +35,45 @@ if(btnShare) {
             const cardExp = document.getElementById('card-exp');
             if(cardExp) cardExp.innerText = (window.totalExp || 0).toLocaleString('id-ID');
  
-            // 1.5 Set Info Circle Dinamis
+            // 1.5 Set Info Circle Dinamis (DENGAN AUTO-GENERATE LOGO)
             const circleNameDisp = document.getElementById('circle-name-display');
             const circleLogoDisp = document.getElementById('circle-logo-display');
+            
             if(window.userCircleId && circleNameDisp && circleNameDisp.innerText !== 'Memuat...') {
-                document.getElementById('card-circle-name').innerText = circleNameDisp.innerText;
+                let circleName = circleNameDisp.innerText;
+                document.getElementById('card-circle-name').innerText = circleName;
+                
+                // Jika punya logo asli dari URL Firebase
                 if(circleLogoDisp.querySelector('img')) {
-                    document.getElementById('card-circle-logo').innerHTML = `<img src="${circleLogoDisp.querySelector('img').src}" crossorigin="anonymous" class="w-full h-full object-cover rounded-lg">`;
+                    let imgSrc = circleLogoDisp.querySelector('img').src;
+                    document.getElementById('card-circle-logo').innerHTML = `<img src="${imgSrc}" crossorigin="anonymous" class="w-full h-full object-cover rounded-lg">`;
                 } else {
-                    document.getElementById('card-circle-logo').innerText = circleLogoDisp.innerText || "🛡️";
+                    // JIKA TIDAK PUNYA LOGO: Generate otomatis logo robot keren berdasarkan Nama Circle!
+                    let seed = encodeURIComponent(circleName);
+                    let autoLogoUrl = `https://api.dicebear.com/7.x/bottts/svg?seed=${seed}&backgroundColor=064e3b`;
+                    document.getElementById('card-circle-logo').innerHTML = `<img src="${autoLogoUrl}" crossorigin="anonymous" class="w-full h-full object-cover rounded-lg">`;
                 }
             } else {
-                const cardCircleName = document.getElementById('card-circle-name');
-                const cardCircleLogo = document.getElementById('card-circle-logo');
-                if(cardCircleName) cardCircleName.innerText = "Solo Player";
-                if(cardCircleLogo) cardCircleLogo.innerText = "👤";
+                document.getElementById('card-circle-name').innerText = "Solo Player";
+                document.getElementById('card-circle-logo').innerHTML = `<span class="text-2xl drop-shadow-md">👤</span>`;
             }
  
-            // 2. Set Foto Profil
+            // 2. Set Foto Profil (DENGAN AUTO-GENERATE AVATAR)
             const avatarSrcEl = document.getElementById('avatar-initial');
             const cardAvatarDest = document.getElementById('card-avatar');
             if(avatarSrcEl && cardAvatarDest) {
+                // Jika sudah konek Google dan punya Foto Profil
                 if(avatarSrcEl.querySelector('img')) {
                     cardAvatarDest.innerHTML = `<img src="${avatarSrcEl.querySelector('img').src}" crossorigin="anonymous" class="w-full h-full object-cover">`;
                 } else { 
-                    cardAvatarDest.innerHTML = avatarSrcEl.innerHTML; 
+                    // JIKA TIDAK PUNYA FOTO: Generate avatar karakter otomatis berdasarkan Nama Player!
+                    let seedPlayer = encodeURIComponent(playerName);
+                    let autoAvatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seedPlayer}&backgroundColor=10b981`;
+                    cardAvatarDest.innerHTML = `<img src="${autoAvatarUrl}" crossorigin="anonymous" class="w-full h-full object-cover">`; 
                 }
             }
  
-            // 3. Set 6 Atribut (Formula: Stat/2 + 20)
+            // 3. Set 6 Atribut
             const getStat = (val) => Math.min(99, Math.floor((val || 0) / 2) + 20);
             const radar = window.statsRadar || {};
             let stPusat = getStat(radar.pusat);
@@ -108,7 +119,7 @@ if(btnShare) {
                 } catch(e) { console.warn("Rank fetch failed", e); }
             }
  
-            // 6. Buka Pop-Up Animasi Confetti (TIDAK LAGI DOWNLOAD html2canvas)
+            // 6. Buka Pop-Up
             setTimeout(() => {
                 if(cardPreviewModal) {
                     cardPreviewModal.classList.remove('hidden');
