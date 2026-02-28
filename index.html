@@ -359,58 +359,71 @@
             </button>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[640px] bg-gradient-to-b from-indigo-950 via-purple-950 to-black rounded-[2rem] border-[6px] border-yellow-500 shadow-2xl overflow-hidden font-serif flex flex-col text-white">
-            <div class="absolute top-[30%] left-[-10%] w-[300px] h-[300px] bg-fuchsia-600/30 rounded-full blur-3xl z-0"></div>
-            <div class="absolute bottom-[10%] right-[-10%] w-[250px] h-[250px] bg-indigo-600/30 rounded-full blur-3xl z-0"></div>
- 
-            <div class="relative w-full h-[290px] bg-indigo-900 border-b-4 border-yellow-500 flex items-center justify-center overflow-hidden z-10">
-                <div id="card-avatar" class="w-full h-full flex items-center justify-center text-[100px] font-black text-yellow-100">
-                    </div>
-                
-                <div id="card-rank-banner" class="hidden absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-[11px] font-black tracking-widest px-3 py-1.5 rounded shadow-lg uppercase">
+        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[720px] bg-gradient-to-br from-emerald-950 via-green-900 to-teal-950 rounded-3xl border-4 border-emerald-500/30 shadow-2xl overflow-hidden flex flex-col text-white font-sans">
+            <!-- Glowing Orbs for background depth -->
+            <div class="absolute top-[-10%] left-[-10%] w-[300px] h-[300px] bg-emerald-500/20 rounded-full blur-3xl z-0"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] bg-teal-500/20 rounded-full blur-3xl z-0"></div>
+            
+            <!-- Top branding & Rank -->
+            <div class="relative z-10 flex justify-between items-center p-6 pb-2">
+                <div class="text-xl font-black italic tracking-wider text-emerald-100/50">AmalPad.</div>
+                <div id="card-rank-banner" class="hidden bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-[10px] font-black tracking-widest px-3 py-1 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)] uppercase">
                     GLOBAL RANK 1
                 </div>
- 
-                <div class="absolute bottom-[-15px] left-6 flex flex-col items-center">
-                    <div class="bg-black/90 border-4 border-yellow-400 rounded-2xl p-2 px-5 shadow-[0_0_20px_rgba(234,179,8,0.5)] backdrop-blur-md">
-                        <span class="text-[10px] text-yellow-300 font-bold tracking-widest uppercase block text-center mb-[-5px]">OVR</span>
-                        <span id="card-ovr" class="text-[55px] leading-none font-black text-yellow-400 drop-shadow-md">99</span>
+            </div>
+
+            <!-- Avatar & OVR -->
+            <div class="relative z-10 flex flex-col items-center mt-4">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-yellow-400 to-yellow-200 rounded-full blur-md opacity-50"></div>
+                    <div id="card-avatar" class="w-32 h-32 bg-emerald-800 rounded-full border-4 border-yellow-400 flex items-center justify-center text-5xl font-black text-yellow-100 relative z-10 overflow-hidden shadow-xl">
+                        A
+                    </div>
+                    <!-- OVR Badge -->
+                    <div class="absolute -bottom-3 -right-2 bg-black/80 border-2 border-yellow-400 rounded-xl px-3 py-1 flex flex-col items-center justify-center shadow-lg z-20 backdrop-blur-sm">
+                        <span class="text-[8px] text-yellow-300 font-bold tracking-widest uppercase leading-none">OVR</span>
+                        <span id="card-ovr" class="text-2xl font-black text-yellow-400 leading-none mt-0.5">99</span>
                     </div>
                 </div>
-            </div>
- 
-            <div class="relative z-10 px-8 pt-8 pb-2 flex-1 flex flex-col items-center text-center">
                 
-                <h2 id="card-name" class="text-[34px] leading-none font-black text-yellow-400 uppercase tracking-widest drop-shadow-[0_3px_5px_rgba(0,0,0,0.9)] truncate w-full">PLAYER</h2>
-                <p id="card-title" class="text-[11px] font-bold text-gray-300 mt-2 uppercase tracking-widest drop-shadow-md bg-white/10 px-4 py-1 rounded-full border border-white/20">GELAR DISINI</p>
- 
-                <div class="flex items-center gap-3 mt-4 bg-black/50 px-4 py-2 rounded-xl border border-yellow-500/30 w-full justify-center shadow-inner">
-                    <div id="card-circle-logo" class="text-2xl flex items-center justify-center">🛡️</div>
-                    <span id="card-circle-name" class="text-sm font-bold text-yellow-200 tracking-widest truncate max-w-[200px] uppercase">Solo Player</span>
-                </div>
- 
-                <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent mt-4 mb-2"></div>
- 
-                <div class="flex items-center justify-between w-full mt-2">
-                    
-                    <div class="flex flex-col items-center justify-center bg-black/60 border border-yellow-500/40 rounded-2xl p-2 w-[100px] h-[100px] shadow-lg">
-                        <div id="card-dom-icon" class="text-[55px] leading-none drop-shadow-lg mb-1">✨</div>
-                        <div id="card-dom-text" class="text-[11px] font-black text-yellow-400 tracking-widest uppercase drop-shadow-md">AURA</div>
-                    </div>
- 
-                    <div class="grid grid-cols-2 gap-x-5 gap-y-2 flex-1 pl-6">
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">PST</span> <span id="stat-pusat" class="text-lg font-black text-yellow-400">99</span></div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">SGM</span> <span id="stat-sigma" class="text-lg font-black text-yellow-400">99</span></div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">AUR</span> <span id="stat-aura" class="text-lg font-black text-yellow-400">99</span></div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">DRM</span> <span id="stat-derma" class="text-lg font-black text-yellow-400">99</span></div>
-                        <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-gray-400 tracking-widest">PKA</span> <span id="stat-peka" class="text-lg font-black text-yellow-400">99</span></div>
-                        <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-gray-400 tracking-widest">STC</span> <span id="stat-stoic" class="text-lg font-black text-yellow-400">99</span></div>
-                    </div>
+                <h2 id="card-name" class="text-[28px] font-black text-white uppercase tracking-wider drop-shadow-md mt-6 truncate w-[90%] text-center">PLAYER</h2>
+                <p id="card-title" class="text-xs font-bold text-emerald-200 mt-1 uppercase tracking-widest bg-emerald-800/50 px-4 py-1 rounded-full border border-emerald-500/30">Fase Nyasar</p>
+            </div>
+
+            <!-- Circle Info -->
+            <div class="relative z-10 mt-6 px-8 flex justify-center">
+                <div class="flex items-center gap-3 bg-black/40 px-5 py-2.5 rounded-2xl border border-emerald-500/20 shadow-inner w-full max-w-[300px] justify-center backdrop-blur-sm">
+                    <div id="card-circle-logo" class="text-xl flex items-center justify-center">🛡️</div>
+                    <span id="card-circle-name" class="text-xs font-bold text-emerald-100 tracking-widest truncate uppercase">Solo Player</span>
                 </div>
             </div>
- 
-            <div class="bg-gradient-to-r from-yellow-700 via-yellow-500 to-yellow-700 py-3.5 text-center text-black font-black tracking-widest text-[12px] shadow-[0_-5px_15px_rgba(0,0,0,0.5)] z-10">
-                EXP TERAKUMULASI: <span id="card-exp">125,750</span>
+
+            <!-- Divider -->
+            <div class="relative z-10 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent mx-auto mt-6 mb-4"></div>
+
+            <!-- Stats Section -->
+            <div class="relative z-10 flex px-8 gap-4 items-center justify-between mb-6">
+                <!-- Dominant Aura -->
+                <div class="flex flex-col items-center justify-center bg-gradient-to-b from-emerald-800/80 to-black/60 border border-emerald-500/40 rounded-2xl p-3 w-[100px] h-[100px] shadow-lg shrink-0">
+                    <div id="card-dom-icon" class="text-[40px] leading-none drop-shadow-lg mb-2">✨</div>
+                    <div id="card-dom-text" class="text-[10px] font-black text-emerald-300 tracking-widest uppercase drop-shadow-md">AURA</div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 gap-x-6 gap-y-3 flex-1 pl-2">
+                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">PST</span> <span id="stat-pusat" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">SGM</span> <span id="stat-sigma" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">AUR</span> <span id="stat-aura" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">DRM</span> <span id="stat-derma" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                    <div class="flex justify-between items-end"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">PKA</span> <span id="stat-peka" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                    <div class="flex justify-between items-end"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">STC</span> <span id="stat-stoic" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-auto bg-black/60 backdrop-blur-md border-t border-emerald-500/30 py-4 flex justify-between items-center px-8 z-10">
+                <div class="text-[10px] text-emerald-300/80 font-medium">TOTAL EXP</div>
+                <div id="card-exp" class="text-lg font-black text-yellow-400 tracking-wider">125,750</div>
             </div>
         </div>
 
@@ -461,31 +474,37 @@
         </div>
 
         <div id="circle-popup-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity" onclick="window.closeCirclePopup(event)">
-            <div id="circle-popup-content" class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-3xl p-1 w-full max-w-[320px] shadow-2xl border border-blue-400/30 relative overflow-hidden transform scale-95 transition-transform" onclick="event.stopPropagation()">
-                <div class="bg-white/10 backdrop-blur-md rounded-[1.3rem] p-6 text-center relative">
-                    <div class="absolute top-0 right-0 text-7xl opacity-5">🛡️</div>
+            <div id="circle-popup-content" class="bg-gradient-to-b from-blue-900 via-indigo-900 to-gray-900 rounded-[2rem] border-[4px] border-blue-500/30 w-full max-w-[320px] shadow-2xl relative overflow-hidden transform scale-95 transition-transform" onclick="event.stopPropagation()">
+                <div class="absolute top-[-20%] right-[-20%] w-[200px] h-[200px] bg-blue-500/20 rounded-full blur-3xl z-0"></div>
+                <div class="relative z-10 p-6 text-center">
+                    <button onclick="window.closeCirclePopup()" class="absolute top-2 right-4 text-white/50 hover:text-white transition text-2xl font-bold">&times;</button>
                     
-                    <div id="popup-circle-logo" class="w-20 h-20 bg-blue-500/20 rounded-[1.5rem] mx-auto flex items-center justify-center text-4xl border-2 border-blue-400/50 mb-3 shadow-inner overflow-hidden relative z-10">🛡️</div>
+                    <div id="popup-circle-logo" class="w-24 h-24 bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-[1.5rem] mx-auto flex items-center justify-center text-5xl border-[3px] border-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.5)] mb-4 overflow-hidden relative z-10">🛡️</div>
                     
-                    <h3 id="popup-circle-name" class="font-black text-2xl text-white tracking-wide leading-tight relative z-10 truncate">Nama Circle</h3>
+                    <h3 id="popup-circle-name" class="font-black text-2xl text-white tracking-wide leading-tight truncate px-2 drop-shadow-md">Nama Circle</h3>
+                    <p id="popup-circle-motto-text" class="text-xs text-blue-200 italic mt-1 px-4 line-clamp-2">"Solidaritas Jalur Langit"</p>
                     
-                    <div class="mt-2 mb-4 relative z-10">
-                        <span id="popup-circle-lvl" class="text-xs text-blue-100 font-bold bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-1 rounded-full shadow-md border border-blue-400/30">Lv. 1 • Perintis Langit</span>
+                    <div class="mt-4 mb-5">
+                        <span id="popup-circle-lvl" class="text-[10px] text-blue-100 font-bold bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full shadow-sm tracking-wider uppercase">Lv. 1 • Perintis Langit</span>
                     </div>
                     
-                    <p id="popup-circle-motto-text" class="text-sm text-blue-200 italic mb-5 px-2 line-clamp-2 border-l-2 border-blue-400/50 pl-2">"Solidaritas Jalur Langit"</p>
-                    
-                    <div class="flex justify-between bg-black/40 rounded-xl p-3 mb-5 border border-white/10 shadow-inner relative z-10">
-                        <div class="text-center w-1/2 border-r border-white/10">
-                            <p class="text-[9px] text-blue-300 font-bold tracking-widest">ANGGOTA</p>
-                            <p id="popup-circle-members" class="text-lg font-black text-white">0/10</p>
+                    <div class="grid grid-cols-2 gap-3 mb-5">
+                        <div class="bg-black/40 rounded-2xl p-3 border border-white/10 shadow-inner flex flex-col items-center justify-center">
+                            <span class="text-[9px] text-blue-300 font-bold tracking-widest uppercase mb-1">ANGGOTA</span>
+                            <span id="popup-circle-members" class="text-xl font-black text-white drop-shadow-sm">0/10</span>
                         </div>
-                        <div class="text-center w-1/2">
-                            <p class="text-[9px] text-yellow-300 font-bold tracking-widest">TOTAL EXP</p>
-                            <p id="popup-circle-exp" class="text-lg font-black text-yellow-400">0</p>
+                        <div class="bg-black/40 rounded-2xl p-3 border border-white/10 shadow-inner flex flex-col items-center justify-center">
+                            <span class="text-[9px] text-yellow-300 font-bold tracking-widest uppercase mb-1">TOTAL EXP</span>
+                            <span id="popup-circle-exp" class="text-xl font-black text-yellow-400 drop-shadow-sm">0</span>
                         </div>
                     </div>
-                    <button onclick="window.closeCirclePopup()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2.5 rounded-xl transition text-sm shadow-lg shadow-blue-500/30 relative z-10">Tutup Profil</button>
+                    
+                    <div class="w-full bg-black/50 rounded-full h-2 shadow-inner overflow-hidden mb-1.5 relative">
+                        <div class="bg-gradient-to-r from-blue-400 to-indigo-400 h-full transition-all duration-1000 relative" id="popup-circle-progress" style="width: 0%"></div>
+                    </div>
+                    <p class="text-[9px] text-blue-300/60 font-medium text-right mb-5">Progres Naik Level</p>
+
+                    <button onclick="window.closeCirclePopup()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl transition text-sm shadow-lg shadow-blue-500/30">Tutup Profil</button>
                 </div>
             </div>
         </div>
@@ -1133,41 +1152,61 @@
         }
 
         // Fungsi Memunculkan Popup Circle Baru
-        window.showCirclePopup = function(name, exp, logoUrl, motto) {
-            let safeExp = exp || 0; // Pengaman jika exp kosong
-            
-            document.getElementById('popup-circle-name').innerText = name;
-            document.getElementById('popup-circle-exp').innerText = safeExp.toLocaleString('id-ID');
-            
-            // Kalkulasi Level
-            let lvl = 1; 
-            while(safeExp >= getGuildExpRequirement(lvl)) { lvl++; }
-            
-            // Set Gelar Circle
-            let circleTitle = getCircleTitle(lvl);
-            document.getElementById('popup-circle-lvl').innerHTML = `Lv. ${lvl} &bull; ${circleTitle}`;
-            
-            // Set Logo
-            if(logoUrl && logoUrl !== 'undefined' && logoUrl.trim() !== '') {
-                document.getElementById('popup-circle-logo').innerHTML = `<img src="${logoUrl}" class="w-full h-full object-cover">`;
-            } else {
-                document.getElementById('popup-circle-logo').innerText = "🛡️";
-            }
+        window.showCirclePopup = function(name, exp, logoUrl, motto, memberCount) {
+            try {
+                let safeExp = parseInt(exp) || 0;
+                let safeName = name ? String(name) : 'Circle Tanpa Nama';
+                let safeLogoUrl = logoUrl ? String(logoUrl).trim() : '';
+                let safeMotto = motto ? String(motto).trim() : '';
+                let safeMemberCount = parseInt(memberCount) || 1;
 
-            // Set Motto
-            const mottoEl = document.getElementById('popup-circle-motto-text');
-            if(mottoEl) {
-                mottoEl.innerText = (motto && motto !== 'undefined' && motto.trim() !== '') ? `"${motto}"` : '"Solidaritas Jalur Langit"';
-            }
+                document.getElementById('popup-circle-name').innerText = safeName;
+                document.getElementById('popup-circle-exp').innerText = safeExp.toLocaleString('id-ID');
 
-            // Dummy member (Bisa disesuaikan nanti)
-            document.getElementById('popup-circle-members').innerText = `${Math.floor(Math.random() * 5) + 5}/10`;
-            
-            const modal = document.getElementById('circle-popup-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            // Efek animasi mental (bouncing)
-            setTimeout(() => document.getElementById('circle-popup-content').classList.remove('scale-95'), 10);
+                // Kalkulasi Level
+                let lvl = 1;
+                while(safeExp >= getGuildExpRequirement(lvl)) { lvl++; }
+
+                // Hitung persen progress
+                let currentLvlBaseExp = lvl === 1 ? 0 : getGuildExpRequirement(lvl - 1);
+                let nextLvlExp = getGuildExpRequirement(lvl);
+                let expNeeded = nextLvlExp - currentLvlBaseExp;
+                let expProgress = safeExp - currentLvlBaseExp;
+                let percent = Math.min(100, Math.max(0, (expProgress / expNeeded) * 100));
+
+                let progressBar = document.getElementById('popup-circle-progress');
+                if(progressBar) progressBar.style.width = `${percent}%`;
+
+                // Set Gelar Circle
+                let circleTitle = getCircleTitle(lvl);
+                document.getElementById('popup-circle-lvl').innerHTML = `Lv. ${lvl} &bull; ${circleTitle}`;
+
+                // Set Logo
+                if(safeLogoUrl && safeLogoUrl !== 'undefined') {
+                    document.getElementById('popup-circle-logo').innerHTML = `<img src="${safeLogoUrl}" onerror="this.style.display='none'; this.parentNode.innerText='🛡️'" class="w-full h-full object-cover">`;
+                } else {
+                    document.getElementById('popup-circle-logo').innerText = "🛡️";
+                }
+
+                // Set Motto
+                const mottoEl = document.getElementById('popup-circle-motto-text');
+                if(mottoEl) {
+                    mottoEl.innerText = (safeMotto && safeMotto !== 'undefined') ? `"${safeMotto}"` : '"Solidaritas Jalur Langit"';
+                }
+
+                // Set Members (Dinamis dari Firebase)
+                const memEl = document.getElementById('popup-circle-members');
+                if(memEl) {
+                    memEl.innerText = `${safeMemberCount}/10`;
+                }
+
+                const modal = document.getElementById('circle-popup-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => document.getElementById('circle-popup-content').classList.remove('scale-95'), 10);
+            } catch(err) {
+                console.error("Circle Popup Error:", err);
+            }
         }
         
         window.closeCirclePopup = function() {
@@ -1848,6 +1887,7 @@
                         let safeCExp = cData.total_exp || 0;
                         let safeCLogo = cData.logo || '';
                         let safeCMotto = cData.motto || '';
+                        let safeCMembers = Array.isArray(cData.members) ? cData.members.length : 1;
 
                         el.innerHTML = `
                             <div class="flex items-center gap-3">
@@ -1858,7 +1898,7 @@
                             <span class="text-[10px] font-black bg-black/30 px-2 py-1 rounded-lg">${safeCExp} EXP</span>`;
                             
                         // BIND KLIK LANGSUNG DI JS (Sangat aman dari bug)
-                        el.onclick = () => window.showCirclePopup(safeCName, safeCExp, safeCLogo, safeCMotto);
+                        el.onclick = () => window.showCirclePopup(safeCName, safeCExp, safeCLogo, safeCMotto, safeCMembers);
 
                         lbContainer.appendChild(el); rank++;
                     });
