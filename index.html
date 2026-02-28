@@ -361,63 +361,126 @@
             </button>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[720px] bg-gradient-to-br from-emerald-950 via-green-900 to-teal-950 rounded-3xl border-4 border-emerald-500/30 shadow-2xl overflow-hidden flex flex-col text-white font-sans">
-            <div class="absolute top-[-10%] left-[-10%] w-[300px] h-[300px] bg-emerald-500/20 rounded-full blur-3xl z-0"></div>
-            <div class="absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] bg-teal-500/20 rounded-full blur-3xl z-0"></div>
+        <!-- FLEXING PRAYER CARD (PREMIUM REDESIGN V6) -->
+        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[720px] bg-gradient-to-br from-[#061410] to-[#0A1914] rounded-3xl border-2 border-emerald-800 shadow-[0_20px_50px_rgba(16,185,129,0.25)] overflow-hidden flex flex-col font-sans shrink-0">
             
-            <div class="relative z-10 flex justify-between items-center p-6 pb-2">
-                <div class="text-xl font-black italic tracking-wider text-emerald-100/50">AmalPad.</div>
-                <div id="card-rank-banner" class="hidden bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-[10px] font-black tracking-widest px-3 py-1 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)] uppercase">
+            <!-- Background Orbs, Grids & Effects -->
+            <div class="absolute top-[-10%] left-[-20%] w-[400px] h-[400px] bg-emerald-500/20 rounded-full blur-[90px] z-0 pointer-events-none"></div>
+            <div class="absolute bottom-[-10%] right-[-20%] w-[350px] h-[350px] bg-teal-600/20 rounded-full blur-[80px] z-0 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyIvPjwvc3ZnPg==')] opacity-30 z-0 pointer-events-none"></div> 
+            
+            <!-- Top branding, Rarity & Rank -->
+            <div class="relative z-10 flex justify-between items-center p-6 pb-0">
+                <div class="text-2xl font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-100 drop-shadow-md">AmalPad.</div>
+                
+                <!-- Rarity Tag (SSR) -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 top-6 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-pink-500 text-white text-[10px] font-black tracking-[0.3em] px-3 py-1 rounded-full shadow-[0_0_15px_rgba(217,70,239,0.5)] uppercase border border-white/40 shine-effect overflow-hidden">
+                    SSR
+                </div>
+
+                <div id="card-rank-banner" class="bg-gradient-to-r from-yellow-300 to-yellow-600 text-yellow-950 text-[10px] font-black tracking-widest px-3 py-1.5 rounded-md shadow-[0_0_15px_rgba(234,179,8,0.4)] uppercase border border-yellow-200">
                     GLOBAL RANK 1
                 </div>
             </div>
 
-            <div class="relative z-10 flex flex-col items-center mt-4">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-yellow-400 to-yellow-200 rounded-full blur-md opacity-50"></div>
-                    <div id="card-avatar" class="w-32 h-32 bg-emerald-800 rounded-full border-4 border-yellow-400 flex items-center justify-center text-5xl font-black text-yellow-100 relative z-10 overflow-hidden shadow-xl">
+            <!-- Section Utama: Avatar Terpusat Penuh -->
+            <div class="relative z-10 flex flex-col items-center mt-6">
+                <!-- Glowing Avatar Frame -->
+                <div class="relative group">
+                    <!-- Cincin hologram berputar -->
+                    <div class="absolute inset-[-14px] border-[2px] border-emerald-500/20 border-dashed rounded-full animate-[spin_20s_linear_infinite] z-0"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-yellow-300 to-yellow-600 rounded-full blur-xl opacity-50 z-0"></div>
+                    <div class="absolute inset-[-5px] bg-gradient-to-b from-yellow-100 via-yellow-500 to-yellow-800 rounded-full z-10"></div>
+                    <!-- Size dimaksimalkan -->
+                    <div id="card-avatar" class="w-44 h-44 bg-emerald-950 rounded-full flex items-center justify-center text-6xl font-black text-emerald-100 relative z-20 overflow-hidden border-[6px] border-[#061410]">
+                        <!-- Gambar default diganti jadi teks Inisial agar dinamis saat export JS -->
                         A
-                    </div>
-                    <div class="absolute -bottom-3 -right-2 bg-black/80 border-2 border-yellow-400 rounded-xl px-3 py-1 flex flex-col items-center justify-center shadow-lg z-20 backdrop-blur-sm">
-                        <span class="text-[8px] text-yellow-300 font-bold tracking-widest uppercase leading-none">OVR</span>
-                        <span id="card-ovr" class="text-2xl font-black text-yellow-400 leading-none mt-0.5">99</span>
                     </div>
                 </div>
                 
-                <h2 id="card-name" class="text-[28px] font-black text-white uppercase tracking-wider drop-shadow-md mt-6 truncate w-[90%] text-center">PLAYER</h2>
-                <p id="card-title" class="text-xs font-bold text-emerald-200 mt-1 uppercase tracking-widest bg-emerald-800/50 px-4 py-1 rounded-full border border-emerald-500/30">Fase Nyasar</p>
-            </div>
-
-            <div class="relative z-10 mt-6 px-8 flex justify-center">
-                <div class="flex items-center gap-3 bg-black/40 px-5 py-2.5 rounded-2xl border border-emerald-500/20 shadow-inner w-full max-w-[300px] justify-center backdrop-blur-sm">
-                    <div id="card-circle-logo" class="text-xl flex items-center justify-center">🛡️</div>
-                    <span id="card-circle-name" class="text-xs font-bold text-emerald-100 tracking-widest truncate uppercase">Solo Player</span>
+                <!-- Player Name & Title -->
+                <h2 id="card-name" class="text-[32px] font-black text-white uppercase tracking-widest drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] mt-6 truncate w-[90%] text-center">PLAYER</h2>
+                <div class="mt-1.5 bg-emerald-500/10 border border-emerald-400/30 px-6 py-1.5 rounded-full shadow-inner backdrop-blur-sm">
+                    <p id="card-title" class="text-xs font-bold text-emerald-300 uppercase tracking-[0.2em]">Fase Nyasar</p>
                 </div>
             </div>
 
-            <div class="relative z-10 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent mx-auto mt-6 mb-4"></div>
+            <!-- PANEL STRUKTUR BAWAH (HUD BLOCK) -->
+            <div class="relative z-10 px-6 mt-8 mb-auto flex flex-col gap-3.5 w-full">
+                
+                <!-- BARIS 1: OVR & Circle -->
+                <div class="flex justify-between gap-4 w-full">
+                    <!-- OVR Box -->
+                    <div class="flex flex-col items-center justify-center bg-gradient-to-b from-yellow-500/20 to-yellow-900/40 border border-yellow-500/50 rounded-2xl w-[110px] h-[64px] shadow-[0_4px_15px_rgba(234,179,8,0.2)] backdrop-blur-md shrink-0 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-yellow-400/10 to-transparent shine-effect"></div>
+                        <span class="text-[9px] text-yellow-400 font-black tracking-widest uppercase mb-0.5 relative z-10 drop-shadow-sm">OVR</span>
+                        <span id="card-ovr" class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 to-yellow-500 leading-none drop-shadow-[0_0_12px_rgba(250,204,21,0.5)] relative z-10">99</span>
+                    </div>
 
-            <div class="relative z-10 flex px-8 gap-4 items-center justify-between mb-6">
-                <div class="flex flex-col items-center justify-center bg-gradient-to-b from-emerald-800/80 to-black/60 border border-emerald-500/40 rounded-2xl p-3 w-[100px] h-[100px] shadow-lg shrink-0">
-                    <div id="card-dom-icon" class="text-[40px] leading-none drop-shadow-lg mb-2">✨</div>
-                    <div id="card-dom-text" class="text-[10px] font-black text-emerald-300 tracking-widest uppercase drop-shadow-md">AURA</div>
+                    <!-- Circle / Guild Box -->
+                    <div class="flex items-center gap-3.5 bg-gradient-to-r from-emerald-900/60 to-black/60 px-4 rounded-2xl border border-emerald-500/30 backdrop-blur-md shadow-inner flex-1 h-[64px]">
+                        <div id="card-circle-logo" class="w-[42px] h-[42px] rounded-xl border border-emerald-400/40 overflow-hidden shadow-[0_0_10px_rgba(16,185,129,0.3)] shrink-0 bg-black/80 flex items-center justify-center p-0.5 text-2xl">
+                            🛡️
+                        </div>
+                        <span id="card-circle-name" class="text-[15px] font-black text-emerald-50 tracking-widest truncate uppercase drop-shadow-sm">Solo Player</span>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-x-6 gap-y-3 flex-1 pl-2">
-                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">PST</span> <span id="stat-pusat" class="text-base font-black text-yellow-400 leading-none">99</span></div>
-                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">SGM</span> <span id="stat-sigma" class="text-base font-black text-yellow-400 leading-none">99</span></div>
-                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">AUR</span> <span id="stat-aura" class="text-base font-black text-yellow-400 leading-none">99</span></div>
-                    <div class="flex justify-between items-end border-b border-emerald-500/20 pb-1"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">DRM</span> <span id="stat-derma" class="text-base font-black text-yellow-400 leading-none">99</span></div>
-                    <div class="flex justify-between items-end"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">PKA</span> <span id="stat-peka" class="text-base font-black text-yellow-400 leading-none">99</span></div>
-                    <div class="flex justify-between items-end"><span class="text-[10px] font-bold text-emerald-200/70 tracking-widest">STC</span> <span id="stat-stoic" class="text-base font-black text-yellow-400 leading-none">99</span></div>
+                <!-- BARIS 2: Dominant Aura & 6 Attributes -->
+                <div class="flex justify-between gap-4 w-full">
+                    <!-- Dominant Aura Box -->
+                    <div class="flex flex-col items-center justify-center bg-gradient-to-br from-emerald-800/60 to-emerald-950/80 border border-emerald-500/30 rounded-2xl p-4 w-[110px] h-[120px] shadow-[0_8px_30px_rgba(0,0,0,0.5)] shrink-0 backdrop-blur-md relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-emerald-400/20 rounded-full blur-xl"></div>
+                        <div id="card-dom-icon" class="text-[45px] leading-none drop-shadow-[0_0_15px_rgba(16,185,129,0.8)] mb-2 relative z-10">✨</div>
+                        <div id="card-dom-text" class="text-[11px] font-black text-emerald-300 tracking-widest uppercase relative z-10">AURA</div>
+                    </div>
+
+                    <!-- 6 Attributes Grid -->
+                    <div class="grid grid-cols-2 gap-x-5 content-center flex-1 h-[120px] bg-gradient-to-br from-black/80 to-emerald-900/40 px-5 py-3 rounded-2xl border border-emerald-500/30 shadow-[0_4px_15px_rgba(0,0,0,0.3)] backdrop-blur-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-emerald-500/50"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-emerald-500/50"></div>
+
+                        <div class="flex flex-col border-b border-emerald-500/20 pb-1 mb-1">
+                            <span class="text-[9px] font-bold text-emerald-600/80 tracking-widest uppercase mb-0.5">Pusat</span>
+                            <span id="stat-pusat" class="text-base font-black text-emerald-50 leading-none drop-shadow-md">99</span>
+                        </div>
+                        <div class="flex flex-col border-b border-emerald-500/20 pb-1 mb-1">
+                            <span class="text-[9px] font-bold text-emerald-600/80 tracking-widest uppercase mb-0.5">Sigma</span>
+                            <span id="stat-sigma" class="text-base font-black text-emerald-50 leading-none drop-shadow-md">99</span>
+                        </div>
+                        <div class="flex flex-col border-b border-emerald-500/20 pb-1 mb-1">
+                            <span class="text-[9px] font-bold text-emerald-600/80 tracking-widest uppercase mb-0.5">Aura</span>
+                            <span id="stat-aura" class="text-base font-black text-emerald-50 leading-none drop-shadow-md">99</span>
+                        </div>
+                        <div class="flex flex-col border-b border-emerald-500/20 pb-1 mb-1">
+                            <span class="text-[9px] font-bold text-emerald-600/80 tracking-widest uppercase mb-0.5">Derma</span>
+                            <span id="stat-derma" class="text-base font-black text-emerald-50 leading-none drop-shadow-md">99</span>
+                        </div>
+                        <div class="flex flex-col mt-0.5">
+                            <span class="text-[9px] font-bold text-emerald-600/80 tracking-widest uppercase mb-0.5">Peka</span>
+                            <span id="stat-peka" class="text-base font-black text-emerald-50 leading-none drop-shadow-md">99</span>
+                        </div>
+                        <div class="flex flex-col mt-0.5">
+                            <span class="text-[9px] font-bold text-emerald-600/80 tracking-widest uppercase mb-0.5">Stoic</span>
+                            <span id="stat-stoic" class="text-base font-black text-emerald-50 leading-none drop-shadow-md">99</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-            <div class="mt-auto bg-black/60 backdrop-blur-md border-t border-emerald-500/30 py-4 flex justify-between items-center px-8 z-10">
-                <div class="text-[10px] text-emerald-300/80 font-medium">TOTAL EXP</div>
-                <div id="card-exp" class="text-lg font-black text-yellow-400 tracking-wider">125,750</div>
+            <!-- Footer Elegant -->
+            <div class="bg-gradient-to-t from-black via-[#040c08] to-transparent border-t border-emerald-500/40 pt-6 pb-5 flex justify-between items-end px-8 z-10 relative">
+                <div class="flex gap-0.5 opacity-30 items-end h-6">
+                    <div class="w-1 h-full bg-emerald-100"></div><div class="w-0.5 h-full bg-emerald-100"></div><div class="w-1.5 h-full bg-emerald-100"></div><div class="w-1 h-full bg-emerald-100"></div><div class="w-0.5 h-full bg-emerald-100"></div><div class="w-1 h-full bg-emerald-100"></div><div class="w-2 h-full bg-emerald-100"></div><div class="w-0.5 h-full bg-emerald-100"></div><div class="w-1 h-full bg-emerald-100"></div>
+                </div>
+                <div class="text-right">
+                    <div class="text-[9px] text-emerald-500 font-bold tracking-[0.2em] uppercase mb-0.5">Total Amal Point</div>
+                    <div id="card-exp" class="text-[22px] font-black text-yellow-400 tracking-wider leading-none drop-shadow-[0_0_10px_rgba(250,204,21,0.3)]">125,750</div>
+                </div>
             </div>
         </div>
+        <!-- END FLEXING PRAYER CARD -->
 
         <div id="exam-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-opacity">
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-500/50 rounded-[2rem] p-6 max-w-sm w-full shadow-2xl shadow-yellow-500/20 transform scale-95 transition-transform" id="exam-modal-content">
