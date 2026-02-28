@@ -359,49 +359,58 @@
             </button>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[640px] bg-gradient-to-b from-indigo-950 via-purple-950 to-black rounded-[2rem] border-[6px] border-yellow-500 shadow-2xl overflow-hidden font-serif flex flex-col">
-            <div class="absolute top-[10%] right-[-10%] w-[350px] h-[350px] bg-fuchsia-600/40 rounded-full blur-3xl animate-pulse z-0"></div>
-            
-            <div class="relative z-10 flex flex-col h-full pt-6">
-                <div class="flex justify-between items-start px-6">
-                    <div class="flex flex-col items-center">
-                        <div id="card-rank-banner" class="hidden bg-gradient-to-r from-yellow-300 to-yellow-600 text-black text-[10px] font-black tracking-widest px-3 py-1 rounded-sm mb-1 w-max uppercase shadow-[0_0_15px_rgba(234,179,8,0.6)]">
-                            GLOBAL RANK 1
-                        </div>
-                        
-                        <div id="card-ovr" class="text-[75px] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 to-yellow-500 drop-shadow-lg">95</div>
-                        
-                        <div class="flex flex-col items-center mt-2 relative">
-                            <svg class="absolute w-16 h-16 text-yellow-500/50 -z-10 top-[-10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A6 6 0 0 1 12 2a6 6 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
-                            <div id="card-dom-icon" class="text-2xl drop-shadow-md">✨</div>
-                            <div id="card-dom-text" class="text-[10px] font-bold text-yellow-300 tracking-widest uppercase mt-1 drop-shadow-md">AURA</div>
-                        </div>
-                        
-                        <div class="text-2xl mt-3 opacity-80">🕌</div>
+        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[640px] bg-gradient-to-b from-indigo-950 via-purple-950 to-black rounded-[2rem] border-[6px] border-yellow-500 shadow-2xl overflow-hidden font-serif flex flex-col text-white">
+            <div class="absolute top-[30%] left-[-10%] w-[300px] h-[300px] bg-fuchsia-600/30 rounded-full blur-3xl z-0"></div>
+            <div class="absolute bottom-[10%] right-[-10%] w-[250px] h-[250px] bg-indigo-600/30 rounded-full blur-3xl z-0"></div>
+ 
+            <div class="relative w-full h-[290px] bg-indigo-900 border-b-4 border-yellow-500 flex items-center justify-center overflow-hidden z-10">
+                <div id="card-avatar" class="w-full h-full flex items-center justify-center text-[100px] font-black text-yellow-100">
                     </div>
+                
+                <div id="card-rank-banner" class="hidden absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-[11px] font-black tracking-widest px-3 py-1.5 rounded shadow-lg uppercase">
+                    GLOBAL RANK 1
+                </div>
+ 
+                <div class="absolute bottom-[-15px] left-6 flex flex-col items-center">
+                    <div class="bg-black/90 border-4 border-yellow-400 rounded-2xl p-2 px-5 shadow-[0_0_20px_rgba(234,179,8,0.5)] backdrop-blur-md">
+                        <span class="text-[10px] text-yellow-300 font-bold tracking-widest uppercase block text-center mb-[-5px]">OVR</span>
+                        <span id="card-ovr" class="text-[55px] leading-none font-black text-yellow-400 drop-shadow-md">99</span>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="relative z-10 px-8 pt-8 pb-2 flex-1 flex flex-col items-center text-center">
+                
+                <h2 id="card-name" class="text-[34px] leading-none font-black text-yellow-400 uppercase tracking-widest drop-shadow-[0_3px_5px_rgba(0,0,0,0.9)] truncate w-full">PLAYER</h2>
+                <p id="card-title" class="text-[11px] font-bold text-gray-300 mt-2 uppercase tracking-widest drop-shadow-md bg-white/10 px-4 py-1 rounded-full border border-white/20">GELAR DISINI</p>
+ 
+                <div class="flex items-center gap-3 mt-4 bg-black/50 px-4 py-2 rounded-xl border border-yellow-500/30 w-full justify-center shadow-inner">
+                    <div id="card-circle-logo" class="text-2xl flex items-center justify-center">🛡️</div>
+                    <span id="card-circle-name" class="text-sm font-bold text-yellow-200 tracking-widest truncate max-w-[200px] uppercase">Solo Player</span>
+                </div>
+ 
+                <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent mt-4 mb-2"></div>
+ 
+                <div class="flex items-center justify-between w-full mt-2">
                     
-                    <div id="card-avatar" class="w-36 h-36 bg-indigo-900 rounded-full border-4 border-yellow-400 flex items-center justify-center text-6xl font-black shadow-[0_0_25px_rgba(217,70,239,0.5)] overflow-hidden text-yellow-100 relative mt-2 mr-2">
+                    <div class="flex flex-col items-center justify-center bg-black/60 border border-yellow-500/40 rounded-2xl p-2 w-[100px] h-[100px] shadow-lg">
+                        <div id="card-dom-icon" class="text-[55px] leading-none drop-shadow-lg mb-1">✨</div>
+                        <div id="card-dom-text" class="text-[11px] font-black text-yellow-400 tracking-widest uppercase drop-shadow-md">AURA</div>
+                    </div>
+ 
+                    <div class="grid grid-cols-2 gap-x-5 gap-y-2 flex-1 pl-6">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">PST</span> <span id="stat-pusat" class="text-lg font-black text-yellow-400">99</span></div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">SGM</span> <span id="stat-sigma" class="text-lg font-black text-yellow-400">99</span></div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">AUR</span> <span id="stat-aura" class="text-lg font-black text-yellow-400">99</span></div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-1"><span class="text-[10px] font-bold text-gray-400 tracking-widest">DRM</span> <span id="stat-derma" class="text-lg font-black text-yellow-400">99</span></div>
+                        <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-gray-400 tracking-widest">PKA</span> <span id="stat-peka" class="text-lg font-black text-yellow-400">99</span></div>
+                        <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-gray-400 tracking-widest">STC</span> <span id="stat-stoic" class="text-lg font-black text-yellow-400">99</span></div>
                     </div>
                 </div>
-
-                <div class="text-center mt-[70px] z-10 px-4">
-                    <h2 id="card-name" class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-yellow-400 to-yellow-600 uppercase tracking-widest drop-shadow-lg truncate">PLAYER</h2>
-                    <p id="card-title" class="text-xs font-bold text-yellow-200 mt-1 uppercase tracking-widest drop-shadow-md">GELAR DISINI</p>
-                    <div class="w-2/3 h-[1px] bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent mx-auto mt-3"></div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-x-12 gap-y-3 mt-5 px-10 z-10">
-                    <div class="flex justify-between items-center"><span id="stat-pusat" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">PST</span></div>
-                    <div class="flex justify-between items-center"><span id="stat-sigma" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">SGM</span></div>
-                    <div class="flex justify-between items-center"><span id="stat-aura" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">AUR</span></div>
-                    <div class="flex justify-between items-center"><span id="stat-derma" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">DRM</span></div>
-                    <div class="flex justify-between items-center"><span id="stat-peka" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">PKA</span></div>
-                    <div class="flex justify-between items-center"><span id="stat-stoic" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">STC</span></div>
-                </div>
-
-                <div class="mt-auto bg-gradient-to-r from-yellow-700 via-yellow-400 to-yellow-700 py-2.5 text-center text-black font-black tracking-widest text-[11px] shadow-[0_-5px_15px_rgba(0,0,0,0.5)] z-10">
-                    EXP TERAKUMULASI: <span id="card-exp">125,750</span>
-                </div>
+            </div>
+ 
+            <div class="bg-gradient-to-r from-yellow-700 via-yellow-500 to-yellow-700 py-3.5 text-center text-black font-black tracking-widest text-[12px] shadow-[0_-5px_15px_rgba(0,0,0,0.5)] z-10">
+                EXP TERAKUMULASI: <span id="card-exp">125,750</span>
             </div>
         </div>
 
@@ -1125,19 +1134,21 @@
 
         // Fungsi Memunculkan Popup Circle Baru
         window.showCirclePopup = function(name, exp, logoUrl, motto) {
+            let safeExp = exp || 0; // Pengaman jika exp kosong
+            
             document.getElementById('popup-circle-name').innerText = name;
-            document.getElementById('popup-circle-exp').innerText = exp.toLocaleString('id-ID');
+            document.getElementById('popup-circle-exp').innerText = safeExp.toLocaleString('id-ID');
             
             // Kalkulasi Level
             let lvl = 1; 
-            while(exp >= getGuildExpRequirement(lvl)) { lvl++; }
+            while(safeExp >= getGuildExpRequirement(lvl)) { lvl++; }
             
             // Set Gelar Circle
             let circleTitle = getCircleTitle(lvl);
             document.getElementById('popup-circle-lvl').innerHTML = `Lv. ${lvl} &bull; ${circleTitle}`;
             
             // Set Logo
-            if(logoUrl && logoUrl !== 'undefined') {
+            if(logoUrl && logoUrl !== 'undefined' && logoUrl.trim() !== '') {
                 document.getElementById('popup-circle-logo').innerHTML = `<img src="${logoUrl}" class="w-full h-full object-cover">`;
             } else {
                 document.getElementById('popup-circle-logo').innerText = "🛡️";
@@ -1146,10 +1157,10 @@
             // Set Motto
             const mottoEl = document.getElementById('popup-circle-motto-text');
             if(mottoEl) {
-                mottoEl.innerText = motto && motto !== 'undefined' ? `"${motto}"` : '"Solidaritas Jalur Langit"';
+                mottoEl.innerText = (motto && motto !== 'undefined' && motto.trim() !== '') ? `"${motto}"` : '"Solidaritas Jalur Langit"';
             }
 
-            // Dummy member (Nanti bisa diganti dinamis dari db jika perlu)
+            // Dummy member (Bisa disesuaikan nanti)
             document.getElementById('popup-circle-members').innerText = `${Math.floor(Math.random() * 5) + 5}/10`;
             
             const modal = document.getElementById('circle-popup-modal');
@@ -1445,18 +1456,34 @@
             const btn = document.getElementById('btn-share');
             btn.innerText = "⏳ Menarik Aura...";
             btn.disabled = true;
-
+ 
             try {
                 let info = calculateLevelInfo(window.totalExp);
                 let overall = Math.min(99, Math.floor(info.level * 1.8) + 10); 
                 
                 // 1. Set Basic Info
                 document.getElementById('card-ovr').innerText = overall;
+                // FIX BUG CSS: Nama dipastikan tidak pakai efek bg-clip teks
                 document.getElementById('card-name').innerText = document.getElementById('user-name').value || 'PLAYER';
                 document.getElementById('card-title').innerText = getTitle(info.level);
                 document.getElementById('card-exp').innerText = window.totalExp.toLocaleString('id-ID');
-
-                // 2. Set Foto Profil (Force CORS untuk html2canvas)
+ 
+                // 1.5 Set Info Circle Dinamis
+                const circleNameDisp = document.getElementById('circle-name-display');
+                const circleLogoDisp = document.getElementById('circle-logo-display');
+                if(window.userCircleId && circleNameDisp.innerText !== 'Memuat...') {
+                    document.getElementById('card-circle-name').innerText = circleNameDisp.innerText;
+                    if(circleLogoDisp.querySelector('img')) {
+                        document.getElementById('card-circle-logo').innerHTML = `<img src="${circleLogoDisp.querySelector('img').src}" crossorigin="anonymous" class="w-8 h-8 rounded-md object-cover inline-block shadow-sm">`;
+                    } else {
+                        document.getElementById('card-circle-logo').innerText = circleLogoDisp.innerText || "🛡️";
+                    }
+                } else {
+                    document.getElementById('card-circle-name').innerText = "Solo Player";
+                    document.getElementById('card-circle-logo').innerText = "👤";
+                }
+ 
+                // 2. Set Foto Profil (Layout 50% Top)
                 const avatarSrcEl = document.getElementById('avatar-initial');
                 const cardAvatarDest = document.getElementById('card-avatar');
                 if(avatarSrcEl.querySelector('img')) {
@@ -1464,7 +1491,7 @@
                 } else { 
                     cardAvatarDest.innerHTML = avatarSrcEl.innerHTML; 
                 }
-
+ 
                 // 3. Set 6 Atribut (Formula: Stat/2 + 20)
                 const getStat = (val) => Math.min(99, Math.floor((val || 0) / 2) + 20);
                 let stPusat = getStat(window.statsRadar.pusat);
@@ -1473,42 +1500,40 @@
                 let stSigma = getStat(window.statsRadar.sigma);
                 let stDerma = getStat(window.statsRadar.derma);
                 let stStoic = getStat(window.statsRadar.stoic);
-
+ 
                 document.getElementById('stat-pusat').innerText = stPusat;
                 document.getElementById('stat-aura').innerText = stAura;
                 document.getElementById('stat-peka').innerText = stPeka;
                 document.getElementById('stat-sigma').innerText = stSigma;
                 document.getElementById('stat-derma').innerText = stDerma;
                 document.getElementById('stat-stoic').innerText = stStoic;
-
-                // 4. Kalkulasi Aura Dominan (Nilai Terbesar)
+ 
+                // 4. Kalkulasi Aura Dominan
                 const allStats = { 'Pusat': stPusat, 'Aura': stAura, 'Peka': stPeka, 'Sigma': stSigma, 'Derma': stDerma, 'Stoic': stStoic };
                 const domName = Object.keys(allStats).reduce((a, b) => allStats[a] > allStats[b] ? a : b);
                 const statEmojis = { 'Pusat': '🕋', 'Aura': '✨', 'Peka': '👼', 'Sigma': '🗿', 'Derma': '🤝', 'Stoic': '🧊' };
                 
                 document.getElementById('card-dom-icon').innerText = statEmojis[domName];
                 document.getElementById('card-dom-text').innerText = domName;
-
+ 
                 // 5. Cek Rank Global (Query ke Firebase untuk presisi)
                 const rankBanner = document.getElementById('card-rank-banner');
                 rankBanner.classList.add('hidden'); // Reset dulu
                 
                 if (window.auth && auth.currentUser && !auth.currentUser.isAnonymous) {
                     try {
-                        // Cek ada berapa player yang EXP bulanannya lebih besar dari kita
                         const qRank = query(collection(db, "users"), where("monthly_exp", ">", window.totalExp));
                         const snapRank = await getDocs(qRank);
-                        let actualRank = snapRank.size + 1; // +1 karena kita ada di bawah mereka
+                        let actualRank = snapRank.size + 1; 
                         
-                        // Rule: Jika <= 10, tampilkan banner cantik!
                         if (actualRank <= 10 && window.totalExp > 0) {
                             rankBanner.innerText = `GLOBAL RANK ${actualRank}`;
                             rankBanner.classList.remove('hidden');
                         }
-                    } catch(e) { console.warn("Rank fetch failed, hiding banner"); }
+                    } catch(e) { console.warn("Rank fetch failed"); }
                 }
-
-                // 6. Render Card menjadi Gambar
+ 
+                // 6. Render Card
                 const card = document.getElementById('export-card');
                 setTimeout(() => {
                     html2canvas(card, { backgroundColor: null, scale: 2, useCORS: true, allowTaint: true }).then(canvas => {
@@ -1522,8 +1547,8 @@
                         alert('Gagal render Card. Mungkin karena limitasi browser/CORS gambar.');
                         btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
                     });
-                }, 500); // Jeda sebentar agar font dan gambar load
-
+                }, 800); // Waktu render dinaikkan sedikit agar foto profile super besar sempat load
+ 
             } catch (err) {
                 console.error(err);
                 btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
@@ -1758,7 +1783,7 @@
             } catch (e) { console.warn("Sync Tertunda"); }
         };
 
-        // --- FUNGSI FETCH LEADERBOARD BARU (BISA SWITCH INDIVIDU & CIRCLE) ---
+        // --- FUNGSI FETCH LEADERBOARD BARU (ANTI CRASH QUOTES) ---
         window.fetchLeaderboard = async function() {
             const lbContainer = document.getElementById('leaderboard-container');
             if(!lbContainer) return;
@@ -1780,19 +1805,29 @@
                         if(userL.monthly_exp > 0) {
                             let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-gray-400';
                             const el = document.createElement('div');
-                            el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm ${colorClasses}`;
+                            
+                            // Ditambah class cursor-pointer pada parent-nya
+                            el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm cursor-pointer hover:scale-[1.02] transition-transform ${colorClasses}`;
+                            
+                            let safeName = userL.name || 'User';
+                            let safeInitial = safeName.charAt(0).toUpperCase();
+                            let safeExp = userL.monthly_exp || 0;
                             
                             let photoHTML = userL.photo 
-                                ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${userL.name.charAt(0).toUpperCase()}'">` 
-                                : userL.name.charAt(0).toUpperCase();
+                                ? `<img src="${userL.photo}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentNode.innerText='${safeInitial}'">` 
+                                : safeInitial;
                             
                             el.innerHTML = `
-                                <div class="flex items-center gap-3 cursor-pointer" onclick="window.showUserPopup('${userL.name}', 'Top Global Ranker', '${userL.name.charAt(0).toUpperCase()}', ${userL.monthly_exp})">
+                                <div class="flex items-center gap-3">
                                     <span class="font-black text-lg w-5 text-center">${rank}</span>
                                     <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs uppercase overflow-hidden">${photoHTML}</div>
-                                    <span class="font-bold text-sm text-white truncate max-w-[120px] hover:text-yellow-300 transition">${userL.name}</span>
+                                    <span class="font-bold text-sm text-white truncate max-w-[120px] hover:text-yellow-300 transition">${safeName}</span>
                                 </div>
-                                <span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${userL.monthly_exp} EXP</span>`;
+                                <span class="text-xs font-black bg-black/30 px-2 py-1 rounded-lg">${safeExp} EXP</span>`;
+                            
+                            // BIND KLIK LANGSUNG DI JS (Bebas error tanda kutip)
+                            el.onclick = () => window.showUserPopup(safeName, 'Top Global Ranker', safeInitial, safeExp);
+                            
                             lbContainer.appendChild(el); rank++;
                         }
                     });
@@ -1809,19 +1844,29 @@
                         const el = document.createElement('div');
                         el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm cursor-pointer hover:scale-[1.02] transition-transform ${colorClasses}`;
                         
+                        let safeCName = cData.name || 'Circle';
+                        let safeCExp = cData.total_exp || 0;
+                        let safeCLogo = cData.logo || '';
+                        let safeCMotto = cData.motto || '';
+
                         el.innerHTML = `
-                            <div class="flex items-center gap-3" onclick="window.showCirclePopup('${(cData.name || '').replace(/'/g, "\\'")}', ${cData.total_exp}, '${cData.logo || ''}', '${(cData.motto || '').replace(/'/g, "\\'")}')">
+                            <div class="flex items-center gap-3">
                                 <span class="font-black text-lg w-5 text-center">${rank}</span>
-                                <div class="w-8 h-8 rounded-2xl bg-white/20 flex items-center justify-center font-bold text-lg overflow-hidden shadow-inner">${cData.logo ? `<img src="${cData.logo}" class="w-full h-full object-cover">` : '🛡️'}</div>
-                                <span class="font-bold text-sm truncate max-w-[120px] hover:text-white transition">${cData.name}</span>
+                                <div class="w-8 h-8 rounded-2xl bg-white/20 flex items-center justify-center font-bold text-lg overflow-hidden shadow-inner">${safeCLogo ? `<img src="${safeCLogo}" class="w-full h-full object-cover">` : '🛡️'}</div>
+                                <span class="font-bold text-sm truncate max-w-[120px] hover:text-white transition">${safeCName}</span>
                             </div>
-                            <span class="text-[10px] font-black bg-black/30 px-2 py-1 rounded-lg">${cData.total_exp} EXP</span>`;
+                            <span class="text-[10px] font-black bg-black/30 px-2 py-1 rounded-lg">${safeCExp} EXP</span>`;
+                            
+                        // BIND KLIK LANGSUNG DI JS (Sangat aman dari bug)
+                        el.onclick = () => window.showCirclePopup(safeCName, safeCExp, safeCLogo, safeCMotto);
+
                         lbContainer.appendChild(el); rank++;
                     });
                     if(rank === 1) lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada circle yang terbentuk. Buat yang pertama!</div>';
                 }
             } catch (e) { 
                 lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-rose-300">Gagal memuat. Cek koneksi internetmu.</div>'; 
+                console.error("Leaderboard error:", e);
             }
         };
 
