@@ -47,7 +47,7 @@
 
         <div id="view-home" class="block animate-[fadeIn_0.4s_ease-out] flex-1">
             <div class="p-5">
-                
+              
                 <div class="bg-gradient-to-br from-emerald-600 to-teal-800 rounded-3xl p-5 shadow-lg text-white mb-6 relative overflow-hidden transform transition hover:scale-[1.01]">
                     <div class="absolute -right-2 -bottom-4 text-7xl opacity-20">🤝</div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
@@ -149,8 +149,6 @@
                             <p class="text-[10px] font-bold text-blue-200 mb-2 border-b border-white/10 pb-1">Daftar Anggota</p>
                             <div id="circle-members-list" class="space-y-1"></div>
                         </div>
-                        
-                        <button id="btn-rank-circle" class="w-full mt-4 bg-black/20 hover:bg-black/30 text-white text-xs font-bold py-2 rounded-xl transition border border-white/10">🏆 Lihat Top Global Circle</button>
                     </div>
                 </div>
 
@@ -166,7 +164,7 @@
                     </div>
                     
                     <div class="flex bg-black/20 rounded-xl p-1 mb-4 relative z-10">
-                        <button id="tab-lb-individu" class="flex-1 text-xs font-bold py-1.5 rounded-lg bg-white/20 text-white shadow-sm transition">Individu</button>
+                        <button id="tab-lb-individu" class="flex-1 text-xs font-bold py-1.5 rounded-lg bg-white/20 text-white shadow-sm transition">Solo</button>
                         <button id="tab-lb-circle" class="flex-1 text-xs font-bold py-1.5 rounded-lg text-indigo-200 hover:text-white hover:bg-white/10 transition">Circle</button>
                     </div>
                     
@@ -180,7 +178,7 @@
 
         <div id="view-target" class="hidden animate-[fadeIn_0.4s_ease-out] flex-1">
             <div class="p-5">
-                
+              
                 <div id="gacha-container" class="bg-gradient-to-r from-rose-500 to-pink-600 p-6 rounded-3xl shadow-lg text-white mb-6 relative overflow-hidden text-center cursor-pointer transform hover:scale-[1.02] transition shadow-rose-500/30">
                     <div class="absolute -left-4 -bottom-4 text-7xl opacity-20 transform -rotate-12">🎁</div>
                     <h3 class="font-black text-lg mb-1 drop-shadow-md relative z-10">Gacha Kebaikan Hari Ini</h3>
@@ -230,9 +228,9 @@
                 <div class="flex justify-between items-end mb-3">
                     <h2 class="text-lg font-extrabold text-gray-800 dark:text-gray-100">Sunnah & Daily Habits 🎯</h2>
                 </div>
-                
+              
                 <div class="space-y-3 mb-6" id="checklist-container"></div>
-                
+              
                 <div class="bg-amber-100 dark:bg-amber-900/40 p-5 rounded-2xl border border-amber-200 dark:border-amber-800 mb-6">
                     <h3 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-1 flex items-center gap-1">✨ Inspirasi Sedekah</h3>
                     <p class="text-xs text-amber-700 dark:text-amber-500 mb-4 leading-relaxed">Lengkapi ibadah dengan berbagi rezeki. Ada mini snack hampers praktis mulai Rp3.000 aja!</p>
@@ -294,7 +292,7 @@
                                 </div>
                             </div>
                             <div id="aura-badge-container" class="w-full flex-1 cursor-pointer" onclick="openInfoModal('Sistem Gelar Aura', 'Menunjukkan aura paling dominan di dalam dirimu saat ini. Desain badge akan berevolusi menjadi lebih <i>epic</i> setiap kamu mencapai kelipatan 10 Level (Lv 10, 20, 30, dst).')">
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -326,7 +324,7 @@
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                         Hubungkan Akun Google
                     </button>
-                    
+                     
                     <div class="flex gap-2 w-full mb-3">
                         <button id="btn-logout" class="hidden flex-1 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:bg-rose-200 transition">
                             Keluar Akun
@@ -361,40 +359,48 @@
             </button>
         </div>
 
-        <div id="export-card" class="absolute left-[-9999px] top-0 w-[400px] h-[620px] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-gradient-to-br from-yellow-300 via-yellow-500 to-orange-600 p-6 flex flex-col text-black font-sans shadow-2xl overflow-hidden rounded-3xl border-8 border-yellow-200">
-            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent transform -skew-x-12 translate-x-[-100%] animate-[shimmer_2s_infinite]"></div>
+        <div id="export-card" class="absolute left-[-9999px] top-0 w-[420px] h-[640px] bg-gradient-to-b from-indigo-950 via-purple-950 to-black rounded-[2rem] border-[6px] border-yellow-500 shadow-2xl overflow-hidden font-serif flex flex-col">
+            <div class="absolute top-[10%] right-[-10%] w-[350px] h-[350px] bg-fuchsia-600/40 rounded-full blur-3xl animate-pulse z-0"></div>
             
-            <div class="relative z-10 flex flex-col h-full">
-                <div class="flex justify-between items-start">
-                    <div class="text-center">
-                        <div id="card-ovr" class="text-6xl font-black tracking-tighter leading-none drop-shadow-md">99</div>
-                        <div id="card-pos" class="text-xl font-bold uppercase tracking-widest mt-1">WALI</div>
-                    </div>
-                    <div id="card-avatar" class="w-28 h-28 bg-white/30 rounded-full border-4 border-white flex items-center justify-center text-5xl font-black shadow-xl backdrop-blur-md overflow-hidden">
+            <div class="relative z-10 flex flex-col h-full pt-6">
+                <div class="flex justify-between items-start px-6">
+                    <div class="flex flex-col items-center">
+                        <div id="card-rank-banner" class="hidden bg-gradient-to-r from-yellow-300 to-yellow-600 text-black text-[10px] font-black tracking-widest px-3 py-1 rounded-sm mb-1 w-max uppercase shadow-[0_0_15px_rgba(234,179,8,0.6)]">
+                            GLOBAL RANK 1
                         </div>
-                </div>
-
-                <div class="text-center mt-5 border-b-2 border-black/20 pb-2">
-                    <h2 id="card-name" class="text-3xl font-black uppercase tracking-widest drop-shadow-sm">PLAYER</h2>
-                    <p id="card-title" class="text-sm font-bold bg-black text-yellow-400 inline-block px-3 py-1 rounded-full mt-2 uppercase tracking-wider shadow-md">GELAR DISINI</p>
-                    <p id="card-circle" class="text-[10px] font-bold text-black/70 uppercase tracking-widest mt-1">🛡️ No Circle</p>
-                </div>
-
-                <div class="grid grid-cols-2 gap-x-6 gap-y-3 mt-5 px-4">
-                    <div class="flex justify-between font-black text-lg"><span id="stat-pusat" class="text-black/80 drop-shadow-sm">99</span> <span class="uppercase tracking-wider">PST</span></div>
-                    <div class="flex justify-between font-black text-lg"><span id="stat-aura" class="text-black/80 drop-shadow-sm">99</span> <span class="uppercase tracking-wider">AUR</span></div>
-                    <div class="flex justify-between font-black text-lg"><span id="stat-peka" class="text-black/80 drop-shadow-sm">99</span> <span class="uppercase tracking-wider">PKA</span></div>
-                    <div class="flex justify-between font-black text-lg"><span id="stat-sigma" class="text-black/80 drop-shadow-sm">99</span> <span class="uppercase tracking-wider">SGM</span></div>
-                    <div class="flex justify-between font-black text-lg"><span id="stat-derma" class="text-black/80 drop-shadow-sm">99</span> <span class="uppercase tracking-wider">DRM</span></div>
-                    <div class="flex justify-between font-black text-lg"><span id="stat-stoic" class="text-black/80 drop-shadow-sm">99</span> <span class="uppercase tracking-wider">STC</span></div>
-                </div>
-
-                <div class="mt-auto flex justify-between items-end border-t-2 border-black/20 pt-3">
-                    <div class="text-xs font-black uppercase tracking-widest drop-shadow-sm">AmalPad Ultimate</div>
-                    <div class="text-right">
-                        <div class="text-[10px] font-bold">TOTAL EXP</div>
-                        <div id="card-exp" class="text-xl font-black drop-shadow-sm">99,999</div>
+                        
+                        <div id="card-ovr" class="text-[75px] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 to-yellow-500 drop-shadow-lg">95</div>
+                        
+                        <div class="flex flex-col items-center mt-2 relative">
+                            <svg class="absolute w-16 h-16 text-yellow-500/50 -z-10 top-[-10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A6 6 0 0 1 12 2a6 6 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+                            <div id="card-dom-icon" class="text-2xl drop-shadow-md">✨</div>
+                            <div id="card-dom-text" class="text-[10px] font-bold text-yellow-300 tracking-widest uppercase mt-1 drop-shadow-md">AURA</div>
+                        </div>
+                        
+                        <div class="text-2xl mt-3 opacity-80">🕌</div>
                     </div>
+                    
+                    <div id="card-avatar" class="w-36 h-36 bg-indigo-900 rounded-full border-4 border-yellow-400 flex items-center justify-center text-6xl font-black shadow-[0_0_25px_rgba(217,70,239,0.5)] overflow-hidden text-yellow-100 relative mt-2 mr-2">
+                    </div>
+                </div>
+
+                <div class="text-center mt-[70px] z-10 px-4">
+                    <h2 id="card-name" class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-yellow-400 to-yellow-600 uppercase tracking-widest drop-shadow-lg truncate">PLAYER</h2>
+                    <p id="card-title" class="text-xs font-bold text-yellow-200 mt-1 uppercase tracking-widest drop-shadow-md">GELAR DISINI</p>
+                    <div class="w-2/3 h-[1px] bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent mx-auto mt-3"></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-12 gap-y-3 mt-5 px-10 z-10">
+                    <div class="flex justify-between items-center"><span id="stat-pusat" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">PST</span></div>
+                    <div class="flex justify-between items-center"><span id="stat-sigma" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">SGM</span></div>
+                    <div class="flex justify-between items-center"><span id="stat-aura" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">AUR</span></div>
+                    <div class="flex justify-between items-center"><span id="stat-derma" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">DRM</span></div>
+                    <div class="flex justify-between items-center"><span id="stat-peka" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">PKA</span></div>
+                    <div class="flex justify-between items-center"><span id="stat-stoic" class="text-2xl font-black text-yellow-400">99</span> <span class="text-lg font-bold text-yellow-100/80 tracking-widest">STC</span></div>
+                </div>
+
+                <div class="mt-auto bg-gradient-to-r from-yellow-700 via-yellow-400 to-yellow-700 py-2.5 text-center text-black font-black tracking-widest text-[11px] shadow-[0_-5px_15px_rgba(0,0,0,0.5)] z-10">
+                    EXP TERAKUMULASI: <span id="card-exp">125,750</span>
                 </div>
             </div>
         </div>
@@ -409,7 +415,7 @@
                 <div class="bg-black/40 rounded-xl p-4 mb-5 border border-white/10 shadow-inner">
                     <p class="text-[10px] text-yellow-400 font-bold uppercase tracking-wider mb-2">Misi Syarat Kelulusan:</p>
                     <ul id="exam-requirements-list" class="space-y-2 text-sm text-gray-200 font-medium">
-                        </ul>
+                    </ul>
                 </div>
                 <div class="flex gap-3">
                     <button onclick="window.closeExamModal()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-xl transition text-sm">Nanti Saja</button>
@@ -439,25 +445,38 @@
                     <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-3 border border-gray-100 dark:border-gray-700">
                         <p class="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-2 flex justify-between"><span>Aura Vibes</span> <span id="popup-ovr" class="text-emerald-500 font-black">OVR 0</span></p>
                         <div class="space-y-1.5" id="popup-vibes-bars">
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="circle-popup-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4 transition-opacity" onclick="window.closeCirclePopup(event)">
-            <div class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-3xl p-1 w-full max-w-[300px] shadow-2xl border border-blue-400/30 relative overflow-hidden transform scale-95 transition-transform" onclick="event.stopPropagation()">
-                <div class="bg-white/10 backdrop-blur-md rounded-[1.3rem] p-5">
-                    <div class="text-center mb-4">
-                        <div id="popup-circle-logo" class="w-16 h-16 bg-blue-500/20 rounded-2xl mx-auto flex items-center justify-center text-3xl border border-blue-400/50 mb-2 shadow-inner overflow-hidden">🛡️</div>
-                        <h3 id="popup-circle-name" class="font-black text-xl text-white tracking-wide">Nama Circle</h3>
-                        <p id="popup-circle-lvl" class="text-[10px] text-blue-200 font-bold uppercase tracking-wider bg-blue-500/30 inline-block px-2 py-1 rounded-md mt-1">Lv. 1 Guild</p>
+        <div id="circle-popup-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity" onclick="window.closeCirclePopup(event)">
+            <div id="circle-popup-content" class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-3xl p-1 w-full max-w-[320px] shadow-2xl border border-blue-400/30 relative overflow-hidden transform scale-95 transition-transform" onclick="event.stopPropagation()">
+                <div class="bg-white/10 backdrop-blur-md rounded-[1.3rem] p-6 text-center relative">
+                    <div class="absolute top-0 right-0 text-7xl opacity-5">🛡️</div>
+                    
+                    <div id="popup-circle-logo" class="w-20 h-20 bg-blue-500/20 rounded-[1.5rem] mx-auto flex items-center justify-center text-4xl border-2 border-blue-400/50 mb-3 shadow-inner overflow-hidden relative z-10">🛡️</div>
+                    
+                    <h3 id="popup-circle-name" class="font-black text-2xl text-white tracking-wide leading-tight relative z-10 truncate">Nama Circle</h3>
+                    
+                    <div class="mt-2 mb-4 relative z-10">
+                        <span id="popup-circle-lvl" class="text-xs text-blue-100 font-bold bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-1 rounded-full shadow-md border border-blue-400/30">Lv. 1 • Perintis Langit</span>
                     </div>
-                    <div class="flex justify-between bg-black/30 rounded-xl p-3 mb-4 border border-white/10">
-                        <div class="text-center"><p class="text-[9px] text-blue-300 font-bold">ANGGOTA</p><p id="popup-circle-members" class="text-lg font-black text-white">0/10</p></div>
-                        <div class="text-center"><p class="text-[9px] text-yellow-300 font-bold">TOTAL EXP</p><p id="popup-circle-exp" class="text-lg font-black text-yellow-400">0</p></div>
+                    
+                    <p id="popup-circle-motto-text" class="text-sm text-blue-200 italic mb-5 px-2 line-clamp-2 border-l-2 border-blue-400/50 pl-2">"Solidaritas Jalur Langit"</p>
+                    
+                    <div class="flex justify-between bg-black/40 rounded-xl p-3 mb-5 border border-white/10 shadow-inner relative z-10">
+                        <div class="text-center w-1/2 border-r border-white/10">
+                            <p class="text-[9px] text-blue-300 font-bold tracking-widest">ANGGOTA</p>
+                            <p id="popup-circle-members" class="text-lg font-black text-white">0/10</p>
+                        </div>
+                        <div class="text-center w-1/2">
+                            <p class="text-[9px] text-yellow-300 font-bold tracking-widest">TOTAL EXP</p>
+                            <p id="popup-circle-exp" class="text-lg font-black text-yellow-400">0</p>
+                        </div>
                     </div>
-                    <button onclick="window.closeCirclePopup()" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-2 rounded-xl transition text-xs border border-white/20">Tutup</button>
+                    <button onclick="window.closeCirclePopup()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2.5 rounded-xl transition text-sm shadow-lg shadow-blue-500/30 relative z-10">Tutup Profil</button>
                 </div>
             </div>
         </div>
@@ -690,7 +709,7 @@
                 const isDone = localStorage.getItem(q.id) === 'true'; 
                 const isPast = currentHour >= q.end; 
                 const isActive = currentHour >= q.start && currentHour < q.end; 
-                
+              
                 let statusText, statusClass, borderClass, disabledAttr = "disabled";
                 let checkIcon = "🔒";
 
@@ -983,7 +1002,7 @@
                 localStorage.setItem('gachaType', randomQuest.type);
                 localStorage.setItem('gachaIsWajib', isWajibRoll ? 'true' : 'false');
                 renderGachaResult(randomQuest, isWajibRoll); 
-                
+             
                 if(isWajibRoll) {
                     confetti({particleCount: 100, spread: 70, colors: ['#ff0000', '#000000']});
                     if(navigator.vibrate) navigator.vibrate([200, 100, 200]);
@@ -1094,22 +1113,58 @@
             setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 200);
         }
 
-        // Popup Circle
-        window.showCirclePopup = function(name, exp) {
+        // Fungsi Gelar Circle Tiap Kelipatan 20 Level
+        function getCircleTitle(lvl) {
+            if(lvl < 20) return "Perintis Langit";
+            if(lvl < 40) return "Sirkel Solid";
+            if(lvl < 60) return "Pasukan Elit";
+            if(lvl < 80) return "Suhu Berjamaah";
+            if(lvl < 100) return "Keluarga Inti";
+            return "Sirkel Admin Pusat"; // Level 100+
+        }
+
+        // Fungsi Memunculkan Popup Circle Baru
+        window.showCirclePopup = function(name, exp, logoUrl, motto) {
             document.getElementById('popup-circle-name').innerText = name;
             document.getElementById('popup-circle-exp').innerText = exp.toLocaleString('id-ID');
-            let lvl = 1; while(exp >= getGuildExpRequirement(lvl)) { lvl++; }
-            document.getElementById('popup-circle-lvl').innerText = `Lv. ${lvl} Guild`;
+            
+            // Kalkulasi Level
+            let lvl = 1; 
+            while(exp >= getGuildExpRequirement(lvl)) { lvl++; }
+            
+            // Set Gelar Circle
+            let circleTitle = getCircleTitle(lvl);
+            document.getElementById('popup-circle-lvl').innerHTML = `Lv. ${lvl} &bull; ${circleTitle}`;
+            
+            // Set Logo
+            if(logoUrl && logoUrl !== 'undefined') {
+                document.getElementById('popup-circle-logo').innerHTML = `<img src="${logoUrl}" class="w-full h-full object-cover">`;
+            } else {
+                document.getElementById('popup-circle-logo').innerText = "🛡️";
+            }
+
+            // Set Motto
+            const mottoEl = document.getElementById('popup-circle-motto-text');
+            if(mottoEl) {
+                mottoEl.innerText = motto && motto !== 'undefined' ? `"${motto}"` : '"Solidaritas Jalur Langit"';
+            }
+
+            // Dummy member (Nanti bisa diganti dinamis dari db jika perlu)
             document.getElementById('popup-circle-members').innerText = `${Math.floor(Math.random() * 5) + 5}/10`;
             
             const modal = document.getElementById('circle-popup-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            // Efek animasi mental (bouncing)
+            setTimeout(() => document.getElementById('circle-popup-content').classList.remove('scale-95'), 10);
         }
         
         window.closeCirclePopup = function() {
-            document.getElementById('circle-popup-modal').classList.add('hidden');
-            document.getElementById('circle-popup-modal').classList.remove('flex');
+            document.getElementById('circle-popup-content').classList.add('scale-95');
+            setTimeout(() => {
+                document.getElementById('circle-popup-modal').classList.add('hidden');
+                document.getElementById('circle-popup-modal').classList.remove('flex');
+            }, 200);
         }
 
         const dummyNames = ["Bima_Sigma", "Putri.Skuy", "Abdi_Pusat", "Rina_Chill", "Deni_Core"];
@@ -1138,10 +1193,10 @@
             else { badgeClass = 'bg-black border-transparent relative z-10 before:absolute before:-inset-1 before:bg-gradient-to-r before:from-red-500 before:via-yellow-500 before:to-purple-500 before:-z-10 before:animate-spin shadow-[0_0_25px_rgba(239,68,68,0.8)]'; titleColor = 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-red-500 font-black tracking-widest animate-pulse'; emojiDisplay = `<span class="inline-block animate-bounce">⚡👑${baseEmoji}👑⚡</span>`; }
 
             return `<div class="rounded-2xl p-2 border-2 flex flex-col items-center justify-center text-center transition-all ${badgeClass} h-full min-h-[90px]">
-                        <div class="text-3xl mb-1 drop-shadow-lg">${emojiDisplay}</div>
-                        <p class="text-[8px] font-bold uppercase tracking-widest text-gray-300 mb-0.5 opacity-80">Aura Dominan</p>
-                        <h4 class="text-[10px] ${titleColor} uppercase line-clamp-1">${dominantStatName}</h4>
-                    </div>`;
+                <div class="text-3xl mb-1 drop-shadow-lg">${emojiDisplay}</div>
+                <p class="text-[8px] font-bold uppercase tracking-widest text-gray-300 mb-0.5 opacity-80">Aura Dominan</p>
+                <h4 class="text-[10px] ${titleColor} uppercase line-clamp-1">${dominantStatName}</h4>
+            </div>`;
         }
 
         window.radarChartInstance = null;
@@ -1204,7 +1259,7 @@
                 else if (count <= 6) { colorClass = 'bg-emerald-400 dark:bg-emerald-700'; tooltip = "Skena Ibadah"; }
                 else if (count <= 10) { colorClass = 'bg-emerald-600 dark:bg-emerald-500'; tooltip = "Rajin Parah"; }
                 else { colorClass = 'bg-cyan-400 shadow-sm shadow-cyan-400/50 animate-pulse'; tooltip = "Backingan Pusat"; }
-                
+             
                 const dayName = new Date(dateStr).toLocaleDateString('id-ID', {weekday: 'short'}).charAt(0);
                 container.innerHTML += `<div onclick="alert('Kasta Hari Ini: ${tooltip}')" class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition"><div class="w-8 h-8 rounded-lg ${colorClass} transition-colors duration-500" title="${tooltip}"></div><span class="text-[9px] font-bold text-gray-400">${dayName}</span></div>`;
             });
@@ -1275,7 +1330,7 @@
             document.querySelectorAll('.checklist-item').forEach(box => {
                 if (localStorage.getItem(box.id) === 'true') { box.checked = true; box.disabled = true; if(box.id === 'vip-puasa-buff') window.vipBuff = true; }
                 let newBox = box.cloneNode(true); box.parentNode.replaceChild(newBox, box);
-                
+             
                 newBox.addEventListener('change', function() {
                     if (!this.checked) { this.checked = true; return; }
                     localStorage.setItem(this.id, 'true'); this.disabled = true; 
@@ -1385,49 +1440,94 @@
             }
         }
 
-        // Event Listener Tombol Generate Player Card
-        document.getElementById('btn-share').addEventListener('click', () => {
+        // Event Listener Tombol Generate Player Card (AURA AURA CARD)
+        document.getElementById('btn-share').addEventListener('click', async () => {
             const btn = document.getElementById('btn-share');
-            btn.innerText = "⏳ Memanggil Khodam Card...";
+            btn.innerText = "⏳ Menarik Aura...";
             btn.disabled = true;
 
-            let info = calculateLevelInfo(window.totalExp);
-            let overall = Math.min(99, Math.floor(info.level * 1.8) + 10); 
-            
-            document.getElementById('card-ovr').innerText = overall;
-            document.getElementById('card-pos').innerText = info.level > 30 ? 'WALI' : (info.level > 15 ? 'SUHU' : 'NPC');
-            document.getElementById('card-name').innerText = document.getElementById('user-name').value || 'PLAYER';
-            document.getElementById('card-title').innerText = getTitle(info.level);
-            document.getElementById('card-exp').innerText = window.totalExp.toLocaleString('id-ID');
-            document.getElementById('card-circle').innerText = window.userCircleId ? `🛡️ ${document.getElementById('circle-name-display').innerText}` : '🛡️ Solo Player';
+            try {
+                let info = calculateLevelInfo(window.totalExp);
+                let overall = Math.min(99, Math.floor(info.level * 1.8) + 10); 
+                
+                // 1. Set Basic Info
+                document.getElementById('card-ovr').innerText = overall;
+                document.getElementById('card-name').innerText = document.getElementById('user-name').value || 'PLAYER';
+                document.getElementById('card-title').innerText = getTitle(info.level);
+                document.getElementById('card-exp').innerText = window.totalExp.toLocaleString('id-ID');
 
-            const avatarSrcEl = document.getElementById('avatar-initial');
-            const cardAvatarDest = document.getElementById('card-avatar');
-            if(avatarSrcEl.querySelector('img')) {
-                cardAvatarDest.innerHTML = `<img src="${avatarSrcEl.querySelector('img').src}" crossorigin="anonymous" class="w-full h-full object-cover">`;
-            } else { cardAvatarDest.innerHTML = avatarSrcEl.innerHTML; }
+                // 2. Set Foto Profil (Force CORS untuk html2canvas)
+                const avatarSrcEl = document.getElementById('avatar-initial');
+                const cardAvatarDest = document.getElementById('card-avatar');
+                if(avatarSrcEl.querySelector('img')) {
+                    cardAvatarDest.innerHTML = `<img src="${avatarSrcEl.querySelector('img').src}" crossorigin="anonymous" class="w-full h-full object-cover">`;
+                } else { 
+                    cardAvatarDest.innerHTML = avatarSrcEl.innerHTML; 
+                }
 
-            const getStat = (val) => Math.min(99, Math.floor(val / 2) + 20);
-            document.getElementById('stat-pusat').innerText = getStat(window.statsRadar.pusat);
-            document.getElementById('stat-aura').innerText = getStat(window.statsRadar.aura);
-            document.getElementById('stat-peka').innerText = getStat(window.statsRadar.peka);
-            document.getElementById('stat-sigma').innerText = getStat(window.statsRadar.sigma);
-            document.getElementById('stat-derma').innerText = getStat(window.statsRadar.derma);
-            document.getElementById('stat-stoic').innerText = getStat(window.statsRadar.stoic);
+                // 3. Set 6 Atribut (Formula: Stat/2 + 20)
+                const getStat = (val) => Math.min(99, Math.floor((val || 0) / 2) + 20);
+                let stPusat = getStat(window.statsRadar.pusat);
+                let stAura = getStat(window.statsRadar.aura);
+                let stPeka = getStat(window.statsRadar.peka);
+                let stSigma = getStat(window.statsRadar.sigma);
+                let stDerma = getStat(window.statsRadar.derma);
+                let stStoic = getStat(window.statsRadar.stoic);
 
-            const card = document.getElementById('export-card');
-            
-            setTimeout(() => {
-                html2canvas(card, { backgroundColor: null, scale: 2, useCORS: true, allowTaint: true }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = `AmalPad_FlexingPrayerCard_${new Date().getTime()}.png`;
-                    link.href = canvas.toDataURL('image/png'); link.click();
-                    btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
-                }).catch(err => {
-                    alert('Gagal render Card. Mungkin karena limitasi browser/CORS gambar.');
-                    btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
-                });
-            }, 500);
+                document.getElementById('stat-pusat').innerText = stPusat;
+                document.getElementById('stat-aura').innerText = stAura;
+                document.getElementById('stat-peka').innerText = stPeka;
+                document.getElementById('stat-sigma').innerText = stSigma;
+                document.getElementById('stat-derma').innerText = stDerma;
+                document.getElementById('stat-stoic').innerText = stStoic;
+
+                // 4. Kalkulasi Aura Dominan (Nilai Terbesar)
+                const allStats = { 'Pusat': stPusat, 'Aura': stAura, 'Peka': stPeka, 'Sigma': stSigma, 'Derma': stDerma, 'Stoic': stStoic };
+                const domName = Object.keys(allStats).reduce((a, b) => allStats[a] > allStats[b] ? a : b);
+                const statEmojis = { 'Pusat': '🕋', 'Aura': '✨', 'Peka': '👼', 'Sigma': '🗿', 'Derma': '🤝', 'Stoic': '🧊' };
+                
+                document.getElementById('card-dom-icon').innerText = statEmojis[domName];
+                document.getElementById('card-dom-text').innerText = domName;
+
+                // 5. Cek Rank Global (Query ke Firebase untuk presisi)
+                const rankBanner = document.getElementById('card-rank-banner');
+                rankBanner.classList.add('hidden'); // Reset dulu
+                
+                if (window.auth && auth.currentUser && !auth.currentUser.isAnonymous) {
+                    try {
+                        // Cek ada berapa player yang EXP bulanannya lebih besar dari kita
+                        const qRank = query(collection(db, "users"), where("monthly_exp", ">", window.totalExp));
+                        const snapRank = await getDocs(qRank);
+                        let actualRank = snapRank.size + 1; // +1 karena kita ada di bawah mereka
+                        
+                        // Rule: Jika <= 10, tampilkan banner cantik!
+                        if (actualRank <= 10 && window.totalExp > 0) {
+                            rankBanner.innerText = `GLOBAL RANK ${actualRank}`;
+                            rankBanner.classList.remove('hidden');
+                        }
+                    } catch(e) { console.warn("Rank fetch failed, hiding banner"); }
+                }
+
+                // 6. Render Card menjadi Gambar
+                const card = document.getElementById('export-card');
+                setTimeout(() => {
+                    html2canvas(card, { backgroundColor: null, scale: 2, useCORS: true, allowTaint: true }).then(canvas => {
+                        const link = document.createElement('a');
+                        link.download = `AmalPad_AuraCard_${new Date().getTime()}.png`;
+                        link.href = canvas.toDataURL('image/png'); link.click();
+                        
+                        btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
+                        if(typeof confetti === 'function') confetti({ particleCount: 100, spread: 70, colors: ['#a855f7', '#eab308'] });
+                    }).catch(err => {
+                        alert('Gagal render Card. Mungkin karena limitasi browser/CORS gambar.');
+                        btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
+                    });
+                }, 500); // Jeda sebentar agar font dan gambar load
+
+            } catch (err) {
+                console.error(err);
+                btn.innerText = "🃏 Flex Prayer Card"; btn.disabled = false;
+            }
         });
 
         // --- 11. TASBIH DIGITAL & MARKETPLACE TOKO ---
@@ -1469,7 +1569,7 @@
             tasbihBtn.addEventListener('click', () => {
                 tasbihCount++; localStorage.setItem(`tasbih_${currentTasbihType}`, tasbihCount);
                 if (navigator.vibrate) navigator.vibrate(30); 
-                
+             
                 if (tasbihCount === 33) {
                     let bonusExp = window.vipBuff ? 10 : 5; window.totalKoin += 10; window.totalExp += bonusExp;
                     localStorage.setItem('totalKoin', window.totalKoin); localStorage.setItem('totalExp', window.totalExp);
@@ -1496,7 +1596,7 @@
         updateTasbihUI();
 
         const badgeData = [
-            { id: 'bdg_pusat', icon: '🕋', name: 'Wali Pusat', type: 'pusat', reqStat: 50, reqExam: 10, desc: 'Pancaran ibadah wajib yang tiada tara.' },
+            { id: 'bdg_pusat', icon: '🕋', name: 'Admin Pusat', type: 'pusat', reqStat: 50, reqExam: 10, desc: 'Pancaran ibadah wajib yang tiada tara.' },
             { id: 'bdg_aura', icon: '✨', name: 'Aura Memikat', type: 'aura', reqStat: 50, reqExam: 10, desc: 'Karisma dan adab yang menyejukkan hati.' },
             { id: 'bdg_peka', icon: '👼', name: 'Malaikat Peka', type: 'peka', reqStat: 50, reqExam: 20, desc: 'Punya empati tinggi, pendengar curhat terbaik.' },
             { id: 'bdg_sigma', icon: '🗿', name: 'Sigma Sejati', type: 'sigma', reqStat: 50, reqExam: 20, desc: 'Mandiri, disiplin, tangguh, dan selalu on-time.' },
@@ -1514,7 +1614,7 @@
 
             badgeData.forEach(b => {
                 let currentVal = b.type === 'streak' ? userStreak : (window.statsRadar[b.type] || 0);
-                
+             
                 // Syarat 1: Cek Poin & Syarat 2: Cek Ujian
                 let isStatMet = currentVal >= b.reqStat;
                 let isExamMet = localStorage.getItem(`exam_passed_${b.reqExam}`) === 'true';
@@ -1523,10 +1623,10 @@
                 let stateClass = isUnlocked 
                     ? "bg-white dark:bg-gray-800 border-emerald-400 shadow-emerald-500/20 shadow-md transform hover:-translate-y-1" 
                     : "bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-60 grayscale";
-                
+             
                 let iconClass = isUnlocked ? "text-emerald-500 drop-shadow-md" : "text-gray-400";
                 let titleColor = isUnlocked ? "text-gray-800 dark:text-gray-100" : "text-gray-500 dark:text-gray-400";
-                
+             
                 // Konten Pop-up Dinamis
                 let infoContent = `<span class='text-sm text-emerald-600 block mb-2'>${b.desc}</span><b>Syarat Mendapatkan Trofi:</b><br><br>`;
                 infoContent += `<div class='text-left ml-2'>`;
@@ -1605,14 +1705,6 @@
                 window.fetchLeaderboard();
             });
         }
-
-        // Jika Tombol 'Lihat Top Global Circle' di tab Circle di klik
-        document.getElementById('btn-rank-circle').addEventListener('click', () => {
-            if(tabLbCircle) {
-                tabLbCircle.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Auto scroll ke bawah
-                if(currentLbTab !== 'circle') tabLbCircle.click(); // Otomatis pindah ke Tab Circle
-            }
-        });
     </script>
 
     <script type="module">
@@ -1705,7 +1797,6 @@
                         }
                     });
                     if(rank === 1) lbContainer.innerHTML = '<div class="text-center text-xs py-4 text-indigo-200">Belum ada yang aktif bulan ini. Curi start sekarang!</div>';
-                
                 } else {
                     // TAB CIRCLE TERPILIH
                     const qCircleRank = query(collection(db, "circles"), orderBy("total_exp", "desc"), limit(10));
@@ -1717,8 +1808,9 @@
                         let colorClasses = rank === 1 ? 'border-yellow-400/50 bg-yellow-400/10 text-yellow-400' : rank === 2 ? 'border-gray-300/30 bg-gray-300/10 text-gray-300' : rank === 3 ? 'border-orange-400/30 bg-orange-400/10 text-orange-300' : 'border-white/10 bg-white/5 text-blue-200';
                         const el = document.createElement('div');
                         el.className = `flex items-center justify-between p-2 rounded-2xl border backdrop-blur-sm cursor-pointer hover:scale-[1.02] transition-transform ${colorClasses}`;
+                        
                         el.innerHTML = `
-                            <div class="flex items-center gap-3" onclick="window.showCirclePopup('${cData.name}', ${cData.total_exp})">
+                            <div class="flex items-center gap-3" onclick="window.showCirclePopup('${(cData.name || '').replace(/'/g, "\\'")}', ${cData.total_exp}, '${cData.logo || ''}', '${(cData.motto || '').replace(/'/g, "\\'")}')">
                                 <span class="font-black text-lg w-5 text-center">${rank}</span>
                                 <div class="w-8 h-8 rounded-2xl bg-white/20 flex items-center justify-center font-bold text-lg overflow-hidden shadow-inner">${cData.logo ? `<img src="${cData.logo}" class="w-full h-full object-cover">` : '🛡️'}</div>
                                 <span class="font-bold text-sm truncate max-w-[120px] hover:text-white transition">${cData.name}</span>
@@ -1798,14 +1890,14 @@
             try {
                 const docSnap = await getDoc(globalMisiRef);
                 let current = 0; if (docSnap.exists()) current = docSnap.data().current_count || 0;
-                
+              
                 const target = misiSaatIni.target;
                 let percent = (current / target) * 100; if (percent > 100) percent = 100;
 
                 document.getElementById('global-progress-text').innerText = `${current.toLocaleString('id-ID')} / ${target.toLocaleString('id-ID')}`;
                 document.getElementById('global-progress-percent').innerText = `${Math.floor(percent)}%`;
                 document.getElementById('global-progress-bar').style.width = `${percent}%`;
-                
+              
                 if (current >= target) {
                     document.getElementById('global-progress-text').innerText = "🎉 TARGET TERCAPAI!";
                     document.getElementById('global-progress-bar').classList.add('from-emerald-400', 'to-emerald-300');
@@ -1987,13 +2079,13 @@
                 const q = query(collection(db, "circles"), where("invite_code", "==", code.toUpperCase()));
                 const querySnapshot = await getDocs(q);
                 if(querySnapshot.empty) return alert("Waduh, Circle tidak ditemukan! Cek lagi kodenya.");
-                
+             
                 let foundCircleId = null, circleData = null;
                 querySnapshot.forEach((doc) => { foundCircleId = doc.id; circleData = doc.data(); });
-                
+             
                 if(circleData.members.length >= 10) return alert("Circle ini sudah penuh (Max 10)!");
                 if(circleData.members.includes(auth.currentUser.uid)) return alert("Kamu sudah gabung di sini!");
-                
+             
                 await updateDoc(doc(db, "circles", foundCircleId), { members: arrayUnion(auth.currentUser.uid) });
                 await updateDoc(doc(db, "users", auth.currentUser.uid), { circle_id: foundCircleId });
                 window.userCircleId = foundCircleId;
@@ -2049,10 +2141,10 @@
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
                 const currentMonthStr = `${today.getMonth() + 1}-${today.getFullYear()}`;
-                
+             
                 const gmt = document.getElementById('global-mission-title');
                 if(gmt) gmt.innerText = misiSaatIni.title;
-                
+             
                 if (!docSnap.exists()) {
                     let defaultName = user.displayName || "User";
                     await setDoc(userRef, {
@@ -2111,13 +2203,13 @@
 
                     if(data.circle_id) { window.userCircleId = data.circle_id; window.fetchCircleData(window.userCircleId); }
                 }
-                
+             
                 nameInputFire.readOnly = true; window.fetchLeaderboard(); window.fetchGlobalProgress();
             } else {
                 btnLogin.classList.remove('hidden'); btnLogout.classList.add('hidden');
                 btnAdminReset.classList.add('hidden'); btnEnableNotif.classList.add('hidden');
                 nameInputFire.readOnly = false; window.userCircleId = null; window.fetchCircleData(null);
-                
+             
                 // Refresh UI untuk state guest
                 if(window.renderCharts) window.renderCharts();
                 if(window.updateBadges) window.updateBadges();
