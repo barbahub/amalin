@@ -56,7 +56,7 @@ window.getTitle = function(lvl) {
     if(lvl < 20) return "Skena Ibadah";
     if(lvl < 30) return "Pendekar Subuh";
     if(lvl < 40) return "Suhu Akhlaq";
-    if(lvl < 50) return "Wali Kategori Ringan";
+    if(lvl < 50) return "Bestie Hijrah";
     return "Backingan Pusat";
 }
 
@@ -281,10 +281,14 @@ window.initStreakSystem = function() {
             currentStreak = 1;
         }
 
-        // Simpan data ke memori lokal
+        // FIX: Simpan data ke memori lokal dengan variabel yang terpadu
         localStorage.setItem('streakNum', currentStreak);
         localStorage.setItem('lastStreakClaim', todayStr);
+        window.streakNum = currentStreak; // Jadikan global
         isClaimedToday = true;
+
+        // FIX: Langsung Trigger Sinkronisasi Cloud Agar Aman
+        if(window.syncStatsToFirebase) window.syncStatsToFirebase();
 
         // Update UI seketika menjadi normal kembali
         btnStreak.className = "bg-white/20 px-2.5 py-1.5 rounded-full text-xs font-bold shadow-sm backdrop-blur-sm border border-white/30 transition-all cursor-not-allowed opacity-80 text-white flex items-center justify-center";
