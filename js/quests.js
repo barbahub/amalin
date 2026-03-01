@@ -429,7 +429,9 @@ window.updateTasbihUI();
 // --- 10. ATTACH LISTENERS & SANKSI PENALTI ---
 const todayStr = new Date().toDateString();
 let lastVisitStr = localStorage.getItem('lastVisit');
-window.streakNum = parseInt(localStorage.getItem('streak') || 0);
+
+// FIX: Gunakan penamaan variabel yang seragam 'streakNum' 
+window.streakNum = parseInt(localStorage.getItem('streakNum') || 0);
 
 if (lastVisitStr && lastVisitStr !== todayStr) {
     let missedSholat = 0;
@@ -461,6 +463,12 @@ if (lastVisitStr && lastVisitStr !== todayStr) {
 
     if (localStorage.getItem('completedYesterday') !== 'true' && !isStreakLost) window.streakNum = 0;
     
+    // FIX: Simpan ke key 'streakNum' yang valid. Hapus lastStreakClaim jika streak putus
+    localStorage.setItem('streakNum', window.streakNum);
+    if(window.streakNum === 0) {
+        localStorage.setItem('lastStreakClaim', '');
+    }
+
     let resets = ['quest-gacha', 'gachaIsWajib', 'gachaDate', 'gachaMission', window.todayFlash.id];
     window.sholatWajib.forEach(q => resets.push(q.id)); window.dailyQuests.forEach(q => resets.push(q.id));
     resets.push(window.currentEpic.id); resets.push('vip-puasa-buff');
@@ -471,11 +479,10 @@ if (lastVisitStr && lastVisitStr !== todayStr) {
     });
     localStorage.setItem('completedYesterday', 'false'); 
     localStorage.setItem('lastVisit', todayStr); 
-    localStorage.setItem('streak', window.streakNum);
 } else if (!lastVisitStr) { localStorage.setItem('lastVisit', todayStr); }
 
 const streakDisplay = document.getElementById('streak-display');
-if(streakDisplay) streakDisplay.innerText = `🔥 ${window.streakNum}`;
+if(streakDisplay && window.streakNum > 0) streakDisplay.innerText = `🔥 ${window.streakNum}`;
 
 window.attachChecklistListeners = function() {
     document.querySelectorAll('.checklist-item').forEach(box => {
@@ -526,9 +533,13 @@ window.attachChecklistListeners = function() {
             let anyChecked = document.querySelectorAll('.checklist-item:checked').length > 0;
             if (anyChecked) {
                 localStorage.setItem('completedYesterday', 'true');
+                // FIX: Auto-streak disinkronisasi dengan tombol klaim agar tidak mereset satu sama lain
                 if (window.streakNum === 0 && lastVisitStr === todayStr) {
-                    window.streakNum = 1; localStorage.setItem('streak', window.streakNum); 
+                    window.streakNum = 1; 
+                    localStorage.setItem('streakNum', window.streakNum); 
+                    localStorage.setItem('lastStreakClaim', todayStr);
                     if(streakDisplay) streakDisplay.innerText = `🔥 ${window.streakNum}`;
+                    if(window.initStreakSystem) window.initStreakSystem(); // Render ulang tombol claim
                 }
             }
             if (typeof window.checkEpicComboUnlock === 'function') window.checkEpicComboUnlock(true); 
